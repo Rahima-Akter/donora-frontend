@@ -14,7 +14,7 @@ const Navbar = () => {
 
     return (
         <nav className=" shadow-lg py-2 px-0 fixed bg-white/20 top-0 left-0 right-0 z-20 backdrop-blur-lg">
-            <div className="relative md:px-10 px-8 mx-auto flex items-center justify-between">
+            <div className="relative md:px-10 px-2 mx-auto flex items-center justify-between">
                 <Link to="/" className="lg:text-3xl text-Red text-xl font-bold uppercase">
                     <span className="flex justify-center items-center">
                         <img src={logo} alt="logo" className="md:w-20 w-14 md:-mr-5 -mr-3 mt-2" />
@@ -22,11 +22,11 @@ const Navbar = () => {
                     </span>
                 </Link>
 
-                <div className="hidden lg:flex items-center space-x-8 text-white text-sm">
+                <div className="hidden lg:flex items-center space-x-8 dark:text-white text-Red text-sm">
                     <NavLink
                         to="/"
                         className={({ isActive }) =>
-                            `flex items-center space-x-2 hover:text-Red uppercase font-semibold ${isActive ? "text-white bg-Red hover:text-Crimson-Red px-3 py-2 rounded-md ring-1 ring-white" : ""
+                            `flex items-center space-x-2 dark:hover:text-Red uppercase font-semibold ${isActive ? "text-white bg-Red hover:text-Crimson-Red px-3 py-2 rounded-md ring-1 ring-white" : ""
                             }`
                         }
                     >
@@ -118,7 +118,7 @@ const Navbar = () => {
                     )}
                     {/* <ThemeSwitcher /> */}
                     <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-                        {isMobileMenuOpen ? <FaTimes className="md:text-2xl text-xl" /> : <FaBars className="md:text-2xl text-xl" />}
+                        {isMobileMenuOpen ? <FaTimes className="md:text-2xl text-xl mr-3" /> : <FaBars className="md:text-2xl text-xl mr-3" />}
                     </button>
                 </div>
             </div>

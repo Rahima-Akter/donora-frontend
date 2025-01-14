@@ -1,6 +1,7 @@
 import { Outlet } from 'react-router-dom';
 import Home from '../Pages/Home/Home';
 import Navbar from '../Shared/Navbar/Navbar';
+import Footer from '../Shared/Footer/Footer';
 
 const MainLayout = () => {
     return (
@@ -9,6 +10,7 @@ const MainLayout = () => {
             <div className='flex-grow'> 
                 <Outlet/>
             </div>
+            <Footer/>
         </div>
     );
 };

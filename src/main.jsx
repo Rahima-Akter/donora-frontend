@@ -7,7 +7,7 @@ import Context from './contexts/AuthProvider/Context'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <div className='bg-Blood-Red'>
+    <div className=''>
       <Context>
         <RouterProvider router={router} />
       </Context>
