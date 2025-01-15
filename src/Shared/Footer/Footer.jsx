@@ -7,14 +7,15 @@ import { MdDoubleArrow } from "react-icons/md";
 
 const Footer = () => {
     return (
-        <div className="bg-gray-50" style={{
+        <div className="bg-gray-50 relative" style={{
             backgroundImage: `url(${footerBg})`,
             backgroundPosition: 'center',
             backgroundSize: 'cover',
             backgroundRepeat: 'no-repeat',
             // opacity: '70%'
         }}>
-            <footer className=" pt-12 relative w-11/12 mx-auto">
+            {/* <div className="absolute top-0 right-0 inset-0 bg-Crimson-Red/1"></div> */}
+            <footer className="pt-12 relative w-11/12 mx-auto z-10">
                 <div className="max-w-7xl mx-auto px-4 lg:flex lg:justify-between text-gray-700">
                     {/* Left Section: Logo & Description */}
                     <div className="mb-8 lg:mb-0 max-w-sm">
