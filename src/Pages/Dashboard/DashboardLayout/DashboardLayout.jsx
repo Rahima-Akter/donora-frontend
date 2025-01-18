@@ -1,5 +1,4 @@
-import React from 'react';
-import DashNavbar from '../DashNavbar';
+import DashNavbar from "../components/DashNavbar"
 import { Outlet } from 'react-router-dom';
 
 const DashboardLayout = () => {

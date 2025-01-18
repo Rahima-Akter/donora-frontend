@@ -1,19 +1,22 @@
-import useAuth from '../../Hooks/useAuth';
+import useAuth from '../../../Hooks/useAuth';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { IoEyeOutline } from 'react-icons/io5';
 import { BiEdit } from 'react-icons/bi';
 import { AiOutlineDelete } from 'react-icons/ai';
 import { format } from 'date-fns';
-import { useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { Link } from 'react-router-dom';
+import Spinner from '../../../Components/Spinner';
+import { useState } from 'react';
 
-const DonorHome = () => {
+const MyDonationRequest = () => {
     const { user } = useAuth();
+    const [status, setStatus] = useState('')
     const { data: requests = [], isLoading, refetch } = useQuery({
-        queryKey: ['requests', user?.email],
+        queryKey: ['requests', user?.email, status],
         queryFn: async () => {
-            const { data } = await axios.get(`http://localhost:5000/blood-request/${user?.email}`);
+            const { data } = await axios.get(`http://localhost:5000/blood-request/${user?.email}?status=${status}`);
             return data;
         }
     });
@@ -39,20 +42,29 @@ const DonorHome = () => {
             }
         });
 
-
-
     }
 
-    if (isLoading) return <p className='text-5xl'>loading..................</p>
+    if (isLoading) return <Spinner />
     return (
         <div className='p-5'>
-            {
-                user ? user && <p className='font-bold text-xl text-green-600'>🩸Welcome, <span className='text-Red uppercase'>{user?.displayName}</span></p> : <p className='font-bold text-xl'>Welcome</p>
-            }
-
             {/* table */}
             <section className="py-8">
-                <p className='font-semibold uppercase text-Red text-lg mb-4'>recent donation requests</p>
+                <div className='flex justify-between items-center'>
+                    <p className='font-semibold uppercase text-Red text-lg mb-4'>my donation requests</p>
+                    {/* button group for filter */}
+                    <div className="join mb-2">
+                        <select 
+                        onChange={(e) => setStatus(e.target.value)}
+                        className="select select-bordered join-item bg-Red rounded-lg border border-white pb-1 px-2 text-white font-bold">
+                            <option className='font-bold' value=''>Filter by</option>
+                            <option className='font-bold' value='pending'>pending</option>
+                            <option className='font-bold' value='inprogress'>inprogress</option>
+                            <option className='font-bold' value='done'>done</option>
+                            <option className='font-bold' value='cancled'>cancled</option>
+                        </select>
+                    </div>
+                </div>
+
                 {
                     requests.length === 0 && <p className='font-bold drop-shadow-lg uppercase text-Red text-xl mb-4 text-center'>No data to show</p> || (<div className="min-w-full px-4 mx-auto sm:px-6 lg:px-0">
                         <div className="overflow-hidden bg-white shadow rounded-lg dark:bg-gray-900">
@@ -102,13 +114,15 @@ const DonorHome = () => {
                                                 <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap text-center font-bold">{request.
                                                     bloodGroup}</td>
                                                 {
-                                                    request.status === 'inprogress' && (
-                                                        request.status === 'inprogress' ? (<td className="px-4 py-4 text-sm whitespace-nowrap">
-                                                            <div className="">
-                                                                <p className="px-3 py-1 text-xs">{user?.name}</p>
+                                                    request.status === 'inprogress' ? (
+                                                        <td className="px-4 py-4 text-sm whitespace-nowrap">
+                                                            <div className="flex flex-col">
+                                                                <p className="px-3 py-1 text-xs text-center">{user?.displayName}</p>
                                                                 <p className="px-3 py-1 text-xs">{user?.email}</p>
                                                             </div>
-                                                        </td>) : <p className='flex justify-center items-center text-center mt-6 font-semibold text-Red/50'>N/A</p>
+                                                        </td>
+                                                    ) : (
+                                                        <td className="px-4 py-4 text-sm whitespace-nowrap text-center mt-6 font-semibold text-Red/50">N/A</td>
                                                     )
                                                 }
                                                 <td className="px-4 py-4 text-sm whitespace-nowrap">
@@ -116,13 +130,12 @@ const DonorHome = () => {
                                                         <button onClick={() => handleDelete(request._id)} className="text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none">
                                                             <AiOutlineDelete className='text-2xl' />
                                                         </button>
-
-                                                        <button className="text-gray-500 transition-colors duration-200 dark:hover:text-blue-500 dark:text-gray-300 hover:text-blue-500 focus:outline-none">
+                                                        <Link to={`/dashboard/UpdateRequest/${request._id}`} className="text-gray-500 transition-colors duration-200 dark:hover:text-blue-500 dark:text-gray-300 hover:text-blue-500 focus:outline-none">
                                                             <BiEdit className='text-2xl' />
-                                                        </button>
-                                                        <button className="text-gray-500 transition-colors duration-200 dark:hover:text-yellow-500 dark:text-gray-300 hover:text-yellow-500 focus:outline-none">
+                                                        </Link>
+                                                        <Link to={`/dashboard/details/${request._id}`} className="text-gray-500 transition-colors duration-200 dark:hover:text-yellow-500 dark:text-gray-300 hover:text-yellow-500 focus:outline-none">
                                                             <IoEyeOutline className='text-2xl' />
-                                                        </button>
+                                                        </Link>
                                                     </div>
                                                 </td>
                                             </tr>)
@@ -139,4 +152,4 @@ const DonorHome = () => {
     );
 };
 
-export default DonorHome;
+export default MyDonationRequest;

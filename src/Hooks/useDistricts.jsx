@@ -5,13 +5,13 @@ const useDistricts = () => {
     const [upazilas, setUpazilas] = useState([]);
 
     useEffect(() => {
-        fetch('../districts.json')
+        fetch('/districts.json')
             .then(res => res.json())
             .then(data => setDistricts(data))
     }, [setDistricts])
 
     useEffect(() => {
-        fetch('../upazilas.json')
+        fetch('/upazilas.json')
             .then(res => res.json())
             .then(data => setUpazilas(data))
     }, [setUpazilas])

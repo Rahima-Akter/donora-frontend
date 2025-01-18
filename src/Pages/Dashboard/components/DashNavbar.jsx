@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import useAuth from '../../Hooks/useAuth';
-import logo from '../../assets/logo.PNG'
+import useAuth from '../../../Hooks/useAuth';
+import logo from '../../../assets/logo.PNG'
 
 const DashNavbar = () => {
     const { user } = useAuth();
