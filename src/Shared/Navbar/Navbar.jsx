@@ -72,12 +72,17 @@ const Navbar = () => {
                                 onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
                             />
                             {isUserMenuOpen && (
-                                <div className="absolute -right-20 top-12 bg-white rounded-md shadow-lg z-10 w-44">
-                                    <p className="px-4 py-2 border-b text-center text-pink-500">
-                                        {user.displayName || "User"}
-                                    </p>
+                                <div className="absolute -right-10 top-16 bg-white rounded-md shadow-lg z-10 w-44">
+                                    <div className="flex flex-col justify-center items-center">
+                                        <p className="px-4 py-1 border-b border-Red/60 text-center text-Red">
+                                            {user.displayName || "User"}
+                                        </p>
+                                        <NavLink to="/dashboard" className="text-Red my-2 hover:text-Racing-Red font-semibold uppercase">
+                                            Dashborad
+                                        </NavLink>
+                                    </div>
                                     <button
-                                        className="block w-full px-4 py-2 bg-Red hover:bg-pink-700 text-white rounded-b-md"
+                                        className="block w-full px-4 py-2 font-semibold bg-Red hover:bg-Crimson-Red text-white rounded-b-md"
                                         onClick={logOut}
                                     >
                                         Logout
@@ -87,7 +92,9 @@ const Navbar = () => {
                         </div>
                     ) : (
                         <div>
-                            <button onClick={() => navigate('/login')} className="bg-Red px-3 mr-5 py-2 text-white font-semibold rounded">Login</button>
+                            <Link to="/login" className="bg-Red px-3 mr-5 py-2 text-white font-semibold rounded">
+                                Login
+                            </Link>
                         </div>)}
                     {/* <ThemeSwitcher /> */}
                 </div>
@@ -103,9 +110,14 @@ const Navbar = () => {
                             />
                             {isUserMenuOpen && (
                                 <div className="absolute md:-right-5 -right-20 top-12 bg-white rounded-md shadow-lg z-10 w-44">
-                                    <p className="px-4 py-2 border-b text-center text-pink-500">
-                                        {user.displayName || "User"}
-                                    </p>
+                                    <div className="flex flex-col justify-center items-center">
+                                        <p className="px-4 py-2 border-b text-center text-pink-500">
+                                            {user.displayName || "User"}
+                                        </p>
+                                        <NavLink to="/dashboard" className="text-Red my-2 hover:text-Racing-Red font-semibold uppercase">
+                                            Dashborad
+                                        </NavLink>
+                                    </div>
                                     <button
                                         className="block w-full px-4 py-2 bg-Red hover:bg-pink-700 text-white rounded-b-md"
                                         onClick={logOut}
