@@ -8,7 +8,8 @@ import DonationReqForm from '../Pages/Dashboard/components/DonationReqForm';
 import MyDonationRequest from '../Pages/Dashboard/DonorDashboard/MyDonationRequest';
 import Details from '../Pages/Dashboard/components/Details';
 import DashboardLayout from '../Pages/Dashboard/DashboardLayout/DashboardLayout';
-import UpdateRequests from '../Pages/Dashboard/components/UpdateRequests';                                                        
+import UpdateRequests from '../Pages/Dashboard/components/UpdateRequests';
+import AdminHome from '../Pages/Dashboard/AdminDashboard/AdminHome';
 
 
 const router = createBrowserRouter([
@@ -33,30 +34,55 @@ const router = createBrowserRouter([
     // ***donor dashboard***
     {
         path: '/dashboard',
-        element: <DashboardLayout/>,
+        element: <DashboardLayout />,
         children: [
             {
                 path: '/dashboard',
-                element: <DonorHome/>
+                element: <DonorHome />
             },
             {
                 path: '/dashboard/create-donation-request',
-                element: <DonationReqForm/>
+                element: <DonationReqForm />
             },
             {
                 path: '/dashboard/my-donation-requests',
-                element: <MyDonationRequest/>
+                element: <MyDonationRequest />
             },
             {
                 path: '/dashboard/UpdateRequest/:id',
-                element: <UpdateRequests/>,
-                loader: ({params}) => fetch(`http://localhost:5000/blood-request/${params.id}`)
+                element: <UpdateRequests />,
+                loader: async({ params }) => {
+                    const token = localStorage.getItem('access-token');
+                    const response = await fetch(`http://localhost:5000/blood-request/${params.id}`,{
+                        method: 'GET',
+                        headers: {
+                            'Authorization': `Bearer ${token}`, // adding the token
+                        },
+                    });
+                    const data = await response.json();
+                    return data;
+                }
             },
             {
                 path: '/dashboard/details/:id',
-                element: <Details/>,
-                loader: ({params}) => fetch(`http://localhost:5000/blood-request/${params.id}`)
+                element: <Details />,
+                loader: async({ params }) => {
+                    const token = localStorage.getItem('access-token');
+                    const response = await fetch(`http://localhost:5000/blood-request/${params.id}`,{
+                        method: 'GET',
+                        headers: {
+                            'Authorization': `Bearer ${token}`, // adding the token
+                        },
+                    });
+                    const data = await response.json();
+                    return data;
+                }
             },
+            // admin dashboard ************************
+            {
+                path: '/dashboard/admin',
+                element: <AdminHome/>
+            }
         ]
     }
 ]);

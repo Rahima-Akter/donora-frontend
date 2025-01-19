@@ -1,36 +1,32 @@
 import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
 import React, { useState } from 'react';
-import { useLoaderData, useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Spinner from '../../../Components/Spinner';
 import { format } from 'date-fns';
 import logo from '../../../assets/logo.PNG'
 import useAuth from '../../../Hooks/useAuth';
-import toast from 'react-hot-toast';
+import HandleStatus from '../../../Hooks/HandleStatus';
+import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 
 const Details = () => {
+    const [handleStatus, status] = HandleStatus();
+    const axiosSecure = useAxiosSecure();
     const { user } = useAuth();
     const { id } = useParams();
-    const navigate = useNavigate();
     const [isOpen, setIsOpen] = useState(false);
     const { data: details = {}, isLoading } = useQuery({
         queryKey: ['details', id],
         queryFn: async () => {
-            const { data } = await axios.get(`http://localhost:5000/blood-request/${id}`);
+            const { data } = await axiosSecure.get(`/blood-request/${id}`);
             return data;
         }
     });
+
     const handleDonate = async (id) => {
-        const response = await axios.patch(`http://localhost:5000/request-status/${id}`);
-        // console.log(data)
-        if (response?.data?.modifiedCount > 0) {
-            toast.success('Donation Accepted Successfully.....');
-            setIsOpen(false);
-            navigate('/dashboard')
-        } else {
-            toast.error('Already Donated.');
-        }
+        handleStatus(id, 'inprogress')
+        setIsOpen(false)
     }
+
     if (isLoading) return <Spinner />;
 
     return (
@@ -61,7 +57,7 @@ const Details = () => {
                     <div className="flex items-center justify-between mt-4">
                         <p className={`text-lg font-normal ${details.status === "pending" && 'text-amber-500' ||
                             details.status === "inprogress" && 'text-sky-500' || details.status === "done" && 'text-emerald-500' ||
-                            details.status === "cancled" && 'text-red-500'
+                            details.status === "canceled" && 'text-red-500'
                             }`} tabIndex="0" role="link">{details.status}...</p>
 
                         <div className="flex items-center">
@@ -127,9 +123,10 @@ const Details = () => {
                                         </button>
 
                                         <button
+                                            disabled={['canceled', 'done', 'inprogress'].includes(details.status)}
                                             onClick={() => handleDonate(`${details._id}`)}
                                             type="button"
-                                            className="w-full px-4 py-2 mt-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-Red rounded-md sm:mt-0 sm:w-1/2 sm:mx-2 hover:bg-Racing-Red focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"
+                                            className={`w-full px-4 py-2 mt-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-Red rounded-md sm:mt-0 sm:w-1/2 sm:mx-2 hover:bg-Racing-Red focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 ${['canceled', 'done', 'inprogress'].includes(details.status) ? 'opacity-50 cursor-not-allowed' : 'hover:bg-Racing-Red focus:ring-blue-300 focus:ring-opacity-40'}`}
                                         >
                                             DONATE
                                         </button>

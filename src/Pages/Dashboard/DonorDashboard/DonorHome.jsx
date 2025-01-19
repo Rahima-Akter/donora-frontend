@@ -1,6 +1,5 @@
 import useAuth from '../../../Hooks/useAuth';
 import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
 import { IoEyeOutline } from 'react-icons/io5';
 import { BiEdit } from 'react-icons/bi';
 import { AiOutlineDelete } from 'react-icons/ai';
@@ -8,17 +7,22 @@ import { format } from 'date-fns';
 import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
 import Spinner from '../../../Components/Spinner';
+import HandleStatus from '../../../Hooks/HandleStatus';
+import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 
 const DonorHome = () => {
     const { user } = useAuth();
+    const axiosSecure = useAxiosSecure();
+    const [handleStatus, status] = HandleStatus();
     const { data: bloodRequests = [], isLoading, refetch } = useQuery({
         queryKey: ['requests', user?.email],
         queryFn: async () => {
-            const { data } = await axios.get(`http://localhost:5000/blood-request/${user?.email}`);
+            const { data } = await axiosSecure.get(`/blood-request/${user?.email}`);
             return data;
         }
     });
-    const requests = bloodRequests.slice(0, 3);
+    const requests = bloodRequests.slice(0, 3); 
+
     // delete a request
     const handleDelete = async (id) => {
         Swal.fire({
@@ -31,7 +35,7 @@ const DonorHome = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`http://localhost:5000/blood-request/${id}`)
+                axiosSecure.delete(`/blood-request/${id}`)
                 Swal.fire({
                     title: "Deleted!",
                     text: "Your file has been deleted.",
@@ -41,18 +45,29 @@ const DonorHome = () => {
             }
         });
 
+    };
+    const handleDone = async (id) => {
+        handleStatus(id, 'done')
+    }
+    const handleCancel = async (id) => {
+        handleStatus(id, "canceled")
     }
 
     if (isLoading) return <Spinner />
     return (
         <div className='p-5'>
             {
-                user ? user && <p className='font-bold text-xl text-green-600'>🩸Welcome, <span className='text-Red uppercase'>{user?.displayName}</span></p> : <p className='font-bold text-xl'>Welcome</p>
+                user ? user && <p className='font-bold text-xl text-green-600'>🩸Welcome, <span className='text-Red uppercase'>{user?.displayName}</span></p> : <p className='font-bold text-xl'>Welcome....</p>
             }
 
             {/* table */}
             <section className="py-8">
-                <p className='font-semibold uppercase text-Red text-lg mb-4'>recent donation requests</p>
+                <div className='flex justify-between items-center'>
+                    <p className='font-semibold uppercase text-Red text-lg mb-4'>recent donation requests</p>
+                    <div>
+                        <Link to="/dashboard/my-donation-requests" className='bg-Red hover:bg-Racing-Red rounded-lg px-3 py-1 text-white font-semibold'>View My All Requests</Link>
+                    </div>
+                </div>
                 {
                     requests.length === 0 && <p className='font-bold drop-shadow-lg uppercase text-Red text-xl mb-4 text-center'>No data to show</p> || (<div className="min-w-full px-4 mx-auto sm:px-6 lg:px-0">
                         <div className="overflow-hidden bg-white shadow rounded-lg dark:bg-gray-900">
@@ -81,19 +96,14 @@ const DonorHome = () => {
                                                     </div>
                                                 </td>
                                                 <td className="px-12 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                                                    <div className={`inline-flex items-center px-3 py-1 rounded-full gap-x-2 ${request.status === "pending" && 'bg-amber-100/60' ||
-                                                        request.status === "inprogress" && 'bg-sky-100/60' || request.status === "done" && 'bg-emerald-100/60' ||
-                                                        request.status === "cancled" && 'bg-red-100/60'
-                                                        } dark:bg-gray-800`}>
-                                                        <span className={`h-1.5 w-1.5 rounded-full ${request.status === "pending" && 'bg-amber-500' ||
-                                                            request.status === "inprogress" && 'bg-sky-500' || request.status === "done" && 'bg-emerald-500' ||
-                                                            request.status === "cancled" && 'bg-red-500'
-                                                            }`}></span>
-                                                        <h2 className={`text-xs font-normal ${request.status === "pending" && 'text-amber-500' ||
-                                                            request.status === "inprogress" && 'text-sky-500' || request.status === "done" && 'text-emerald-500' ||
-                                                            request.status === "cancled" && 'text-red-500'
-                                                            }`}>{request.status}</h2>
-                                                    </div>
+                                                    {
+                                                        request.status === 'inprogress' && <div className='flex items-center gap-1 mt-1'>
+                                                            <button onClick={() => handleDone(`${request._id}`)} className='text-xs font-semibold bg-green-500 hover:bg-green-600 text-white rounded-md px-2 py-1'>Done</button>
+                                                            <button onClick={() => handleCancel(`${request._id}`)} className='text-xs font-semibold bg-red-500 hover:bg-red-600 text-white rounded-md px-2 py-1'>Cancel</button>
+                                                        </div> || request.status === 'pending' && <p className='text-amber-500 rounded-lg text-center py-1 bg-amber-100/50 cursor-not-allowed'>pending</p> ||
+                                                        request.status === 'done' && <p className='text-emerald-500 rounded-lg text-center py-1 bg-emerald-100/50 cursor-not-allowed'>done</p> ||
+                                                        request.status === 'canceled' && <p className='text-red-500 rounded-lg text-center py-1 bg-red-100/50 cursor-not-allowed'>canceled</p>
+                                                    }
                                                 </td>
                                                 <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">{request.district},<span>{request.upazila}</span></td>
                                                 <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">{format(new Date(request.

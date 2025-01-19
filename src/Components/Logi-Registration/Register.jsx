@@ -1,20 +1,24 @@
 import logo from '../../assets/logo.PNG';
 import loginImage from '../../assets/loginImg.PNG';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { FaEye, FaEyeSlash, FaGoogle } from 'react-icons/fa';
 import axios from 'axios';
 import useAuth from '../../Hooks/useAuth';
 import toast from 'react-hot-toast';
 import useDistricts from '../../Hooks/useDistricts';
+import useAxiosPublic from '../../Hooks/useAxiosPublic';
 
 const Register = () => {
     const navigate = useNavigate();
+    const axiosPublic = useAxiosPublic();
     const { signin, userProfile } = useAuth();
     const { districts, upazilas } = useDistricts();
     const [show, setShow] = useState(false);
     const [show2, setShow2] = useState(false);
+    const location = useLocation();
+    const from = location?.state?.from || '/';
 
     const handlePasswordShow = () => {
         setShow(!show)
@@ -65,22 +69,22 @@ const Register = () => {
             };
 
             // send user data to the database
-            const res = await axios.post('http://localhost:5000/users', userData)
+            const res = await axiosPublic.post('/users', userData)
             if (res.data.message === 'user already exists') {
-                toast.error('user already exists! redirecting to the login page')
+                toast.error('user already exists! Please SignIn instead')
                 navigate('/login')
             } else {
-                 // Create user with Firebase
+                // Create user with Firebase
                 const result = await signin(email, password)
                     .then(() => {
                         userProfile(name, image);
                         toast.success('Registration successfull');
-                        navigate('/')
+                        navigate(from)
                     }).catch(err => {
                         console.log(err)
                     });
             }
-            // reset();
+            reset();
         } catch (err) {
             console.error("Error during registration:", err.message || err);
         }

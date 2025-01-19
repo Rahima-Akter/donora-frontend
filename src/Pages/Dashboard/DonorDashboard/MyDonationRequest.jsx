@@ -1,6 +1,5 @@
 import useAuth from '../../../Hooks/useAuth';
 import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
 import { IoEyeOutline } from 'react-icons/io5';
 import { BiEdit } from 'react-icons/bi';
 import { AiOutlineDelete } from 'react-icons/ai';
@@ -9,14 +8,18 @@ import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
 import Spinner from '../../../Components/Spinner';
 import { useState } from 'react';
+import HandleStatus from '../../../Hooks/HandleStatus';
+import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 
 const MyDonationRequest = () => {
+    const [handleStatus, status] = HandleStatus();
     const { user } = useAuth();
-    const [status, setStatus] = useState('')
+    const axiosSecure = useAxiosSecure();
+    const [statuss, setStatus] = useState('')
     const { data: requests = [], isLoading, refetch } = useQuery({
         queryKey: ['requests', user?.email, status],
         queryFn: async () => {
-            const { data } = await axios.get(`http://localhost:5000/blood-request/${user?.email}?status=${status}`);
+            const { data } = await axiosSecure.get(`/blood-request/${user?.email}?status=${statuss}`);
             return data;
         }
     });
@@ -32,7 +35,7 @@ const MyDonationRequest = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`http://localhost:5000/blood-request/${id}`)
+                axiosSecure.delete(`/blood-request/${id}`)
                 Swal.fire({
                     title: "Deleted!",
                     text: "Your file has been deleted.",
@@ -42,6 +45,12 @@ const MyDonationRequest = () => {
             }
         });
 
+    }
+    const handleDone = async (id) => {
+        handleStatus(id, 'done')
+    }
+    const handleCancel = async (id) => {
+        handleStatus(id, "canceled")
     }
 
     if (isLoading) return <Spinner />
@@ -53,24 +62,24 @@ const MyDonationRequest = () => {
                     <p className='font-semibold uppercase text-Red text-lg mb-4'>my donation requests</p>
                     {/* button group for filter */}
                     <div className="join mb-2">
-                        <select 
-                        onChange={(e) => setStatus(e.target.value)}
-                        className="select select-bordered join-item bg-Red rounded-lg border border-white pb-1 px-2 text-white font-bold">
+                        <select
+                            onChange={(e) => setStatus(e.target.value)}
+                            className="select select-bordered join-item bg-Red rounded-lg border border-white pb-1 px-2 text-white font-bold">
                             <option className='font-bold' value=''>Filter by</option>
                             <option className='font-bold' value='pending'>pending</option>
                             <option className='font-bold' value='inprogress'>inprogress</option>
                             <option className='font-bold' value='done'>done</option>
-                            <option className='font-bold' value='cancled'>cancled</option>
+                            <option className='font-bold' value='canceled'>canceled</option>
                         </select>
                     </div>
                 </div>
 
                 {
-                    requests.length === 0 && <p className='font-bold drop-shadow-lg uppercase text-Red text-xl mb-4 text-center'>No data to show</p> || (<div className="min-w-full px-4 mx-auto sm:px-6 lg:px-0">
+                    requests.length === 0 && <p className='font-bold drop-shadow-lg uppercase text-Red text-xl mb-4 text-center'>No data to show</p> || (<div className="w-full px-4 mx-auto sm:px-6 lg:px-0">
                         <div className="overflow-hidden bg-white shadow rounded-lg dark:bg-gray-900">
                             <div className="overflow-x-auto">
-                                <table className="w-full table-auto text-sm text-left text-gray-500 dark:text-gray-300">
-                                    <thead className="text-xs text-Red uppercase bg-Red/10 dark:bg-gray-800 dark:text-gray-400">
+                                <table className="min-w-full table-auto text-sm text-left text-gray-500 dark:text-gray-300">
+                                    <thead className="text-xs w-full text-Red uppercase bg-Red/10 dark:bg-gray-800 dark:text-gray-400">
                                         <tr>
                                             <th scope="col" className="text-center px-4 py-5 whitespace-nowrap">Recipient's Name</th>
                                             <th scope="col" className="text-center px-4 py-5 whitespace-nowrap">Status</th>
@@ -93,19 +102,14 @@ const MyDonationRequest = () => {
                                                     </div>
                                                 </td>
                                                 <td className="px-12 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                                                    <div className={`inline-flex items-center px-3 py-1 rounded-full gap-x-2 ${request.status === "pending" && 'bg-amber-100/60' ||
-                                                        request.status === "inprogress" && 'bg-sky-100/60' || request.status === "done" && 'bg-emerald-100/60' ||
-                                                        request.status === "cancled" && 'bg-red-100/60'
-                                                        } dark:bg-gray-800`}>
-                                                        <span className={`h-1.5 w-1.5 rounded-full ${request.status === "pending" && 'bg-amber-500' ||
-                                                            request.status === "inprogress" && 'bg-sky-500' || request.status === "done" && 'bg-emerald-500' ||
-                                                            request.status === "cancled" && 'bg-red-500'
-                                                            }`}></span>
-                                                        <h2 className={`text-xs font-normal ${request.status === "pending" && 'text-amber-500' ||
-                                                            request.status === "inprogress" && 'text-sky-500' || request.status === "done" && 'text-emerald-500' ||
-                                                            request.status === "cancled" && 'text-red-500'
-                                                            }`}>{request.status}</h2>
-                                                    </div>
+                                                    {
+                                                        request.status === 'inprogress' && <div className='flex items-center gap-1 mt-1'>
+                                                            <button onClick={() => handleDone(`${request._id}`)} className='text-xs font-semibold bg-green-500 hover:bg-green-600 text-white rounded-md px-2 py-1'>Done</button>
+                                                            <button onClick={() => handleCancel(`${request._id}`)} className='text-xs font-semibold bg-red-500 hover:bg-red-600 text-white rounded-md px-2 py-1'>Cancel</button>
+                                                        </div> || request.status === 'pending' && <p className='text-amber-500 rounded-lg text-center py-1 px-3 bg-amber-100/50 cursor-not-allowed'>pending</p> ||
+                                                        request.status === 'done' && <p className='text-emerald-500 rounded-lg text-center py-1 px-3 bg-emerald-100/50 cursor-not-allowed'>done</p> ||
+                                                        request.status === 'canceled' && <p className='text-red-500 rounded-lg text-center px-3 py-1 bg-red-100/50 cursor-not-allowed'>canceled</p>
+                                                    }
                                                 </td>
                                                 <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">{request.district},<span>{request.upazila}</span></td>
                                                 <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">{format(new Date(request.

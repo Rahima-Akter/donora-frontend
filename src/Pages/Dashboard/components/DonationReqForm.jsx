@@ -9,11 +9,12 @@ import "react-datepicker/dist/react-datepicker.css";
 import { BsCalendar2Date } from 'react-icons/bs';
 import { IoTimeOutline } from 'react-icons/io5';
 import { format } from 'date-fns';
-import axios from 'axios';
 import toast from 'react-hot-toast';
+import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 
 const DonationReqForm = () => {
     const { user } = useAuth();
+    const axiosSecure = useAxiosSecure();
     const navigate = useNavigate();
     const [defaultTime] = useState(new Date());
     const { districts, upazilas } = useDistricts();
@@ -24,8 +25,6 @@ const DonationReqForm = () => {
         control,
         formState: { errors },
     } = useForm();
-
-
 
     const onSubmit = async (data) => {
         try {
@@ -50,7 +49,7 @@ const DonationReqForm = () => {
             };
 
             // Send request to the server
-            const response = await axios.post('http://localhost:5000/blood-request', requestData);
+            const response = await axiosSecure.post('/blood-request', requestData);
 
             if (response?.data?.insertedId) {
                 toast.success('Request Successful.....');

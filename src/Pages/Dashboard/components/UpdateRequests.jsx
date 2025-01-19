@@ -13,8 +13,10 @@ import toast from 'react-hot-toast';
 import { useQuery } from '@tanstack/react-query';
 import useDistricts from '../../../Hooks/useDistricts';
 import Spinner from '../../../Components/Spinner';
+import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 
 const UpdateRequests = () => {
+    const axiosSecure = useAxiosSecure();
     const { user } = useAuth();
     const navigate = useNavigate();
     const { id } = useParams();
@@ -25,7 +27,8 @@ const UpdateRequests = () => {
     const { data: request = {}, isLoading } = useQuery({
         queryKey: ['request', id],
         queryFn: async () => {
-            const { data } = await axios.get(`http://localhost:5000/blood-request/${id}`);
+            const { data } = await axiosSecure.get(`/blood-request/${id}`);
+
             return data;
         }
     });
@@ -79,11 +82,11 @@ const UpdateRequests = () => {
             };
 
             // Send update request to server
-            const response = await axios.patch(`http://localhost:5000/blood-request-update/${id}`, requestData);
+            const response = await axiosSecure.patch(`/blood-request-update/${id}`, requestData);
 
             if (response?.data?.modifiedCount > 0) {
                 toast.success("Request Updated Successfully.");
-                reset();
+                reset();                
                 navigate("/dashboard/my-donation-requests");
             } else {
                 toast.error("Failed to update the request.");

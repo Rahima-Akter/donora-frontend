@@ -1,6 +1,6 @@
 import logo from '../../assets/logo.PNG';
 import loginImage2 from '../../assets/loginImg2.JPG';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { FaEye, FaEyeSlash, FaGoogle } from 'react-icons/fa';
 import { useState } from 'react';
@@ -11,6 +11,9 @@ const Login = () => {
     const { logIn } = useAuth();
     const [error, setError] = useState('');
     const [show, setShow] = useState(false);
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location?.state?.from || '/';
     const handlePasswordShow = () => {
         setShow(!show)
     }
@@ -28,15 +31,15 @@ const Login = () => {
             await logIn(email, password)
                 .then(() => {
                     toast.success('Login Successfull')
+                    navigate(from)
                 })
             reset();
             setError('');
         } catch (error) {
-            // Log the error code for debugging purposes
             console.error('Error code:', error.code);
             console.error('Error message:', error.message);
 
-            // Handle Firebase Authentication Errors
+            // Firebase Authentication Errors
             if (error.code === 'auth/invalid-credential') {
                 setError('invalid-credential. Please try again!');
             } else {
@@ -68,7 +71,7 @@ const Login = () => {
                 >
                     <div className="px-4 py-4 flex justify-center items-center gap-2">
                         <FaGoogle className='text-Red text-2xl' />
-                        <span className="font-bold text-Red">Login with Google</span>
+                        <span className="font-bold text-Red">SignIn with Google</span>
                     </div>
                 </a>
 
@@ -119,7 +122,7 @@ const Login = () => {
                         />
                         {error && <p className='text-xs text-Red font-bold drop-shadow-lg mt-1'>{error}</p>}
                         {/* eye icon */}
-                        <div onClick={handlePasswordShow} className="text-Red absolute right-5 top-9">
+                        <div onClick={handlePasswordShow} className="text-Red absolute right-5 top-10">
                             {
                                 show ? <FaEye /> : <FaEyeSlash />
                             }
