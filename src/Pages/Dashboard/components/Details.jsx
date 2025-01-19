@@ -23,7 +23,7 @@ const Details = () => {
     });
 
     const handleDonate = async (id) => {
-        handleStatus(id, 'inprogress')
+        handleStatus(id, 'inprogress', '/request-status')
         setIsOpen(false)
     }
 

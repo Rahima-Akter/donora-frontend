@@ -47,10 +47,10 @@ const MyDonationRequest = () => {
 
     }
     const handleDone = async (id) => {
-        handleStatus(id, 'done')
+        handleStatus(id, 'done', '/request-status')
     }
     const handleCancel = async (id) => {
-        handleStatus(id, "canceled")
+        handleStatus(id, "canceled", '/request-status')
     }
 
     if (isLoading) return <Spinner />

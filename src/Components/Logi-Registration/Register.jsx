@@ -215,7 +215,7 @@ const Register = () => {
                         {errors.password && <p className="text-xs text-Red font-bold drop-shadow-lg mt-1">{errors.password.message}</p>}
 
                         {/* eye icon */}
-                        <div onClick={handlePasswordShow} className="text-Red absolute right-5 top-9">
+                        <div onClick={handlePasswordShow} className="text-Red absolute right-5 top-10">
                             {
                                 show ? <FaEye ></FaEye> : <FaEyeSlash ></FaEyeSlash>
                             }
@@ -242,7 +242,7 @@ const Register = () => {
                         )}
 
                         {/* eye icon */}
-                        <div onClick={handlePasswordShow2} className="text-Red absolute right-5 top-9">
+                        <div onClick={handlePasswordShow2} className="text-Red absolute right-5 top-10">
                             {
                                 show2 ? <FaEye ></FaEye> : <FaEyeSlash ></FaEyeSlash>
                             }

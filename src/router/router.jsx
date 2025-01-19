@@ -10,6 +10,9 @@ import Details from '../Pages/Dashboard/components/Details';
 import DashboardLayout from '../Pages/Dashboard/DashboardLayout/DashboardLayout';
 import UpdateRequests from '../Pages/Dashboard/components/UpdateRequests';
 import AdminHome from '../Pages/Dashboard/AdminDashboard/AdminHome';
+import AllUsers from '../Pages/Dashboard/AdminDashboard/AllUsers';
+import AllDonationRequests from '../Pages/Dashboard/AdminDashboard/AllDonationRequests';
+import ContentManagement from '../Pages/Dashboard/AdminDashboard/contentManagement/ContentManagement';
 
 
 const router = createBrowserRouter([
@@ -51,9 +54,9 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/UpdateRequest/:id',
                 element: <UpdateRequests />,
-                loader: async({ params }) => {
+                loader: async ({ params }) => {
                     const token = localStorage.getItem('access-token');
-                    const response = await fetch(`http://localhost:5000/blood-request/${params.id}`,{
+                    const response = await fetch(`http://localhost:5000/blood-request/${params.id}`, {
                         method: 'GET',
                         headers: {
                             'Authorization': `Bearer ${token}`, // adding the token
@@ -66,9 +69,9 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/details/:id',
                 element: <Details />,
-                loader: async({ params }) => {
+                loader: async ({ params }) => {
                     const token = localStorage.getItem('access-token');
-                    const response = await fetch(`http://localhost:5000/blood-request/${params.id}`,{
+                    const response = await fetch(`http://localhost:5000/blood-request/${params.id}`, {
                         method: 'GET',
                         headers: {
                             'Authorization': `Bearer ${token}`, // adding the token
@@ -81,8 +84,20 @@ const router = createBrowserRouter([
             // admin dashboard ************************
             {
                 path: '/dashboard/admin',
-                element: <AdminHome/>
-            }
+                element: <AdminHome />
+            },
+            {
+                path: '/dashboard/all-users',
+                element: <AllUsers />
+            },
+            {
+                path: '/dashboard/all-blood-donation-request',
+                element: <AllDonationRequests />
+            },
+            {
+                path: '/dashboard/content-management',
+                element: <ContentManagement />
+            },
         ]
     }
 ]);

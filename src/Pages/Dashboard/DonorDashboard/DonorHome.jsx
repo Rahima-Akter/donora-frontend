@@ -47,10 +47,10 @@ const DonorHome = () => {
 
     };
     const handleDone = async (id) => {
-        handleStatus(id, 'done')
+        handleStatus(id, 'done', '/request-status')
     }
     const handleCancel = async (id) => {
-        handleStatus(id, "canceled")
+        handleStatus(id, "canceled", '/request-status')
     }
 
     if (isLoading) return <Spinner />
@@ -65,7 +65,7 @@ const DonorHome = () => {
                 <div className='flex justify-between items-center'>
                     <p className='font-semibold uppercase text-Red text-lg mb-4'>recent donation requests</p>
                     <div>
-                        <Link to="/dashboard/my-donation-requests" className='bg-Red hover:bg-Racing-Red rounded-lg px-3 py-1 text-white font-semibold'>View My All Requests</Link>
+                        <Link to="/dashboard/my-donation-requests" className='bg-Red hover:bg-Racing-Red rounded-lg px-3 py-1 text-white font-semibold'>View All My Requests</Link>
                     </div>
                 </div>
                 {

@@ -67,7 +67,7 @@ const DashNavbar = () => {
                                 <span className="mx-4 font-medium">Home</span>
                             </Link>
 
-                            <Link to="/dashboard/create-donation-request"
+                            <Link to="/dashboard/all-users"
                                 className="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
                                 href="#"
                             >
@@ -75,14 +75,14 @@ const DashNavbar = () => {
                                 <span className="mx-4 font-medium">All Users</span>
                             </Link>
 
-                            <Link to="/dashboard/my-donation-requests"
+                            <Link to="/dashboard/all-blood-donation-request"
                                 className="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
                                 href="#"
                             >
                                 <MdBloodtype className='text-2xl text-Red' />
                                 <span className="ml-3 font-medium whitespace-nowrap">All Donation Request</span>
                             </Link>
-                            <Link to="/dashboard/my-donation-requests"
+                            <Link to="/dashboard/content-management"
                                 className="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
                                 href="#"
                             >

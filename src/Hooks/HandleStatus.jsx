@@ -5,13 +5,13 @@ import useAxiosSecure from './useAxiosSecure';
 const HandleStatus = () => {
     const [status, setStatus] = useState('');
     const axiosSecure = useAxiosSecure();
-    const handleStatus = async (id, newStatus) => {
+    const handleStatus = async (id, newStatus, endpoint) => {
         setStatus(newStatus)
-        const response = await axiosSecure.patch(`/request-status/${id}?status=${newStatus}`);
+        const response = await axiosSecure.patch(`${endpoint}/${id}?status=${newStatus}`);
         if (response?.data?.modifiedCount > 0) {
             toast.success(`Status changed to ${newStatus}.....`);
         } else {
-            toast.error('Problem while changing the status!');
+            toast.error("couldn't change the status!");
         }
     }
     return [handleStatus, status];
