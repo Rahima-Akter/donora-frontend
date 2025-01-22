@@ -17,7 +17,7 @@ const MyDonationRequest = () => {
     const axiosSecure = useAxiosSecure();
     const [statuss, setStatus] = useState('')
     const { data: requests = [], isLoading, refetch } = useQuery({
-        queryKey: ['requests', user?.email, status],
+        queryKey: ['requests', user?.email, statuss],
         queryFn: async () => {
             const { data } = await axiosSecure.get(`/blood-request/${user?.email}?status=${statuss}`);
             return data;
@@ -36,21 +36,23 @@ const MyDonationRequest = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 axiosSecure.delete(`/blood-request/${id}`)
-                Swal.fire({
-                    title: "Deleted!",
-                    text: "Your file has been deleted.",
-                    icon: "success"
-                });
-                refetch()
+                    .then(() => {
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Your file has been deleted.",
+                            icon: "success"
+                        });
+                        refetch()
+                    })
             }
         });
 
     }
     const handleDone = async (id) => {
-        handleStatus(id, 'done', '/request-status')
+        handleStatus(id, 'done', '/request-status', refetch)
     }
     const handleCancel = async (id) => {
-        handleStatus(id, "canceled", '/request-status')
+        handleStatus(id, "canceled", '/request-status', refetch)
     }
 
     if (isLoading) return <Spinner />

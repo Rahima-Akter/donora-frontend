@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
 import useAuth from '../../../Hooks/useAuth';
 
-const AdminHome = () => {
+const VolunteerHome = () => {
     const { user } = useAuth();
-
     return (
         <div className='p-5 bg-red-50 h-screen'>
             {
@@ -14,4 +12,4 @@ const AdminHome = () => {
     );
 };
 
-export default AdminHome;
+export default VolunteerHome;

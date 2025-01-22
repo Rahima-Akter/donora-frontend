@@ -12,8 +12,12 @@ import UpdateRequests from '../Pages/Dashboard/components/UpdateRequests';
 import AdminHome from '../Pages/Dashboard/AdminDashboard/AdminHome';
 import AllUsers from '../Pages/Dashboard/AdminDashboard/AllUsers';
 import AllDonationRequests from '../Pages/Dashboard/AdminDashboard/AllDonationRequests';
-import ContentManagement from '../Pages/Dashboard/AdminDashboard/contentManagement/ContentManagement';
-
+import ContentManagement from '../Pages/Dashboard/Shared/ContentManagement/ContentManagement';
+import CreateBlog from '../Pages/Dashboard/components/CreateBlog';
+import UpdateBlog from '../Pages/Dashboard/components/UpdateBlog';
+import VolunteerHome from '../Pages/Dashboard/VolunteerDashboard/VolunteerHome';
+import ViewBlogDetails from '../Shared/ViewBlog/ViewBlogDetails';
+import Profile from '../Pages/Dashboard/Shared/Profile';
 
 const router = createBrowserRouter([
     {
@@ -23,6 +27,21 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home />
+            },
+            {
+                path: '/dashboard/view-blog/:id',
+                element: <ViewBlogDetails />,
+                loader: async ({ params }) => {
+                    const token = localStorage.getItem('access-token');
+                    const response = await fetch(`http://localhost:5000/single-blog/${params.id}`, {
+                        method: 'GET',
+                        headers: {
+                            'Authorization': `Bearer ${token}`, // adding the token
+                        },
+                    });
+                    const data = await response.json();
+                    return data;
+                }
             }
         ]
     },
@@ -98,6 +117,35 @@ const router = createBrowserRouter([
                 path: '/dashboard/content-management',
                 element: <ContentManagement />
             },
+            {
+                path: '/dashboard/create-blog',
+                element: <CreateBlog />
+            },
+            {
+                path: '/dashboard/update-blog/:id',
+                element: <UpdateBlog />,
+                loader: async ({ params }) => {
+                    const token = localStorage.getItem('access-token');
+                    const response = await fetch(`http://localhost:5000/single-blog/${params.id}`, {
+                        method: 'GET',
+                        headers: {
+                            'Authorization': `Bearer ${token}`,
+                        }
+                    });
+                    const data = await response.json();
+                    return data;
+                }
+            },
+            // volunteer home
+            {
+                path: '/dashboard/volunteer-home',
+                element: <VolunteerHome />
+            },
+            // common route
+            {
+                path: '/dashboard/profile',
+                element: <Profile/>
+            }
         ]
     }
 ]);

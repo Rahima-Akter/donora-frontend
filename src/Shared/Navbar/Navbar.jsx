@@ -109,17 +109,17 @@ const Navbar = () => {
                                 onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
                             />
                             {isUserMenuOpen && (
-                                <div className="absolute md:-right-5 -right-20 top-12 bg-white rounded-md shadow-lg z-10 w-44">
+                                <div className="absolute md:-right-5 lg:-right-20 -right-12 top-10 md:top-12 bg-white rounded-md shadow-lg z-10 w-44">
                                     <div className="flex flex-col justify-center items-center">
-                                        <p className="px-4 py-2 border-b text-center text-pink-500">
+                                        <p className="px-4 py-2 border-b text-center font-semibold text-sm text-pink-500">
                                             {user.displayName || "User"}
                                         </p>
-                                        <NavLink to="/dashboard" className="text-Red my-2 hover:text-Racing-Red font-semibold uppercase">
+                                        <NavLink to="/dashboard" className="text-Red my-2 hover:text-Racing-Red font-semibold uppercase text-sm">
                                             Dashborad
                                         </NavLink>
                                     </div>
                                     <button
-                                        className="block w-full px-4 py-2 bg-Red hover:bg-pink-700 text-white rounded-b-md"
+                                        className="block w-full px-4 py-2 bg-Red hover:bg-red-700 text-white rounded-b-md"
                                         onClick={logOut}
                                     >
                                         Logout

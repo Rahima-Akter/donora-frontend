@@ -1,5 +1,5 @@
 import logo from '../../../assets/logo.PNG';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { Controller, useForm } from 'react-hook-form';
 import { useState } from 'react';
 import useAuth from '../../../Hooks/useAuth';
@@ -8,17 +8,14 @@ import "react-datepicker/dist/react-datepicker.css";
 import { BsCalendar2Date } from 'react-icons/bs';
 import { IoTimeOutline } from 'react-icons/io5';
 import { format } from 'date-fns';
-import axios from 'axios';
 import toast from 'react-hot-toast';
 import { useQuery } from '@tanstack/react-query';
 import useDistricts from '../../../Hooks/useDistricts';
 import Spinner from '../../../Components/Spinner';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
-
 const UpdateRequests = () => {
     const axiosSecure = useAxiosSecure();
     const { user } = useAuth();
-    const navigate = useNavigate();
     const { id } = useParams();
     const [defaultTime] = useState(new Date());
     const { districts, upazilas } = useDistricts();
@@ -28,7 +25,6 @@ const UpdateRequests = () => {
         queryKey: ['request', id],
         queryFn: async () => {
             const { data } = await axiosSecure.get(`/blood-request/${id}`);
-
             return data;
         }
     });
@@ -86,8 +82,7 @@ const UpdateRequests = () => {
 
             if (response?.data?.modifiedCount > 0) {
                 toast.success("Request Updated Successfully.");
-                reset();                
-                navigate("/dashboard/my-donation-requests");
+                reset();
             } else {
                 toast.error("Failed to update the request.");
             }

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import bannerImg from '../../assets/bannerBg.JPG';
 import Button from '../../Shared/Button/Button';
 
@@ -19,7 +20,7 @@ const Banner = () => {
                 <div className='text-white md:text-4xl lg:mt-32 md:mt-44 mt-28 lg:px-32 md:px-10 px-2'>
                     <p>Together, We Create a World Where No One Waits for Blood, Hope is Restored, and Lives are Saved</p>
                     <div className='space-x-4 mt-6'>
-                        <Button buttonText="Join As A Doner"></Button>
+                        <Link to="/register"><Button buttonText="Join As A Doner"></Button></Link>
                         <Button buttonText="Search Donor"></Button>
                     </div>
                 </div>

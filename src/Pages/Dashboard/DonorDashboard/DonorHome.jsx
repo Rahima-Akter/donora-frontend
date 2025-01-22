@@ -21,7 +21,7 @@ const DonorHome = () => {
             return data;
         }
     });
-    const requests = bloodRequests.slice(0, 3); 
+    const requests = bloodRequests.slice(0, 3);
 
     // delete a request
     const handleDelete = async (id) => {
@@ -36,21 +36,23 @@ const DonorHome = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 axiosSecure.delete(`/blood-request/${id}`)
-                Swal.fire({
-                    title: "Deleted!",
-                    text: "Your file has been deleted.",
-                    icon: "success"
-                });
-                refetch()
+                    .then(() => {
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Your file has been deleted.",
+                            icon: "success"
+                        });
+                        refetch()
+                    })
             }
         });
 
     };
     const handleDone = async (id) => {
-        handleStatus(id, 'done', '/request-status')
+        handleStatus(id, 'done', '/request-status', refetch)
     }
     const handleCancel = async (id) => {
-        handleStatus(id, "canceled", '/request-status')
+        handleStatus(id, "canceled", '/request-status', refetch)
     }
 
     if (isLoading) return <Spinner />

@@ -18,13 +18,7 @@ const DonationReqForm = () => {
     const navigate = useNavigate();
     const [defaultTime] = useState(new Date());
     const { districts, upazilas } = useDistricts();
-    const {
-        register,
-        handleSubmit,
-        reset,
-        control,
-        formState: { errors },
-    } = useForm();
+    const { register, handleSubmit, reset, control, formState: { errors } } = useForm();
 
     const onSubmit = async (data) => {
         try {
@@ -42,7 +36,7 @@ const DonationReqForm = () => {
                 district,
                 upazila,
                 donationDate: donationDate.toISOString(),
-                donationTime: format(donationTime, "HH:mm"), 
+                donationTime: format(donationTime, "HH:mm"),
                 details,
                 bloodGroup,
                 status: "pending",

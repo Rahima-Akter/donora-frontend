@@ -104,7 +104,7 @@ const Register = () => {
                     <img className="w-20" src={logo} alt="Logo" />
                 </div>
 
-                <p className="mt-3 text-xl text-center text-Red dark:text-gray-200">Welcome back!</p>
+                <p className="mt-3 text-xl text-center text-Red dark:text-gray-200">Become A Donor!</p>
 
                 <a
                     href="#"
