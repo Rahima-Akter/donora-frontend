@@ -59,6 +59,15 @@ const Navbar = () => {
                     >
                         Funds
                     </NavLink>
+                    <NavLink
+                        to="funds"
+                        className={({ isActive }) =>
+                            `flex items-center space-x-2 hover:text-Red uppercase font-semibold ${isActive ? "text-white bg-Red hover:text-Crimson-Red px-3 py-2 rounded-md ring-1 ring-white" : ""
+                            }`
+                        }
+                    >
+                        search
+                    </NavLink>
 
                 </div>
 

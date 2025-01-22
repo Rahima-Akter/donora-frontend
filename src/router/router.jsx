@@ -42,7 +42,22 @@ const router = createBrowserRouter([
                     const data = await response.json();
                     return data;
                 }
-            }
+            },
+            {
+                path: '/dashboard/details/:id',
+                element: <Details />,
+                loader: async ({ params }) => {
+                    const token = localStorage.getItem('access-token');
+                    const response = await fetch(`http://localhost:5000/blood-request/${params.id}`, {
+                        method: 'GET',
+                        headers: {
+                            'Authorization': `Bearer ${token}`, // adding the token
+                        },
+                    });
+                    const data = await response.json();
+                    return data;
+                }
+            },
         ]
     },
     {
@@ -85,21 +100,21 @@ const router = createBrowserRouter([
                     return data;
                 }
             },
-            {
-                path: '/dashboard/details/:id',
-                element: <Details />,
-                loader: async ({ params }) => {
-                    const token = localStorage.getItem('access-token');
-                    const response = await fetch(`http://localhost:5000/blood-request/${params.id}`, {
-                        method: 'GET',
-                        headers: {
-                            'Authorization': `Bearer ${token}`, // adding the token
-                        },
-                    });
-                    const data = await response.json();
-                    return data;
-                }
-            },
+            // {
+            //     path: '/dashboard/details/:id',
+            //     element: <Details />,
+            //     loader: async ({ params }) => {
+            //         const token = localStorage.getItem('access-token');
+            //         const response = await fetch(`http://localhost:5000/blood-request/${params.id}`, {
+            //             method: 'GET',
+            //             headers: {
+            //                 'Authorization': `Bearer ${token}`, // adding the token
+            //             },
+            //         });
+            //         const data = await response.json();
+            //         return data;
+            //     }
+            // },
             // admin dashboard ************************
             {
                 path: '/dashboard/admin',

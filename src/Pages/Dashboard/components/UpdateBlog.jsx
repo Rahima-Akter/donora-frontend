@@ -11,11 +11,12 @@ const UpdateBlog = () => {
     const axiosSecure = useAxiosSecure();
     const navigate = useNavigate();
     const editor = useRef(null);
-    const [editorContent, setEditorContent] = useState();
+    const [editorContent, setEditorContent] = useState('');
     const { id } = useParams();
     const blog = useLoaderData();
 
     const onSubmit = async (data) => {
+        // Keep old thumbnail unless a new one is uploaded
         let thumb = blog.thumb;
 
         if (data.thumb && data.thumb.length > 0) {
@@ -23,60 +24,70 @@ const UpdateBlog = () => {
             const formData = new FormData();
             formData.append("image", photo);
 
-            // Sending image to imgbb server
-            const response = await axios.post(
-                `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGBB_SECRET_KEY}`,
-                formData
-            );
-            thumb = response.data.data.display_url;
+            // Upload image to imgbb
+            try {
+                const response = await axios.post(
+                    `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGBB_SECRET_KEY}`,
+                    formData
+                );
+                thumb = response.data.data.display_url; // Use the new image URL
+            } catch (error) {
+                toast.error("Failed to upload thumbnail. Please try again.");
+                return;
+            }
         }
 
+        // Prepare updated content
         const contentData = {
-            title: data.title,
+            title: data.title || blog.title,
             thumb,
-            content: editorContent,
+            content: editorContent || blog.content,
             createdAt: new Date().toISOString(),
-            status: 'draft'
-        }
+            status: 'draft',
+        };
+
         try {
-            const { data } = await axiosSecure.patch(`/update-blog/${id}`, contentData)
-            if (data?.modifiedCount) {
-                toast.success('blog updated Successfully.....');
+            const response = await axiosSecure.patch(`/update-blog/${id}`, contentData);
+            if (response.data?.modifiedCount) {
+                toast.success('Blog updated successfully!');
                 reset();
-                setEditorContent('')
-                navigate('/dashboard/content-management')
+                setEditorContent('');
+                navigate('/dashboard/content-management');
             } else {
-                toast.error('Failed to update blog!.');
+                toast.error('No changes were made.');
             }
         } catch (err) {
-            console.log('error while updating content', err)
+            console.error('Error while updating blog:', err);
+            toast.error('Failed to update blog. Please try again.');
         }
-    }
+    };
 
     return (
         <div className='bg-gray-100 my-20 rounded-md shadow-lg lg:w-7/12 w-11/12 mx-auto bg-Red/5 p-8'>
-            <h1 className='text-center font-bold text-Red drop-shadow-md text-lg px-8'>Update? {blog.title}</h1>
-            <form onSubmit={handleSubmit(onSubmit)} className="">
-                {/* title */}
+            <h1 className='text-center font-bold text-Red drop-shadow-md text-lg px-8'>
+                Update? {blog.title}
+            </h1>
+            <form onSubmit={handleSubmit(onSubmit)}>
+                {/* Title */}
                 <div className="mt-4 ml-5">
-                    <label className="block mb-2 text-sm font-medium text-Red dark:text-gray-200" htmlFor="LoggingEmailAddress">
+                    <label className="block mb-2 text-sm font-medium text-Red dark:text-gray-200" htmlFor="title">
                         Title
                     </label>
                     <input
                         type="text"
-                        placeholder='Enter title'
+                        placeholder="Enter title"
                         defaultValue={blog.title}
-                        className="block w-full px-4 py-2 text-Red/50 font-semibold text-sm bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-Racing-Red focus:ring-opacity-40 placeholder-Red/40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-Racing-Red"
-                        {...register('title', {
-                            required: "Title is required",
-                        })}
+                        className="block w-full px-4 py-2 text-Red/50 font-semibold text-sm bg-white border rounded-lg focus:border-Racing-Red focus:ring-opacity-40 placeholder-Red/40 focus:ring focus:ring-Racing-Red"
+                        {...register('title')}
                     />
                     {errors.title && (
-                        <p className="text-xs text-Red font-bold drop-shadow-lg mt-1">{errors.title.message}</p>
+                        <p className="text-xs text-Red font-bold drop-shadow-lg mt-1">
+                            {errors.title.message}
+                        </p>
                     )}
                 </div>
 
-                {/* thumbnail */}
+                {/* Thumbnail */}
                 <div className="mt-4 ml-5 col-span-2">
                     <label
                         htmlFor="thumb"
@@ -87,23 +98,16 @@ const UpdateBlog = () => {
                     <input
                         type="file"
                         id="thumb"
-                        accept='image/*'
-                        className="block w-full px-3 py-2 mt-2 text-sm text-Red bg-white border border-gray-200 rounded-lg file:bg-Red/10 file:text-Red file:font-bold file:text-sm file:px-4 file:py-1 file:border-none file:rounded-full dark:file:bg-gray-800 dark:file:text-gray-200 dark:text-gray-300 placeholder-gray-400/70 dark:placeholder-gray-500 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:focus:border-blue-300"
-                        {...register('thumb', {
-                            validate: {
-                                fileType: (value) =>
-                                    !value.length || value[0]?.type.startsWith('image/') || 'File must be an image',
-                                fileSize: (value) =>
-                                    !value.length || value[0]?.size < 2 * 1024 * 1024 || 'File size must be less than 2MB',
-                            },
-                        })}
+                        accept="image/*"
+                        className="block w-full px-3 py-2 mt-2 text-sm text-Red bg-white border border-gray-200 rounded-lg file:bg-Red/10 file:text-Red file:font-bold file:text-sm file:px-4 file:py-1 file:border-none file:rounded-full"
+                        {...register('thumb')}
                     />
                     {errors.thumb && (
                         <p className="text-xs text-Red font-bold drop-shadow-lg mt-1">
                             {errors.thumb.message}
                         </p>
                     )}
-                    {/* current thumb */}
+                    {/* Current Thumbnail */}
                     <div className="mt-2">
                         <p className="block mb-2 text-sm font-medium text-Red dark:text-gray-200">Current Thumbnail:</p>
                         <img
@@ -130,16 +134,13 @@ const UpdateBlog = () => {
                             height: 300,
                         }}
                     />
-                    {errors.content && (
-                        <p className="text-xs text-Red font-bold mt-1">{errors.content.message}</p>
-                    )}
                 </div>
 
                 {/* Submit Button */}
                 <div className="mt-6 col-span-2 ml-5">
                     <button
                         type="submit"
-                        className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white transition-colors duration-300 transform bg-Red rounded-lg hover:bg-Racing-Red focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50 uppercase"
+                        className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white transition-colors duration-300 transform bg-Red rounded-lg hover:bg-Racing-Red"
                     >
                         Update Blog
                     </button>
