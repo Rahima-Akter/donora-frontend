@@ -97,8 +97,6 @@ const AllDonationRequests = () => {
                                                     <th scope="col" className="text-center px-4 py-5 whitespace-nowrap">Donor Info</th>
                                                 )
                                             }
-
-
                                             <th scope="col" className="text-center px-4 py-5 whitespace-nowrap">Actions</th>
                                         </tr>
                                     </thead>

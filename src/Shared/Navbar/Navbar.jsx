@@ -26,7 +26,7 @@ const Navbar = () => {
                     <NavLink
                         to="/"
                         className={({ isActive }) =>
-                            `flex items-center space-x-2 dark:hover:text-Red uppercase font-semibold ${isActive ? "text-white bg-Red hover:text-Crimson-Red px-3 py-2 rounded-md ring-1 ring-white" : ""
+                            `flex items-center space-x-2 uppercase font-semibold ${isActive ? "text-white bg-Red px-3 py-2 rounded-md ring-1 ring-white hover:bg-red-600" : ""
                             }`
                         }
                     >
@@ -35,7 +35,7 @@ const Navbar = () => {
                     <NavLink
                         to="donation-request"
                         className={({ isActive }) =>
-                            `flex items-center space-x-2 hover:text-Red uppercase font-semibold ${isActive ? "text-white bg-Red hover:text-Crimson-Red px-3 py-2 rounded-md ring-1 ring-white" : ""
+                            `flex items-center space-x-2 uppercase font-semibold ${isActive ? "text-white bg-Red px-3 py-2 rounded-md ring-1 ring-white hover:bg-red-600" : ""
                             }`
                         }
                     >
@@ -44,7 +44,7 @@ const Navbar = () => {
                     <NavLink
                         to="blogs"
                         className={({ isActive }) =>
-                            `flex items-center space-x-2 hover:text-Red uppercase font-semibold ${isActive ? "text-white bg-Red hover:text-Crimson-Red px-3 py-2 rounded-md ring-1 ring-white" : ""
+                            `flex items-center space-x-2 uppercase font-semibold ${isActive ? "text-white bg-Red px-3 py-2 rounded-md ring-1 ring-white hover:bg-red-600" : ""
                             }`
                         }
                     >
@@ -53,7 +53,7 @@ const Navbar = () => {
                     <NavLink
                         to="funds"
                         className={({ isActive }) =>
-                            `flex items-center space-x-2 hover:text-Red uppercase font-semibold ${isActive ? "text-white bg-Red hover:text-Crimson-Red px-3 py-2 rounded-md ring-1 ring-white" : ""
+                            `flex items-center space-x-2 uppercase font-semibold ${isActive ? "text-white bg-Red px-3 py-2 rounded-md ring-1 ring-white hover:bg-red-600" : ""
                             }`
                         }
                     >
@@ -62,7 +62,7 @@ const Navbar = () => {
                     <NavLink
                         to="funds"
                         className={({ isActive }) =>
-                            `flex items-center space-x-2 hover:text-Red uppercase font-semibold ${isActive ? "text-white bg-Red hover:text-Crimson-Red px-3 py-2 rounded-md ring-1 ring-white" : ""
+                            `flex items-center space-x-2 uppercase font-semibold ${isActive ? "text-white bg-Red px-3 py-2 rounded-md ring-1 ring-white hover:bg-red-600" : ""
                             }`
                         }
                     >

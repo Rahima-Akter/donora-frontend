@@ -18,6 +18,8 @@ import UpdateBlog from '../Pages/Dashboard/components/UpdateBlog';
 import VolunteerHome from '../Pages/Dashboard/VolunteerDashboard/VolunteerHome';
 import ViewBlogDetails from '../Shared/ViewBlog/ViewBlogDetails';
 import Profile from '../Pages/Dashboard/Shared/Profile';
+import DonationRequests from '../Pages/DonationRequests/DonationRequests';
+import Blogs from '../Pages/blogPage/Blogs';
 
 const router = createBrowserRouter([
     {
@@ -58,6 +60,14 @@ const router = createBrowserRouter([
                     return data;
                 }
             },
+            {
+                path: 'donation-request',
+                element: <DonationRequests />
+            },
+            {
+                path: 'blogs',
+                element: <Blogs />
+            }
         ]
     },
     {
@@ -74,7 +84,7 @@ const router = createBrowserRouter([
         element: <DashboardLayout />,
         children: [
             {
-                path: '/dashboard',
+                index: true,
                 element: <DonorHome />
             },
             {
@@ -100,21 +110,6 @@ const router = createBrowserRouter([
                     return data;
                 }
             },
-            // {
-            //     path: '/dashboard/details/:id',
-            //     element: <Details />,
-            //     loader: async ({ params }) => {
-            //         const token = localStorage.getItem('access-token');
-            //         const response = await fetch(`http://localhost:5000/blood-request/${params.id}`, {
-            //             method: 'GET',
-            //             headers: {
-            //                 'Authorization': `Bearer ${token}`, // adding the token
-            //             },
-            //         });
-            //         const data = await response.json();
-            //         return data;
-            //     }
-            // },
             // admin dashboard ************************
             {
                 path: '/dashboard/admin',
@@ -159,7 +154,7 @@ const router = createBrowserRouter([
             // common route
             {
                 path: '/dashboard/profile',
-                element: <Profile/>
+                element: <Profile />
             }
         ]
     }

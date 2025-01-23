@@ -170,12 +170,16 @@ const Profile = () => {
 
                         </div>
 
-                        <div className="flex flex-row gap-x- col-span-2">
+                        <div className="flex flex-row col-span-2">
 
                             {/* users avatar */}
-                            <div className="mt-4 w-2/5">
-                                <p className="block mb-2 text-sm font-medium text-Red dark:text-gray-200 ml-4">Avatar</p>
-                                <img src={users.image} className="w-[90%] h-[90%] object-cover mx-auto rounded-md" alt="" />
+                            <div className="mt-4 ml-5 w-2/5">
+                                <p className="block mb-2 text-sm font-medium text-Red dark:text-gray-200">Avatar</p>
+                                <img
+                                    src={users.image}
+                                    className="w-[90%] h-[140px] object-cover rounded-md"
+                                    alt="Avatar"
+                                />
                             </div>
 
                             <div className="w-3/5 mt-3">

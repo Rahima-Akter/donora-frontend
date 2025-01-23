@@ -82,9 +82,7 @@ const DonorHome = () => {
                                             <th scope="col" className="text-center px-4 py-5 whitespace-nowrap">Recipient's Location</th>
                                             <th scope="col" className="text-center px-4 py-5 whitespace-nowrap">Donation Date</th>
                                             <th scope="col" className="text-center px-4 py-5 whitespace-nowrap">Blood Type</th>
-                                            {
-                                                requests.map(request => (request.status === 'inprogress' && <th key={request._id} scope="col" className="text-center px-4 py-5 whitespace-nowrap">Donor Info</th>))
-                                            }
+                                            <th scope="col" className="text-center px-4 py-5 whitespace-nowrap">Donor Info</th>
 
                                             <th scope="col" className="text-center px-4 py-5 whitespace-nowrap">Actions</th>
                                         </tr>
@@ -102,9 +100,9 @@ const DonorHome = () => {
                                                         request.status === 'inprogress' && <div className='flex items-center gap-1 mt-1'>
                                                             <button onClick={() => handleDone(`${request._id}`)} className='text-xs font-semibold bg-green-500 hover:bg-green-600 text-white rounded-md px-2 py-1'>Done</button>
                                                             <button onClick={() => handleCancel(`${request._id}`)} className='text-xs font-semibold bg-red-500 hover:bg-red-600 text-white rounded-md px-2 py-1'>Cancel</button>
-                                                        </div> || request.status === 'pending' && <p className='text-amber-500 rounded-lg text-center py-1 bg-amber-100/50 cursor-not-allowed'>pending</p> ||
-                                                        request.status === 'done' && <p className='text-emerald-500 rounded-lg text-center py-1 bg-emerald-100/50 cursor-not-allowed'>done</p> ||
-                                                        request.status === 'canceled' && <p className='text-red-500 rounded-lg text-center py-1 bg-red-100/50 cursor-not-allowed'>canceled</p>
+                                                        </div> || request.status === 'pending' && <p className='text-amber-500 rounded-lg text-center py-1 px-3 bg-amber-100/50 cursor-not-allowed'>pending</p> ||
+                                                        request.status === 'done' && <p className='text-emerald-500 rounded-lg text-center py-1 px-3 bg-emerald-100/50 cursor-not-allowed'>done</p> ||
+                                                        request.status === 'canceled' && <p className='text-red-500 rounded-lg text-center py-1 px-3 bg-red-100/50 cursor-not-allowed'>canceled</p>
                                                     }
                                                 </td>
                                                 <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">{request.district},<span>{request.upazila}</span></td>

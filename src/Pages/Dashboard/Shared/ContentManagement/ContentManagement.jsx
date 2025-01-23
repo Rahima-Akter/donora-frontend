@@ -8,7 +8,7 @@ import useGetRole from '../../../../Hooks/useGetRole';
 import HandleStatus from '../../../../Hooks/HandleStatus';
 
 const ContentManagement = () => {
-    const [filter, setFilter] = useState('draft');
+    const [filter, setFilter] = useState('');
     const [handleStatus, status] = HandleStatus();
     const userRole = useGetRole();
     const navigate = useNavigate();
