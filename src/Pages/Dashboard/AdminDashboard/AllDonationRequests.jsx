@@ -13,7 +13,7 @@ import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import useGetRole from '../../../Hooks/useGetRole';
 
 const AllDonationRequests = () => {
-    const userRole = useGetRole();
+    const [userRole, isLoading] = useGetRole();
     const [handleStatus, status] = HandleStatus();
     const { user } = useAuth();
     const navigate = useNavigate();

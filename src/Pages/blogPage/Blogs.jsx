@@ -2,9 +2,10 @@ import { useQuery } from '@tanstack/react-query';
 import logo from '../../assets/logo.PNG'
 import useAxiosPublic from '../../Hooks/useAxiosPublic';
 import Spinner from '../../Components/Spinner';
+import { useNavigate } from 'react-router-dom';
 
 const Blogs = () => {
-
+    const navigate = useNavigate();
     const axiosPublic = useAxiosPublic();
     const { data: getblogs = [], isLoading } = useQuery({
         queryKey: ['blogs'],
@@ -36,9 +37,11 @@ const Blogs = () => {
                                 alt="blog image"
                             />
 
-                            <div className="flex items-center justify-between px-1 -py-1 bg-red-50">
+                            <div className="flex items-center justify-between px-1 pr-4 py-1 bg-red-50">
                                 <h1 className="text-lg font-bold text-white"><img src={logo} className='w-16 -ml-2' alt="" /></h1>
-                                <button className="px-2 py-1 text-xs font-semibold text-white uppercase transition-colors duration-300 transform bg-Red rounded hover:bg-gray-200 focus:bg-gray-400 focus:outline-none">
+                                <button 
+                                onClick={() => navigate(`/dashboard/view-blog/${blog._id}`)}
+                                className="px-2 py-1 text-xs font-semibold text-white uppercase transition-colors duration-300 transform bg-Red rounded hover:bg-Racing-Red focus:bg-gray-400 focus:outline-none">
                                     View Blog
                                 </button>
                             </div>

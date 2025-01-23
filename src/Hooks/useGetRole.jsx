@@ -13,7 +13,7 @@ const useGetRole = () => {
         }
     });
     const userRole = role?.role;
-    return userRole;
+    return [userRole, isLoading];
 };
 
 export default useGetRole;

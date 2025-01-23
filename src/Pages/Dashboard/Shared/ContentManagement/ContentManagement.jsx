@@ -10,7 +10,7 @@ import HandleStatus from '../../../../Hooks/HandleStatus';
 const ContentManagement = () => {
     const [filter, setFilter] = useState('');
     const [handleStatus, status] = HandleStatus();
-    const userRole = useGetRole();
+    const [userRole, isLoading] = useGetRole();
     const navigate = useNavigate();
     const axiosSecure = useAxiosSecure();
     const { data: blogs = [], isLoading, refetch } = useQuery({
