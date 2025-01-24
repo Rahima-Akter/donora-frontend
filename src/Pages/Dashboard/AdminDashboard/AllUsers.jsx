@@ -1,23 +1,32 @@
-import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight } from 'react-icons/md';
 import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import Spinner from '../../../Components/Spinner';
 import HandleStatus from '../../../Hooks/HandleStatus';
 import useRole from '../../../Hooks/useRole';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const AllUsers = () => {
     const [handleStatus, status] = HandleStatus();
     const [handleRole, role] = useRole();
     const axiosSecure = useAxiosSecure();
     const [statusFilter, setStatusFilter] = useState('')
-    const { data: users = {}, isLoading, refetch } = useQuery({
+    const { data: users = [], isLoading, refetch } = useQuery({
         queryKey: ['users', statusFilter],
         queryFn: async () => {
             const { data } = await axiosSecure.get(`/get-all-users?status=${statusFilter}`)
             return data;
         }
     });
+
+    // pagination states
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 3;
+    const lastItem = currentPage * itemsPerPage;
+    const firstItem = lastItem - itemsPerPage;
+    const paginatedRequests = users.slice(firstItem, lastItem);
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [users])
 
     const handleBlock = (id) => {
         handleStatus(id, 'block', '/user-status', refetch)
@@ -38,7 +47,12 @@ const AllUsers = () => {
         <div className='md:p-6 p-3'>
             <section className='lg:w-[90%]'>
                 {
-                    users.length === 0 && <p className='font-bold drop-shadow-lg uppercase text-Red text-xl mb-4 text-center'>No data to show</p> || <>
+                    users.length === 0 &&
+                    <div>
+                        <img src="https://media1.tenor.com/m/YvOjHMyFlH0AAAAd/empty-box.gif" alt="" className='lg:translate-x-11 w-full h-full lg:mt-0 mt-12' />
+                        <p className='font-bold drop-shadow-lg uppercase text-Red text-xl my-4 text-center lg:translate-x-11'>No data to show</p>
+                    </div>
+                    || <>
                         <div className='flex justify-between items-center mb-1'>
                             <p className='font-semibold uppercase text-Red md:text-sm text-xs mb-4'>All Registered users</p>
                             {/* button group for filter */}
@@ -68,9 +82,9 @@ const AllUsers = () => {
                                         </tr>
                                     </thead>
                                     <tbody className="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
-                                        {/* Example Row */}
+
                                         {
-                                            users.map(user => <tr key={user._id} className='hover:bg-gray-50'>
+                                            paginatedRequests.map(user => <tr key={user._id} className='hover:bg-gray-50'>
                                                 <td className="px-2 pl-8">
                                                     <img className="object-cover w-10 h-10 rounded-lg" src={user.image} alt="" />
                                                 </td>
@@ -114,27 +128,46 @@ const AllUsers = () => {
                             </div>
                         </div>
 
-                        {/* Pagination Section */}
-                        <div className="flex items-center justify-between mt-6">
-                            <a href="#" className="flex items-center px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800">
-                                <MdOutlineKeyboardArrowLeft className="w-5 h-5 rtl:-scale-x-100" />
-                                <span>previous</span>
-                            </a>
+                        {/* Pagination Controls */}
+                        <div className="flex items-center md:justify-center justify-between md:gap-7 mt-6">
+                            <button
+                                disabled={currentPage === 1}
+                                onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+                                className={`flex items-center px-5 py-2 text-sm text-white capitalize transition-colors duration-200 bg-Red border rounded-md gap-x-2 hover:bg-red-600 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800 ${currentPage === 1 ? "opacity-50 cursor-not-allowed" : ""
+                                    }`}
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5 rtl:-scale-x-100">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
+                                </svg>
+                                <span>Previous</span>
+                            </button>
 
-                            <div className="items-center hidden lg:flex gap-x-3">
-                                <a href="#" className="px-2 py-1 text-sm text-blue-500 rounded-md dark:bg-gray-800 bg-blue-100/60">1</a>
-                                <a href="#" className="px-2 py-1 text-sm text-gray-500 rounded-md dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100">2</a>
-                                <a href="#" className="px-2 py-1 text-sm text-gray-500 rounded-md dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100">3</a>
-                                <a href="#" className="px-2 py-1 text-sm text-gray-500 rounded-md dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100">...</a>
-                                <a href="#" className="px-2 py-1 text-sm text-gray-500 rounded-md dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100">12</a>
-                                <a href="#" className="px-2 py-1 text-sm text-gray-500 rounded-md dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100">13</a>
-                                <a href="#" className="px-2 py-1 text-sm text-gray-500 rounded-md dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100">14</a>
+                            <div className="items-center lg:flex gap-x-3">
+                                {Array.from({ length: Math.ceil(users.length / itemsPerPage) }, (_, index) => index + 1).map((page) => (
+                                    <button
+                                        key={page}
+                                        onClick={() => setCurrentPage(page)}
+                                        className={`px-2 py-1 text-sm rounded-md dark:bg-gray-800 ${currentPage === page
+                                            ? "text-white bg-Red/60"
+                                            : "text-gray-500 dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100"
+                                            }`}
+                                    >
+                                        {page}
+                                    </button>
+                                ))}
                             </div>
 
-                            <a href="#" className="flex items-center px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800">
+                            <button
+                                disabled={currentPage === Math.ceil(users.length / itemsPerPage)}
+                                onClick={() => setCurrentPage((prev) => Math.min(prev + 1, Math.ceil(users.length / itemsPerPage)))}
+                                className={`flex items-center px-5 py-2 text-sm text-white capitalize transition-colors duration-200 bg-Red border rounded-md gap-x-2 hover:bg-red-600 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800 ${currentPage === Math.ceil(users.length / itemsPerPage) ? "opacity-50 cursor-not-allowed" : ""
+                                    }`}
+                            >
                                 <span>Next</span>
-                                <MdOutlineKeyboardArrowRight className="w-5 h-5 rtl:-scale-x-100" />
-                            </a>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5 rtl:-scale-x-100">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+                                </svg>
+                            </button>
                         </div>
                     </>
                 }

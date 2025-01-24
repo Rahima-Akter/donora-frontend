@@ -14,7 +14,7 @@ const Profile = () => {
     const axiosSecure = useAxiosSecure();
     const [isEditable, setIsEditable] = useState(false);
 
-    const { data: users = {}, isLoading } = useQuery({
+    const { data: users = {}, isLoading, refetch } = useQuery({
         queryKey: ['user', user?.email],
         queryFn: async () => {
             const { data } = await axiosSecure.get(`/single-user/${user?.email}`);
@@ -66,6 +66,7 @@ const Profile = () => {
         try {
             const res = await axiosSecure.patch(`/update-user/${user?.email}`, userData);
             if (res.data.modifiedCount) {
+                refetch();
                 toast.success("Profile updated successfully!");
             } else {
                 toast.error("Profile update failed!");

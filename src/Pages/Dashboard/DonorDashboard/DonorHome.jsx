@@ -59,7 +59,7 @@ const DonorHome = () => {
     return (
         <div className='p-5'>
             {
-                user ? user && <p className='font-bold text-xl text-green-600 md:text-left text-center'>🩸Welcome, <span className='text-Red uppercase'>{user?.displayName}</span></p> : <p className='font-bold text-xl'>Welcome....</p>
+                user ? user && <p className='font-bold text-xl text-green-600'>🩸Welcome, <span className='text-Red uppercase'>{user?.displayName}</span></p> : <p className='font-bold text-xl'>Welcome....</p>
             }
 
             {/* table */}

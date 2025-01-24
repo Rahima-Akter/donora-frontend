@@ -23,8 +23,13 @@ import Blogs from '../Pages/blogPage/Blogs';
 import PrivateRoute from '../PrivateRoute/PrivateRoute';
 import AdminRoute from '../AdminRoute/AdminRoute';
 import Search from '../Pages/SearchPage/Search';
+import NotFound from '../Components/NotFound';
 
 const router = createBrowserRouter([
+    {
+        path: '*',
+        element: <NotFound />
+    },
     {
         path: '/',
         element: <MainLayout />,
@@ -140,7 +145,7 @@ const router = createBrowserRouter([
                 path: '/dashboard/all-users',
                 element: <PrivateRoute>
                     <AdminRoute>
-                    <AllUsers />
+                        <AllUsers />
                     </AdminRoute>
                 </PrivateRoute>
             },
