@@ -60,7 +60,7 @@ const Navbar = () => {
                         Funds
                     </NavLink>
                     <NavLink
-                        to="funds"
+                        to="search"
                         className={({ isActive }) =>
                             `flex items-center space-x-2 uppercase font-semibold ${isActive ? "text-white bg-Red px-3 py-2 rounded-md ring-1 ring-white hover:bg-red-600" : ""
                             }`

@@ -26,7 +26,7 @@ const DonationRequests = () => {
                 {
                     requests.map(request => (
                         <div key={request._id} className="flex flex-col max-w-sm overflow-hidden bg-red-50 rounded-lg shadow-lg dark:bg-gray-800">
-                            <div className="p-4 md:py-4 md:px-5 w-full flex flex-col flex-grow"> {/* Make this container flexible */}
+                            <div className="p-4 md:py-4 md:px-5 w-full flex flex-col flex-grow">
                                 <h1 className="text-xl font-bold text-Red dark:text-white">{request.recipientName} ({request.bloodGroup})</h1>
                                 <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
                                     {request.hospital}, {request.fullAddress}
@@ -36,9 +36,9 @@ const DonationRequests = () => {
                                     {format(new Date(`1970-01-01T${request.donationTime}:00Z`), "hh:mm a")}, {format(new Date(request.donationDate), 'P')}
                                 </div>
 
-                                {/* The chicken div pushed to the bottom */}
-                                <div className="flex items-center mt-auto chicken">
-                                    <h1 className="text-xs font-bold text-yellow-400 dark:text-gray-200 md:text-sm">{request.status}....</h1>
+                                {/*  */}
+                                <div className="flex items-center mt-auto">
+                                    <h1 className="text-xs font-bold text-Red dark:text-gray-200 md:text-sm">{request.status}....</h1>
                                     <button
                                         onClick={() => navigate(`/dashboard/details/${request._id}`)}
                                         className="ml-auto px-2 py-1 text-xs font-bold text-white uppercase transition-colors duration-300 transform bg-Red rounded dark:bg-gray-700 hover:bg-red-600 dark:hover:bg-gray-600 focus:outline-none focus:bg-gray-700 dark:focus:bg-gray-600">

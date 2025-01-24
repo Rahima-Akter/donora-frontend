@@ -22,6 +22,7 @@ import DonationRequests from '../Pages/DonationRequests/DonationRequests';
 import Blogs from '../Pages/blogPage/Blogs';
 import PrivateRoute from '../PrivateRoute/PrivateRoute';
 import AdminRoute from '../AdminRoute/AdminRoute';
+import Search from '../Pages/SearchPage/Search';
 
 const router = createBrowserRouter([
     {
@@ -73,6 +74,10 @@ const router = createBrowserRouter([
             {
                 path: 'blogs',
                 element: <Blogs />
+            },
+            {
+                path: 'search',
+                element: <Search />
             }
         ]
     },
