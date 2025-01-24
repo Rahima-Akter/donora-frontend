@@ -35,12 +35,12 @@ const AllUsers = () => {
 
     if (isLoading) return <Spinner />
     return (
-        <div className='p-6'>
+        <div className='md:p-6 p-3'>
             <section className='lg:w-[90%]'>
                 {
                     users.length === 0 && <p className='font-bold drop-shadow-lg uppercase text-Red text-xl mb-4 text-center'>No data to show</p> || <>
                         <div className='flex justify-between items-center mb-1'>
-                            <p className='font-semibold uppercase text-Red text-sm mb-4'>All Registered users</p>
+                            <p className='font-semibold uppercase text-Red md:text-sm text-xs mb-4'>All Registered users</p>
                             {/* button group for filter */}
                             <div className="join mb-2">
                                 <select

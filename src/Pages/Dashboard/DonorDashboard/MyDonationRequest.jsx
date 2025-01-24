@@ -60,13 +60,13 @@ const MyDonationRequest = () => {
         <div className='p-5'>
             {/* table */}
             <section className="py-8">
-                <div className='flex justify-between items-center'>
-                    <p className='font-semibold uppercase text-Red text-lg mb-4'>my donation requests</p>
+                <div className='flex justify-between items-center md:mb-0 mb-2 md:px-6 lg:px-0 px-0'>
+                    <p className='font-semibold uppercase text-Red md:text-lg text-xs mb-4'>my donation requests</p>
                     {/* button group for filter */}
                     <div className="join mb-2">
                         <select
                             onChange={(e) => setStatus(e.target.value)}
-                            className="select select-bordered join-item bg-Red rounded-lg border border-white pb-1 px-2 text-white font-bold">
+                            className="select select-bordered join-item bg-transparent rounded-lg border border-Red pb-1 px-2 text-Red font-bold appearance-none">
                             <option className='font-bold' value=''>Filter by</option>
                             <option className='font-bold' value='pending'>pending</option>
                             <option className='font-bold' value='inprogress'>inprogress</option>
@@ -78,7 +78,7 @@ const MyDonationRequest = () => {
 
                 {
                     requests.length === 0 && <p className='font-bold drop-shadow-lg uppercase text-Red text-xl mb-4 text-center'>No data to show</p> || (<div className="w-full px-4 mx-auto sm:px-6 lg:px-0">
-                        <div className="overflow-hidden bg-white shadow rounded-lg dark:bg-gray-900">
+                        <div className="overflow-hidden bg-white shadow dark:bg-gray-900 md:w-full md:-ml-0 -ml-7 w-[120%]">
                             <div className="overflow-x-auto">
                                 <table className="min-w-full table-auto text-sm text-left text-gray-500 dark:text-gray-300">
                                     <thead className="text-xs w-full text-Red uppercase bg-Red/10 dark:bg-gray-800 dark:text-gray-400">
@@ -103,7 +103,7 @@ const MyDonationRequest = () => {
                                                         <h2 className="font-medium text-gray-800 dark:text-white">{request.recipientName}</h2>
                                                     </div>
                                                 </td>
-                                                <td className="px-12 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+                                                <td className="md:px-12 px-5 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                                                     {
                                                         request.status === 'inprogress' && <div className='flex items-center gap-1 mt-1'>
                                                             <button onClick={() => handleDone(`${request._id}`)} className='text-xs font-semibold bg-green-500 hover:bg-green-600 text-white rounded-md px-2 py-1'>Done</button>

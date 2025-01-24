@@ -11,6 +11,7 @@ import { IoTimeOutline } from 'react-icons/io5';
 import { format } from 'date-fns';
 import toast from 'react-hot-toast';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
+import { useQuery } from '@tanstack/react-query';
 
 const DonationReqForm = () => {
     const { user } = useAuth();
@@ -19,6 +20,15 @@ const DonationReqForm = () => {
     const [defaultTime] = useState(new Date());
     const { districts, upazilas } = useDistricts();
     const { register, handleSubmit, reset, control, formState: { errors } } = useForm();
+    const { data: userStatus = {} } = useQuery({
+        queryKey: ['userStatus', user?.email],
+        queryFn: async () => {
+            const { data } = await axiosSecure.get(`/single-user/${user?.email}`);
+            return data;
+        }
+    });
+
+    const status = userStatus.status;
 
     const onSubmit = async (data) => {
         try {
@@ -43,16 +53,21 @@ const DonationReqForm = () => {
             };
 
             // Send request to the server
-            const response = await axiosSecure.post('/blood-request', requestData);
 
-            if (response?.data?.insertedId) {
-                toast.success('Request Successful.....');
-                reset();
-                navigate('/dashboard/my-donation-requests')
+            if (status === 'block') {
+                toast.error("a blocked user cannot make donation requests!");
             } else {
-                console.error("Unexpected response:", response);
-                toast.error('Failed to submit the request.');
+                const response = await axiosSecure.post('/blood-request', requestData);
+                if (response?.data?.insertedId) {
+                    toast.success('Request Successful.....');
+                    reset();
+                    navigate('/dashboard/my-donation-requests');
+                } else {
+                    console.error("Unexpected response:", response);
+                    toast.error('Failed to submit the request.');
+                }
             }
+
         } catch (err) {
             console.error("Error during blood request:", err.response?.data || err.message || err);
             toast.error("Failed to send the blood request. Please try again later.");
@@ -61,8 +76,8 @@ const DonationReqForm = () => {
 
 
     return (
-        <div className='bg-red-100 py-4'>
-            <div className="flex lg:w-10/12 w-11/12 mx-auto bg-Red/5 overflow-hidden rounded-lg shadow-lg dark:bg-gray-800 my-7">
+        <div className='bg-red-100 py-4 min-h-screen'>
+            <div className="flex lg:w-10/12 w-11/12 mx-auto bg-Red/5 overflow-hidden rounded-lg shadow-lg dark:bg-gray-800 my-7 md:translate-y-16 lg:translate-y-0">
                 <div className="w-full px-6 py-8 md:px-8">
                     <Link to="/" className="text-xs text-Red flex items-center hover:text-Racing-Red">
                         <span className="text-2xl -mt-1">←</span>Go back home
@@ -77,7 +92,7 @@ const DonationReqForm = () => {
 
                     <form onSubmit={handleSubmit(onSubmit)} className="mt-4 grid grid-cols-1 md:grid-cols-2">
                         {/* user name Feild */}
-                        <div className="mt-4 ml-5">
+                        <div className="mt-4 md:ml-5">
                             <label className="block mb-2 text-sm font-medium text-Red dark:text-gray-200" htmlFor="LoggingEmailAddress">
                                 User Name
                             </label>
@@ -91,7 +106,7 @@ const DonationReqForm = () => {
                         </div>
 
                         {/* user email Feild */}
-                        <div className="mt-4 ml-5">
+                        <div className="mt-4 md:ml-5">
                             <label className="block mb-2 text-sm font-medium text-Red dark:text-gray-200" htmlFor="LoggingEmailAddress">
                                 User Email
                             </label>
@@ -105,7 +120,7 @@ const DonationReqForm = () => {
                         </div>
 
                         {/* recipient name */}
-                        <div className="mt-4 ml-5">
+                        <div className="mt-4 md:ml-5">
                             <label className="block mb-2 text-sm font-medium text-Red dark:text-gray-200" htmlFor="LoggingEmailAddress">
                                 Recipient Name
                             </label>
@@ -121,7 +136,7 @@ const DonationReqForm = () => {
                         </div>
 
                         {/* hospital address Field */}
-                        <div className="mt-4 ml-5">
+                        <div className="mt-4 md:ml-5">
                             <label className="block mb-2 text-sm font-medium text-Red dark:text-gray-200" htmlFor="LoggingEmailAddress">
                                 Hospital Address
                             </label>
@@ -137,7 +152,7 @@ const DonationReqForm = () => {
                         </div>
 
                         {/* full address Field */}
-                        <div className="mt-4 ml-5 relative">
+                        <div className="mt-4 md:ml-5 relative">
                             <div className="flex justify-between">
                                 <label className="block mb-2 text-sm font-medium text-Red dark:text-gray-200" htmlFor="loggingPassword">
                                     Full Address
@@ -156,7 +171,7 @@ const DonationReqForm = () => {
                         </div>
 
                         {/* district Dropdown */}
-                        <div className="mt-4 ml-5">
+                        <div className="mt-4 md:ml-5">
                             <label className="block mb-2 text-sm font-medium text-Red" htmlFor="district">
                                 Select Recipient District
                             </label>
@@ -178,7 +193,7 @@ const DonationReqForm = () => {
                         </div>
 
                         {/* upazila Dropdown */}
-                        <div className="mt-4 ml-5">
+                        <div className="mt-4 md:ml-5">
                             <label className="block mb-2 text-sm font-medium text-Red" htmlFor="upazila">
                                 Select Recipient Upazila
                             </label>
@@ -200,7 +215,7 @@ const DonationReqForm = () => {
                         </div>
 
                         {/* donation date */}
-                        <div className="mt-4 ml-5 relative">
+                        <div className="mt-4 md:ml-5 relative">
                             <label className="block mb-2 text-sm font-medium text-Red">
                                 Select the date for donation
                             </label>
@@ -226,7 +241,7 @@ const DonationReqForm = () => {
                         </div>
 
                         {/* time field */}
-                        <div className="mt-4 ml-5 relative">
+                        <div className="mt-4 md:ml-5 relative">
                             <label className="block mb-2 text-sm font-medium text-Red">
                                 Select a time for donation
                             </label>
@@ -256,7 +271,7 @@ const DonationReqForm = () => {
                         </div>
 
                         {/* details Field */}
-                        <div className="mt-4 ml-5">
+                        <div className="mt-4 md:ml-5">
                             <div className="flex justify-between">
                                 <label className="block mb-2 text-sm font-medium text-Red dark:text-gray-200" htmlFor="loggingPassword">
                                     Detaills
@@ -275,7 +290,7 @@ const DonationReqForm = () => {
                         </div>
 
                         {/* blood group */}
-                        <div className="mt-4 ml-5 col-span-2">
+                        <div className="mt-4 md:ml-5 md:col-span-2">
                             <label className="block mb-2 text-sm font-medium text-Red" htmlFor="blood">
                                 Select Your Blood Type...
                             </label>
@@ -303,7 +318,7 @@ const DonationReqForm = () => {
                         </div>
 
                         {/* Submit Button */}
-                        <div className="mt-6 col-span-2 ml-5">
+                        <div className="mt-6 md:col-span-2 md:ml-5">
                             <button
                                 type="submit"
                                 className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white transition-colors duration-300 transform bg-Red rounded-lg hover:bg-Racing-Red focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50 uppercase"

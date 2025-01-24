@@ -11,8 +11,8 @@ const Home = () => {
         <div className='text-xl font-bold text-red-500 text-center'>
             <Banner />
             <ExtraSection1 />
-            <Faq />
             <BloodCompatibilityChart />
+            <Faq />
             <ExtraSection2 />
             <Testimonial />
             <ContactUs />

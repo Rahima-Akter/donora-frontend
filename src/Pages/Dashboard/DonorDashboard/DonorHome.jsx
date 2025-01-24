@@ -59,20 +59,20 @@ const DonorHome = () => {
     return (
         <div className='p-5'>
             {
-                user ? user && <p className='font-bold text-xl text-green-600'>🩸Welcome, <span className='text-Red uppercase'>{user?.displayName}</span></p> : <p className='font-bold text-xl'>Welcome....</p>
+                user ? user && <p className='font-bold text-xl text-green-600 md:text-left text-center'>🩸Welcome, <span className='text-Red uppercase'>{user?.displayName}</span></p> : <p className='font-bold text-xl'>Welcome....</p>
             }
 
             {/* table */}
             <section className="py-8">
-                <div className='flex justify-between items-center'>
-                    <p className='font-semibold uppercase text-Red text-lg mb-4'>recent donation requests</p>
+                <div className='flex md:justify-between items-center mb-3 lg:mb-0 px-0 md:px-4 lg:px-0'>
+                    <p className='font-semibold uppercase text-Red md:text-lg text-xs mb-4 hidden md:block'>recent donation requests</p>
                     <div>
-                        <Link to="/dashboard/my-donation-requests" className='bg-Red hover:bg-Racing-Red rounded-lg px-3 py-1 text-white font-semibold'>View All My Requests</Link>
+                        <Link to="/dashboard/my-donation-requests" className='bg-Red hover:bg-Racing-Red rounded-lg px-3 py-1 text-white font-semibold -ml-2 md:-ml-0'>View All My Requests</Link>
                     </div>
                 </div>
                 {
-                    requests.length === 0 && <p className='font-bold drop-shadow-lg uppercase text-Red text-xl mb-4 text-center'>No data to show</p> || (<div className="min-w-full px-4 mx-auto sm:px-6 lg:px-0">
-                        <div className="overflow-hidden bg-white shadow rounded-lg dark:bg-gray-900">
+                    requests.length === 0 && <p className='font-bold drop-shadow-lg uppercase text-Red text-xl mb-4 text-center'>No data to show</p> || (<div className="min-w-full px-4 mx-auto lg:px-0">
+                        <div className="overflow-hidden bg-white shadow rounded-lg dark:bg-gray-900 md:w-full md:-ml-0 -ml-7 w-[120%]">
                             <div className="overflow-x-auto">
                                 <table className="w-full table-auto text-sm text-left text-gray-500 dark:text-gray-300">
                                     <thead className="text-xs text-Red uppercase bg-Red/10 dark:bg-gray-800 dark:text-gray-400">

@@ -76,20 +76,20 @@ const Profile = () => {
     };
     if (isLoading) return <Spinner />
     return (
-        <div className='' style={{
+        <div className='-z-10 absolute inset-0 min-h-screen' style={{
             backgroundImage: `url('https://png.pngtree.com/thumb_back/fh260/background/20240102/pngtree-asian-style-black-texture-banner-brush-stroke-object-with-japanese-wave-image_13901042.png')`,
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center',
             backgroundSize: 'cover',
             objectFit: 'cover',
-            height: '100vh'
+            minHeight: '100vh',
         }}>
 
-            <div className="w-full bg-white/30 backdrop-blur-sm h-full">
-                <div className="w-4/6 mx-auto px-5 py-6">
+            <div className="w-full bg-white/30 backdrop-blur-sm h-full relative z-10">
+                <div className="md:w-4/6 lg:w-3/6 w-full mx-auto px-5 lg:py-6 py-32 lg:translate-x-[25%] -translate-y-6 md:-translate-y-0">
                     <div className="flex justify-between items-center">
-                        <h1 className="font-bold text-Red text-2xl text-center ml-4">{users.name}'s Profile</h1>
-                        <div className="mt-6 ml-3">
+                        <h1 className="font-bold text-Red text-2xl text-center md:ml-4">{users.name}'s Profile</h1>
+                        <div className="md:mt-6 ml-3 relative z-50">
                             <button
                                 onClick={() => {
                                     if (!isEditable) {
@@ -104,7 +104,7 @@ const Profile = () => {
                     </div>
                     <form onSubmit={handleSubmit(onSubmit)} className="mt-1 grid grid-cols-1 md:grid-cols-2">
                         {/* name  Feild */}
-                        <div className="mt-4 ml-5">
+                        <div className="mt-4 md:ml-5 mr-3 md:mr-0">
                             <label className="block mb-2 text-sm font-medium text-Red dark:text-gray-200" htmlFor="name">
                                 Your Name
                             </label>
@@ -119,7 +119,8 @@ const Profile = () => {
                         </div>
 
                         {/* Email Field */}
-                        <div className="mt-4 ml-5">
+                        <div className="mt-4 md:ml-5">
+
                             <label className="block mb-2 text-sm font-medium text-Red dark:text-gray-200" htmlFor="LoggingEmailAddress">
                                 Email Address
                             </label>
@@ -140,7 +141,7 @@ const Profile = () => {
                         </div>
 
                         {/* image input */}
-                        <div className="mt-4 ml-5 col-span-2">
+                        <div className="mt-4 md:ml-5 col-span-2">
                             <label
                                 htmlFor="image"
                                 className="block mb-2 text-sm font-medium text-Red dark:text-gray-200"
@@ -173,7 +174,7 @@ const Profile = () => {
                         <div className="flex flex-row col-span-2">
 
                             {/* users avatar */}
-                            <div className="mt-4 ml-5 w-2/5">
+                            <div className="mt-4 md:ml-5 w-2/5">
                                 <p className="block mb-2 text-sm font-medium text-Red dark:text-gray-200">Avatar</p>
                                 <img
                                     src={users.image}
@@ -273,14 +274,6 @@ const Profile = () => {
                                 </button>
                             </div>
                         }
-                        {/* <div className="mt-6 col-span-2 ml-3">
-                            <button
-                                type="submit"
-                                className="px-3 py-2 text-xs font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-Red rounded-lg hover:bg-Racing-Red focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50"
-                            >
-                                edit profile
-                            </button>
-                        </div> */}
                     </form>
                 </div>
             </div>

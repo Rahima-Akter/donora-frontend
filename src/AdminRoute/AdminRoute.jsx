@@ -1,5 +1,4 @@
 import { Navigate, useLocation } from "react-router-dom";
-import useAdmin from "../hooks/useAdmin";
 import useAuth from "../Hooks/useAuth";
 import useGetRole from "../Hooks/useGetRole";
 import Spinner from "../Components/Spinner";
@@ -18,7 +17,7 @@ const AdminRoute = ({ children }) => {
         return children;
     }
 
-    return <Navigate to="/" state={{ from: location }} replace></Navigate>
+    return <Navigate to="/" state={{ from: location.pathname }} replace></Navigate>
 
 };
 

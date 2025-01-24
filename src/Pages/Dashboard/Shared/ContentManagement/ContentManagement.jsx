@@ -10,7 +10,7 @@ import HandleStatus from '../../../../Hooks/HandleStatus';
 const ContentManagement = () => {
     const [filter, setFilter] = useState('');
     const [handleStatus, status] = HandleStatus();
-    const [userRole, isLoading] = useGetRole();
+    const [userRole] = useGetRole();
     const navigate = useNavigate();
     const axiosSecure = useAxiosSecure();
     const { data: blogs = [], isLoading, refetch } = useQuery({
@@ -55,13 +55,13 @@ const ContentManagement = () => {
 
     if (isLoading) return <Spinner />
     return (
-        <div className='py-8 px-6'>
+        <div className='md:py-8 py-3 px-6'>
             <div className='flex justify-between items-center'>
-                <div className="join mb-2">
+                <div className="md:mb-2">
                     <select
                         onChange={(e) => setFilter(e.target.value)}
                         value={filter}
-                        className="select select-bordered join-item bg-transparent rounded-lg border border-Red hover:bg-red-50 pb-1 px-2 text-Red font-bold">
+                        className="bg-transparent rounded-lg border border-Red hover:bg-red-50 px-4 py-2 text-Red font-bold text-xs appearance-none focus:outline-none !pr-28   ">
                         <option className='font-bold' value=''>Filter by</option>
                         <option className='font-bold' value=''>default</option>
                         <option className='font-bold' value='draft'>draft</option>
@@ -80,7 +80,7 @@ const ContentManagement = () => {
                 blogs.length === 0 && <p className='font-bold drop-shadow-lg uppercase text-Red text-xl mb-4 text-center'>No data to show</p> || (
                     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-5'>
                         {
-                            blogs.map(blog => <div key={blog._id} className="w-full md:max-w-[300px] px-6 py-5 mt-5 bg-red-50 rounded-lg shadow-lg dark:bg-gray-800 duration-700 hover:bg-white flex flex-col">
+                            blogs.map(blog => <div key={blog._id} className="w-full lg:max-w-[300px] px-6 py-5 mt-5 bg-red-50 rounded-lg shadow-lg dark:bg-gray-800 duration-700 hover:bg-white flex flex-col">
 
                                 <h2 className="mt-3 text-xl font-semibold text-gray-800 dark:text-white md:mt-0">{blog.title.slice(0, 22)}...</h2>
 

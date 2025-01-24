@@ -20,6 +20,8 @@ import ViewBlogDetails from '../Shared/ViewBlog/ViewBlogDetails';
 import Profile from '../Pages/Dashboard/Shared/Profile';
 import DonationRequests from '../Pages/DonationRequests/DonationRequests';
 import Blogs from '../Pages/blogPage/Blogs';
+import PrivateRoute from '../PrivateRoute/PrivateRoute';
+import AdminRoute from '../AdminRoute/AdminRoute';
 
 const router = createBrowserRouter([
     {
@@ -32,7 +34,9 @@ const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/view-blog/:id',
-                element: <ViewBlogDetails />,
+                element: <PrivateRoute>
+                    <ViewBlogDetails />
+                </PrivateRoute>,
                 loader: async ({ params }) => {
                     const token = localStorage.getItem('access-token');
                     const response = await fetch(`http://localhost:5000/single-blog/${params.id}`, {
@@ -47,7 +51,9 @@ const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/details/:id',
-                element: <Details />,
+                element: <PrivateRoute>
+                    <Details />
+                </PrivateRoute>,
                 loader: async ({ params }) => {
                     const token = localStorage.getItem('access-token');
                     const response = await fetch(`http://localhost:5000/blood-request/${params.id}`, {
@@ -81,7 +87,9 @@ const router = createBrowserRouter([
     // ***donor dashboard***
     {
         path: '/dashboard',
-        element: <DashboardLayout />,
+        element: <PrivateRoute>
+            <DashboardLayout />
+        </PrivateRoute>,
         children: [
             {
                 index: true,
@@ -89,15 +97,21 @@ const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/create-donation-request',
-                element: <DonationReqForm />
+                element: <PrivateRoute>
+                    <DonationReqForm />
+                </PrivateRoute>
             },
             {
                 path: '/dashboard/my-donation-requests',
-                element: <MyDonationRequest />
+                element: <PrivateRoute>
+                    <MyDonationRequest />
+                </PrivateRoute>
             },
             {
                 path: '/dashboard/UpdateRequest/:id',
-                element: <UpdateRequests />,
+                element: <PrivateRoute>
+                    <UpdateRequests />
+                </PrivateRoute>,
                 loader: async ({ params }) => {
                     const token = localStorage.getItem('access-token');
                     const response = await fetch(`http://localhost:5000/blood-request/${params.id}`, {
@@ -113,23 +127,35 @@ const router = createBrowserRouter([
             // admin dashboard ************************
             {
                 path: '/dashboard/admin',
-                element: <AdminHome />
+                element: <PrivateRoute>
+                    <AdminHome />
+                </PrivateRoute>
             },
             {
                 path: '/dashboard/all-users',
-                element: <AllUsers />
+                element: <PrivateRoute>
+                    <AdminRoute>
+                    <AllUsers />
+                    </AdminRoute>
+                </PrivateRoute>
             },
             {
                 path: '/dashboard/all-blood-donation-request',
-                element: <AllDonationRequests />
+                element: <PrivateRoute>
+                    <AllDonationRequests />
+                </PrivateRoute>
             },
             {
                 path: '/dashboard/content-management',
-                element: <ContentManagement />
+                element: <PrivateRoute>
+                    <ContentManagement />
+                </PrivateRoute>
             },
             {
                 path: '/dashboard/create-blog',
-                element: <CreateBlog />
+                element: <PrivateRoute>
+                    <CreateBlog />
+                </PrivateRoute>
             },
             {
                 path: '/dashboard/update-blog/:id',
@@ -154,7 +180,9 @@ const router = createBrowserRouter([
             // common route
             {
                 path: '/dashboard/profile',
-                element: <Profile />
+                element: <PrivateRoute>
+                    <Profile />
+                </PrivateRoute>
             }
         ]
     }

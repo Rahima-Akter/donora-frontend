@@ -14,7 +14,7 @@ const DashNavbar = () => {
     const [userRole, isLoading] = useGetRole();
     return (
         <>
-            <aside className="flex flex-col w-full h-screen px-4 pb-8 lg:pt-3 pt-8 overflow-y-auto bg-white border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700">
+            <aside className="flex flex-col w-full h-screen px-4 pb-8 lg:pt-3 pt-8 overflow-y-auto bg-white border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700 z-50">
                 <div className='lg:block hidden'>
                     <NavLink to="/" className="mx-auto flex justify-start items-center">
                         <img className="w-[85px] h-14 mt-2" src={logo} alt="Logo" /><span className='-ml-5 text-2xl uppercase text-Red font-bold'>donora</span>

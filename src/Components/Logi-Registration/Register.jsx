@@ -91,7 +91,7 @@ const Register = () => {
     };
 
     return (
-        <div className="flex lg:w-10/12 w-11/12 mx-auto bg-Red/5 overflow-hidden rounded-lg shadow-lg dark:bg-gray-800 my-7">
+        <div className="flex lg:w-10/12 md:w-11/12 mx-auto bg-Red/5 overflow-hidden rounded-lg shadow-lg dark:bg-gray-800 my-7 md:translate-y-[15%] lg:translate-y-0 -inset-0 -translate-y-[3%]">
             <div className="hidden lg:flex lg:justify-center lg:items-center lg:w-1/2">
                 <img src={loginImage} className='flex justify-center items-center my-auto ' alt="" />
             </div>
@@ -126,7 +126,7 @@ const Register = () => {
 
                 <form onSubmit={handleSubmit(onSubmit)} className="mt-4 grid grid-cols-1 md:grid-cols-2">
                     {/* name  Feild */}
-                    <div className="mt-4 ml-5">
+                    <div className="mt-4 md:ml-5">
                         <label className="block mb-2 text-sm font-medium text-Red dark:text-gray-200" htmlFor="LoggingEmailAddress">
                             Your Name
                         </label>
@@ -141,7 +141,7 @@ const Register = () => {
                     </div>
 
                     {/* Email Field */}
-                    <div className="mt-4 ml-5">
+                    <div className="mt-4 md:ml-5">
                         <label className="block mb-2 text-sm font-medium text-Red dark:text-gray-200" htmlFor="LoggingEmailAddress">
                             Email Address
                         </label>
@@ -160,7 +160,7 @@ const Register = () => {
                     </div>
 
                     {/* image input */}
-                    <div className="mt-4 ml-5 col-span-2">
+                    <div className="mt-4 md:ml-5 md:col-span-2">
                         <label
                             htmlFor="image"
                             className="block mb-2 text-sm font-medium text-Red dark:text-gray-200"
@@ -189,9 +189,8 @@ const Register = () => {
                         )}
                     </div>
 
-
                     {/* Password Field */}
-                    <div className="mt-4 ml-5 relative">
+                    <div className="mt-4 md:ml-5 relative">
                         <div className="flex justify-between">
                             <label className="block mb-2 text-sm font-medium text-Red dark:text-gray-200" htmlFor="loggingPassword">
                                 Password
@@ -224,7 +223,7 @@ const Register = () => {
                     </div>
 
                     {/* Confirm Password Field */}
-                    <div className="mt-4 ml-5 relative">
+                    <div className="mt-4 md:ml-5 relative">
                         <label className="block mb-2 text-sm font-medium text-Red dark:text-gray-200" htmlFor="confirmPassword">
                             Confirm Password
                         </label>
@@ -250,7 +249,7 @@ const Register = () => {
                     </div>
 
                     {/* district Dropdown */}
-                    <div className="mt-4 ml-5">
+                    <div className="mt-4 md:ml-5">
                         <label className="block mb-2 text-sm font-medium text-Red" htmlFor="district">
                             Select Your District
                         </label>
@@ -272,7 +271,7 @@ const Register = () => {
                     </div>
 
                     {/* district Dropdown */}
-                    <div className="mt-4 ml-5">
+                    <div className="mt-4 md:ml-5">
                         <label className="block mb-2 text-sm font-medium text-Red" htmlFor="upazila">
                             Select Your Upozila
                         </label>
@@ -294,7 +293,7 @@ const Register = () => {
                     </div>
 
                     {/* blood group */}
-                    <div className="mt-4 ml-5 col-span-2">
+                    <div className="mt-4 md:ml-5 md:col-span-2">
                         <label className="block mb-2 text-sm font-medium text-Red" htmlFor="blood">
                             Select Your Blood Type...
                         </label>
@@ -323,7 +322,7 @@ const Register = () => {
 
 
                     {/* Submit Button */}
-                    <div className="mt-6 col-span-2 ml-5">
+                    <div className="mt-6 md:col-span-2 md:ml-5">
                         <button
                             type="submit"
                             className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-Red rounded-lg hover:bg-Racing-Red focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50"

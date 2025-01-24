@@ -50,7 +50,7 @@ const Login = () => {
     };
 
     return (
-        <div className="flex w-full bg-Red/5 max-w-sm mx-auto overflow-hidden rounded-lg shadow-lg dark:bg-gray-800 lg:max-w-4xl my-7">
+        <div className="flex md:w-full w-11/12 bg-Red/5 max-w-sm mx-auto overflow-hidden rounded-lg shadow-lg dark:bg-gray-800 lg:max-w-4xl my-7 md:translate-y-[30%] lg:translate-y-0 translate-y-[8%]">
             <div className="hidden lg:flex lg:justify-center lg:items-center lg:w-1/2">
                 <img src={loginImage2} className='w-full h-full' alt="" />
             </div>

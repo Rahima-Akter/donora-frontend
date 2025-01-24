@@ -13,7 +13,7 @@ import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import useGetRole from '../../../Hooks/useGetRole';
 
 const AllDonationRequests = () => {
-    const [userRole, isLoading] = useGetRole();
+    const [userRole] = useGetRole();
     const [handleStatus, status] = HandleStatus();
     const { user } = useAuth();
     const navigate = useNavigate();
@@ -63,8 +63,8 @@ const AllDonationRequests = () => {
     return (
         <div className='p-4'>
             <section className="">
-                <div className='flex justify-between items-center'>
-                    <p className='font-semibold uppercase text-Red text-lg mb-4'>All donation requests({requests.length})</p>
+                <div className='flex justify-between items-center lg:px-3 md:px-6 px-0'>
+                    <p className='font-semibold uppercase text-Red text-xs md:text-lg mb-4'>All donation requests({requests.length})</p>
                     {/* button group for filter */}
                     <div className="join mb-2">
                         <select
@@ -81,10 +81,10 @@ const AllDonationRequests = () => {
                 </div>
 
                 {
-                    requests.length === 0 && <p className='font-bold drop-shadow-lg uppercase text-Red text-xl mb-4 text-center'>No data to show</p> || (<div className="w-full px-4 mx-auto sm:px-6 lg:px-0">
-                        <div className="overflow-hidden bg-white shadow rounded-lg dark:bg-gray-900">
+                    requests.length === 0 && <p className='font-bold drop-shadow-lg uppercase text-Red text-xl mb-4 text-center'>No data to show</p> || (<div className="w-full px-0 mx-auto sm:px-6 lg:px-3">
+                        <div className="overflow-hidden bg-white shadow dark:bg-gray-900">
                             <div className="overflow-x-auto">
-                                <table className="min-w-full table-auto text-sm text-left text-gray-500 dark:text-gray-300">
+                                <table className="w-full table-auto text-sm text-left text-gray-500 dark:text-gray-300">
                                     <thead className="text-xs w-full text-Red uppercase bg-Red/10 dark:bg-gray-800 dark:text-gray-400">
                                         <tr>
                                             <th scope="col" className="text-center px-4 py-5 whitespace-nowrap">Recipient's Name</th>

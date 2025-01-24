@@ -48,11 +48,11 @@ const CreateBlog = () => {
     }
 
     return (
-        <div className='bg-gray-100 my-20 rounded-md shadow-lg lg:w-7/12 w-11/12 mx-auto bg-Red/5 p-8'>
+        <div className='bg-gray-100 md:my-20 my-2 rounded-md shadow-lg lg:w-7/12 w-11/12 mx-auto bg-Red/5 md:p-8 p-5'>
             <h1 className='text-center font-bold text-Red drop-shadow-md text-2xl'>Create A Blog</h1>
             <form onSubmit={handleSubmit(onSubmit)} className="">
                 {/* title */}
-                <div className="mt-4 ml-5">
+                <div className="mt-4 md:ml-5">
                     <label className="block mb-2 text-sm font-medium text-Red dark:text-gray-200" htmlFor="LoggingEmailAddress">
                         Title
                     </label>
@@ -68,7 +68,7 @@ const CreateBlog = () => {
                 </div>
 
                 {/* thumbnail */}
-                <div className="mt-4 ml-5 col-span-2">
+                <div className="mt-4 md:ml-5 col-span-2">
                     <label
                         htmlFor="thumb"
                         className="block mb-2 text-sm font-medium text-Red dark:text-gray-200"
@@ -98,7 +98,7 @@ const CreateBlog = () => {
                 </div>
 
                 {/* Jodit React Editor for Content */}
-                <div className="mt-4 ml-5">
+                <div className="mt-4 md:ml-5">
                     <div className="flex justify-between">
                         <label className="block mb-2 text-sm font-medium text-Red dark:text-gray-200">
                             Content
@@ -117,7 +117,7 @@ const CreateBlog = () => {
                 </div>
 
                 {/* Submit Button */}
-                <div className="mt-6 col-span-2 ml-5">
+                <div className="mt-6 col-span-2 md:ml-5">
                     <button
                         type="submit"
                         className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white transition-colors duration-300 transform bg-Red rounded-lg hover:bg-Racing-Red focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50 uppercase"
