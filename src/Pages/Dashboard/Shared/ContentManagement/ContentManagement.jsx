@@ -77,7 +77,10 @@ const ContentManagement = () => {
             </div>
 
             {
-                blogs.length === 0 && <p className='font-bold drop-shadow-lg uppercase text-Red text-xl mb-4 text-center'>No data to show</p> || (
+                blogs.length !== 0 && <div>
+                    <img src="https://media1.tenor.com/m/YvOjHMyFlH0AAAAd/empty-box.gif" alt="" className='lg:w-[80%] mx-auto w-full h-full lg:mt-5 mt-12' />
+                    <p className='font-bold drop-shadow-lg uppercase text-Red text-xl my-4 text-center'>No data to show</p>
+                </div> || (
                     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-5'>
                         {
                             blogs.map(blog => <div key={blog._id} className="w-full lg:max-w-[300px] px-6 py-5 mt-5 bg-red-50 rounded-lg shadow-lg dark:bg-gray-800 duration-700 hover:bg-white flex flex-col">

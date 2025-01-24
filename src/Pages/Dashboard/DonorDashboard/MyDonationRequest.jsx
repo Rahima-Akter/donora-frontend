@@ -108,9 +108,10 @@ const MyDonationRequest = () => {
                 </div>
 
                 {requests.length === 0 ? (
-                    <p className="font-bold drop-shadow-lg uppercase text-Red text-xl mb-4 text-center">
-                        No data to show
-                    </p>
+                    <div>
+                        <img src="https://media1.tenor.com/m/YvOjHMyFlH0AAAAd/empty-box.gif" alt="" className='w-full h-full lg:mt-0 mt-12' />
+                        <p className='font-bold drop-shadow-lg uppercase text-Red text-xl my-4 text-center '>No data to show</p>
+                    </div>
                 ) : (
                     <div className="w-full px-4 mx-auto sm:px-6 lg:px-0">
                         <div className="overflow-hidden bg-white shadow dark:bg-gray-900">

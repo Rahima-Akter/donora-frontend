@@ -1,3 +1,4 @@
+import ThemeToggleButton from "../../contexts/ThemeProvider/ThemeToggleButton";
 import Banner from "./Banner";
 import BloodCompatibilityChart from "./BloodCompatibilityChart";
 import ContactUs from "./ContactUs";
@@ -9,6 +10,7 @@ import Testimonial from "./Testimonial";
 const Home = () => {
     return (
         <div className='text-xl font-bold text-red-500 text-center'>
+            <ThemeToggleButton />
             <Banner />
             <ExtraSection1 />
             <BloodCompatibilityChart />
