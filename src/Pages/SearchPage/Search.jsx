@@ -11,20 +11,15 @@ const Search = () => {
     const [searchUpazila, setSearchUpazila] = useState('');
     const [searchDistrict, setSearchDistrict] = useState('');
     const axiosSecure = useAxiosSecure();
-    const [x, setX] = useState([])
     const { data: searches = [], isLoading } = useQuery({
         queryKey: ['search', searchBlood, searchUpazila, searchDistrict],
         queryFn: async () => {
             const { data } = await axiosSecure.get(`/search?searchBlood=${searchBlood}&searchUpazila=${searchUpazila}&searchDistrict=${searchDistrict}`)
-            if(!searchBlood,!searchUpazila,!searchDistrict){
-                return setX([])
-            } else{
-                return setX(data)
-            }
-            // return data;
-        }
+            return data;
+        },
+        enabled: !!(searchBlood || searchUpazila || searchDistrict),
     });
-    console.log(x)
+    console.log(searches)
     if (isLoading) return <Spinner />
     return (
         <div className="min-h-screen pb-12">
@@ -76,8 +71,8 @@ const Search = () => {
                 {/* donation cards */}
                 <div className="mt-12 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5 h-full">
                     {
-                        x.length === 0 ? <p className='font-bold drop-shadow-lg col-span-5 uppercase text-Red text-xl mb-4 text-center mt-12'>Search for donation....</p> : (
-                            x.map(search => (
+                        searches.length === 0 ? <p className='font-bold drop-shadow-lg col-span-5 uppercase text-Red text-xl mb-4 text-center mt-12'>Search for donation....</p> : (
+                            searches.map(search => (
                                 <div key={search._id} className="flex flex-col max-w-sm overflow-hidden bg-red-50 rounded-lg shadow-lg dark:bg-gray-800 border border-red-100">
                                     <div className="p-4 md:py-4 md:px-5 w-full flex flex-col flex-grow">
                                         <h1 className="text-xl font-bold text-Red dark:text-white">{search.recipientName} ({search.bloodGroup})</h1>
