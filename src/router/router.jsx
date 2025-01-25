@@ -24,6 +24,7 @@ import PrivateRoute from '../PrivateRoute/PrivateRoute';
 import AdminRoute from '../AdminRoute/AdminRoute';
 import Search from '../Pages/SearchPage/Search';
 import NotFound from '../Components/NotFound';
+import Fund from '../Pages/Fund/Fund';
 
 const router = createBrowserRouter([
     {
@@ -83,7 +84,11 @@ const router = createBrowserRouter([
             {
                 path: 'search',
                 element: <Search />
-            }
+            },
+            {
+                path: 'funds',
+                element: <Fund />
+            },
         ]
     },
     {
