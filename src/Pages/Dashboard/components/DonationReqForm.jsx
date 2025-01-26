@@ -76,7 +76,7 @@ const DonationReqForm = () => {
 
 
     return (
-        <div className='bg-red-100 py-4 min-h-screen'>
+        <div className='bg-red-100 dark:bg-gray-900 py-4 min-h-screen'>
             <div className="flex lg:w-10/12 w-11/12 mx-auto bg-Red/5 overflow-hidden rounded-lg shadow-lg dark:bg-gray-800 my-7 md:translate-y-16 lg:translate-y-0">
                 <div className="w-full px-6 py-8 md:px-8">
                     <Link to="/" className="text-xs text-Red flex items-center hover:text-Racing-Red">
@@ -100,7 +100,7 @@ const DonationReqForm = () => {
                                 type="text"
                                 defaultValue={user?.displayName}
                                 readOnly
-                                className="block w-full px-4 py-2 text-Red/50 font-semibold text-sm bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-Racing-Red focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-Racing-Red"
+                                className="block w-full px-4 py-2 text-Red/50 font-semibold text-sm bg-white border rounded-lg dark:bg-gray-800 dark:text-white dark:border-gray-600 focus:border-Racing-Red focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-Racing-Red"
                                 {...register('userName')}
                             />
                         </div>
@@ -126,8 +126,7 @@ const DonationReqForm = () => {
                             </label>
                             <input
                                 type="name"
-                                placeholder='Enter the recipient name'
-                                className="block w-full px-4 py-2 text-Red/50 font-semibold text-sm bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-Racing-Red focus:ring-opacity-40 placeholder-Red/40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-Racing-Red"
+                                className="block w-full px-4 py-2 text-Red/50 font-semibold text-sm bg-white border rounded-lg dark:bg-gray-800 dark:text-white dark:border-gray-600 focus:border-Racing-Red focus:ring-opacity-40 placeholder-Red/40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-Racing-Red"
                                 {...register('recipientName', {
                                     required: 'Recipient name is required',
                                 })}
@@ -142,7 +141,6 @@ const DonationReqForm = () => {
                             </label>
                             <input
                                 type="text"
-                                placeholder='Enter the hospital address for blood donation'
                                 className="block w-full px-4 py-2 text-Red/50 font-semibold text-sm bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-Racing-Red focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-Racing-Red placeholder-Red/40"
                                 {...register('hospital', {
                                     required: 'Hospital address is required'
@@ -160,7 +158,6 @@ const DonationReqForm = () => {
                             </div>
                             <input
                                 type="text"
-                                placeholder='Enter the full address'
                                 className="block w-full px-4 py-2 text-Red/50 font-semibold text-sm text-Red bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-Racing-Red focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-Racing-Red placeholder-Red/40"
                                 {...register('fullAddress', {
                                     required: 'Full address is required',
@@ -226,7 +223,6 @@ const DonationReqForm = () => {
                                 render={({ field }) => (
                                     <DatePicker
                                         wrapperClassName="w-full"
-                                        placeholderText="Select a date for donation"
                                         selected={field.value}
                                         onChange={(date) => field.onChange(date)}
                                         className="w-full px-4 py-2 text-Red/50 font-semibold text-sm text-Red bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-Racing-Red focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-Racing-Red placeholder-Red/40"
@@ -251,7 +247,6 @@ const DonationReqForm = () => {
                                 render={({ field }) => (
                                     <DatePicker
                                         wrapperClassName="w-full"
-                                        placeholderText="Select a time for donation"
                                         selected={field.value || defaultTime}
                                         onChange={(time) => field.onChange(time)}
                                         showTimeSelect
@@ -279,7 +274,6 @@ const DonationReqForm = () => {
                             </div>
                             <textarea
                                 type="text"
-                                placeholder='Enter the the details about your request'
                                 className="block w-full px-4 py-2 text-Red/50 font-semibold text-sm text-Red bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-Racing-Red focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-Racing-Red placeholder-Red/40"
                                 {...register('details', {
                                     required: 'Details is required',
@@ -304,7 +298,7 @@ const DonationReqForm = () => {
                                             className="peer hidden"
                                             {...register("bloodGroup", { required: "Please select Blood Type" })}
                                         />
-                                        <span className="py-2 px-2.5 border-2  hover:bg-white border-Red/20 text-Crimson-Red rounded-full flex justify-center items-center peer-checked:border-Red peer-checked:bg-Red peer-checked:text-white text-xs peer-checked:ring peer-checked:ring-offset-gray-300">
+                                        <span className="py-2 px-2.5 border-2  hover:bg-white border-Red/20 dark:border-Red/60 dark:font-bold text-Crimson-Red rounded-full flex justify-center items-center peer-checked:border-Red peer-checked:bg-Red peer-checked:text-white text-xs peer-checked:ring peer-checked:ring-offset-gray-300">
                                             {type}
                                         </span>
                                     </label>

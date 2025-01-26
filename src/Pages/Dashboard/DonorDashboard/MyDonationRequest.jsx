@@ -86,7 +86,7 @@ const MyDonationRequest = () => {
                     <div className="join mb-2">
                         <select
                             onChange={(e) => setStatus(e.target.value)}
-                            className="select select-bordered join-item bg-transparent rounded-lg border border-Red pb-1 px-5 text-Red font-bold appearance-none"
+                            className="select select-bordered join-item bg-transparent rounded-lg border border-Red pb-1 px-5 text-Red font-bold appearance-none lg:pr-12"
                         >
                             <option className="font-bold" value="">
                                 Filter by
@@ -115,9 +115,9 @@ const MyDonationRequest = () => {
                 ) : (
                     <div className="w-full px-4 mx-auto sm:px-6 lg:px-0">
                         <div className="overflow-hidden bg-white shadow dark:bg-gray-900">
-                            <div className="overflow-x-auto">
-                                <table className="min-w-full table-auto text-sm text-left text-gray-500 dark:text-gray-300">
-                                    <thead className="text-xs text-Red uppercase bg-Red/10 dark:bg-gray-800 dark:text-gray-400">
+                            <div className="overflow-x-auto md:rounded-md">
+                                <table className="min-w-full table-auto text-sm text-left text-gray-500 dark:text-white">
+                                    <thead className="text-xs text-Red uppercase bg-Red/10 dark:bg-gray-700 dark:text-white">
                                         <tr>
                                             <th className="px-4 py-5 text-center">Recipient's Name</th>
                                             <th className="px-4 py-5 text-center">Status</th>
@@ -127,22 +127,22 @@ const MyDonationRequest = () => {
                                             <th className="px-4 py-5 text-center">Actions</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody className=''>
                                         {paginatedRequests.map((request) => (
                                             <tr
                                                 key={request._id}
-                                                className="border-b border-red-100 hover:bg-gray-50"
+                                                className="border-b border-red-100 dark:border-gray-500 hover:bg-gray-50 dark:hover:bg-gray-800 dark:text-gray-300"
                                             >
-                                                <td className="px-4 py-4 text-sm font-medium text-gray-700">
+                                                <td className="px-4 py-4 text-sm font-medium text-gray-700 dark:text-gray-300">
                                                     {request.recipientName}
                                                 </td>
-                                                <td className="px-4 py-4 text-sm text-gray-700">
+                                                <td className="px-4 py-4 text-sm text-gray-70 dark:text-gray-3000">
                                                     {request.status}
                                                 </td>
-                                                <td className="px-4 py-4 text-sm text-gray-500">
+                                                <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
                                                     {request.district}, {request.upazila}
                                                 </td>
-                                                <td className="px-4 py-4 text-sm text-gray-500">
+                                                <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
                                                     {format(
                                                         new Date(request.donationDate),
                                                         'P'
@@ -155,7 +155,7 @@ const MyDonationRequest = () => {
                                                         'hh:mm a'
                                                     )}
                                                 </td>
-                                                <td className="px-4 py-4 text-sm font-bold text-center">
+                                                <td className="px-4 py-4 text-sm font-bold text-center dark:text-gray-300">
                                                     {request.bloodGroup}
                                                 </td>
                                                 <td className="px-4 py-4 text-sm">
@@ -164,19 +164,19 @@ const MyDonationRequest = () => {
                                                             onClick={() =>
                                                                 handleDelete(request._id)
                                                             }
-                                                            className="text-gray-500 hover:text-red-500"
+                                                            className="text-gray-500 dark:text-gray-300 hover:text-red-500"
                                                         >
                                                             <AiOutlineDelete className="text-2xl" />
                                                         </button>
                                                         <Link
                                                             to={`/dashboard/UpdateRequest/${request._id}`}
-                                                            className="text-gray-500 hover:text-blue-500"
+                                                            className="text-gray-500 dark:text-gray-300 hover:text-blue-500"
                                                         >
                                                             <BiEdit className="text-2xl" />
                                                         </Link>
                                                         <Link
                                                             to={`/dashboard/details/${request._id}`}
-                                                            className="text-gray-500 hover:text-yellow-500"
+                                                            className="text-gray-500 dark:text-gray-300 hover:text-yellow-500"
                                                         >
                                                             <IoEyeOutline className="text-2xl" />
                                                         </Link>

@@ -74,11 +74,12 @@ const DonorHome = () => {
                     requests.length === 0 && <div>
                         <img src="https://media1.tenor.com/m/YvOjHMyFlH0AAAAd/empty-box.gif" alt="" className=' w-full h-full lg:mt-0 mt-12' />
                         <p className='font-bold drop-shadow-lg uppercase text-Red text-xl my-4 text-center '>No data to show</p>
-                    </div> || (<div className="min-w-full px-4 mx-auto lg:px-0">
+                    </div> || (
+                        <div className="min-w-full px-4 mx-auto lg:px-0">
                         <div className="overflow-hidden bg-white shadow rounded-lg dark:bg-gray-900 md:w-full md:-ml-0 -ml-7 w-[120%]">
                             <div className="overflow-x-auto">
                                 <table className="w-full table-auto text-sm text-left text-gray-500 dark:text-gray-300">
-                                    <thead className="text-xs text-Red uppercase bg-Red/10 dark:bg-gray-800 dark:text-gray-400">
+                                    <thead className="text-xs text-Red uppercase bg-Red/10 dark:bg-gray-800 dark:text-white">
                                         <tr>
                                             <th scope="col" className="text-center px-4 py-5 whitespace-nowrap">Recipient's Name</th>
                                             <th scope="col" className="text-center px-4 py-5 whitespace-nowrap">Status</th>
@@ -92,10 +93,10 @@ const DonorHome = () => {
                                     </thead>
                                     <tbody>
                                         {
-                                            requests.map(request => <tr key={request._id} className='border-b border-red-100 hover:bg-gray-50'>
+                                            requests.map(request => <tr key={request._id} className='border-b border-red-100 dark:border-gray-500 hover:bg-gray-50 dark:hover:bg-gray-950'>
                                                 <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                                                     <div className="inline-flex items-center gap-x-3">
-                                                        <h2 className="font-medium text-gray-800 dark:text-white">{request.recipientName}</h2>
+                                                        <h2 className="font-medium text-gray-800 dark:text-gray-300">{request.recipientName}</h2>
                                                     </div>
                                                 </td>
                                                 <td className="px-12 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">

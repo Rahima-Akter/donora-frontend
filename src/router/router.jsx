@@ -189,7 +189,7 @@ const router = createBrowserRouter([
             },
             // volunteer home
             {
-                path: '/dashboard/volunteer-home',
+                path: '/dashboard/volunteer',
                 element: <VolunteerHome />
             },
             // common route

@@ -35,7 +35,7 @@ const Stats = () => {
     if (isLoading) return <Spinner />;
 
     return (
-        <div>
+        <div className='h-full min-h-full'>
             <div className="stats shadow w-full md:mt-7 mt-4 flex md:flex-row flex-col">
                 <div className="stat">
                     <div className="stat-figure text-Red">
