@@ -1,6 +1,6 @@
 # DONORA 🩸
 
-# [Live site link:](https://sritys-donora.netlify.app/)
+# [🚀 Live site link](https://sritys-donora.netlify.app/)
 
 
 # 💉 Blood Donation Management System (Frontend)
@@ -73,14 +73,15 @@ Welcome to the **Blood Donation Management System** frontend! This application i
 ```bash
 git clone https://github.com/Programming-Hero-Web-Course4/b10a12-client-side-Rahima-Akter.git
 cd blood-donation-frontend
-
+```
 ### Step 2: Install Dependencies
 ```bash
 npm install
+```
 
 ### Step 3: Set Up Environment Variables
-- **Create a .env file at the root of your project and set up the following variables**
-
+- **Create a .env file at the root of your project and set up the following variables -->**
+```bash
 VITE_FIREBASE_API_KEY=
 VITE_FIREBASE_AUTH_DOMAIN=
 VITE_FIREBASE_PROJECT_ID=
@@ -89,12 +90,12 @@ VITE_FIREBASE_MESSAGING_SENDER_ID=
 VITE_FIREBASE_APP_ID=
 VITE_STRIPE_PUBLIC_KEY=
 VITE_IMGBB_API_KEY=
+```
 
 ### Step 4: Start the Development Server
 ```bash
-Copy code
 npm run dev
-
+```
 
 ### 🎉 Acknowledgments
 - **Firebase**: for seamless authentication and user management.
