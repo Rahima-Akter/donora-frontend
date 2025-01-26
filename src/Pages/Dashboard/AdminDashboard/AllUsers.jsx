@@ -4,6 +4,7 @@ import Spinner from '../../../Components/Spinner';
 import HandleStatus from '../../../Hooks/HandleStatus';
 import useRole from '../../../Hooks/useRole';
 import { useEffect, useState } from 'react';
+import ThemeToggleButton from '../../../contexts/ThemeProvider/ThemeToggleButton';
 
 const AllUsers = () => {
     const [handleStatus, status] = HandleStatus();
@@ -44,7 +45,7 @@ const AllUsers = () => {
 
     if (isLoading) return <Spinner />
     return (
-        <div className='md:p-6 p-3'>
+        <div className='md:p-6 p-3 overflow-auto'>
             <section className='lg:w-[90%]'>
                 {
                     users.length === 0 &&
@@ -59,11 +60,11 @@ const AllUsers = () => {
                             <div className="join mb-2">
                                 <select
                                     onChange={(e) => setStatusFilter(e.target.value)}
-                                    className="select select-bordered join-item bg-Red rounded-lg border border-white pb-1 px-2 text-white font-bold">
+                                    className="bg-transparent rounded-lg border border-Red hover:bg-red-50 px-4 py-2 text-Red font-bold text-xs appearance-none focus:outline-none md:!pr-16 pr-12">
                                     <option className='font-bold'>Filter by</option>
                                     <option className='font-bold' value=''>default</option>
                                     <option className='font-bold' value='active'>active</option>
-                                    <option className='font-bold' value='block'>block</option>
+                                    <option className='font-bold !px-5' value='block'>block</option>
                                 </select>
                             </div>
                         </div>
@@ -84,7 +85,8 @@ const AllUsers = () => {
                                     <tbody className="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
 
                                         {
-                                            paginatedRequests.map(user => <tr key={user._id} className='hover:bg-gray-50'>
+                                            paginatedRequests.map(user => 
+                                            <tr key={user._id} className='hover:bg-gray-50 dark:hover:bg-gray-950'>
                                                 <td className="px-2 pl-8">
                                                     <img className="object-cover w-10 h-10 rounded-lg" src={user.image} alt="" />
                                                 </td>
@@ -129,11 +131,11 @@ const AllUsers = () => {
                         </div>
 
                         {/* Pagination Controls */}
-                        <div className="flex items-center md:justify-center justify-between md:gap-7 mt-6">
+                        <div className="flex items-center md:justify-center justify-between md:gap-7 mt-6 px-3">
                             <button
                                 disabled={currentPage === 1}
                                 onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-                                className={`flex items-center px-5 py-2 text-sm text-white capitalize transition-colors duration-200 bg-Red border rounded-md gap-x-2 hover:bg-red-600 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800 ${currentPage === 1 ? "opacity-50 cursor-not-allowed" : ""
+                                className={`flex items-center px-5 py-2 text-sm text-white capitalize transition-colors duration-200 bg-Red border rounded-md gap-x-2 hover:bg-red-600 ${currentPage === 1 ? "opacity-50 cursor-not-allowed" : ""
                                     }`}
                             >
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5 rtl:-scale-x-100">
@@ -160,7 +162,7 @@ const AllUsers = () => {
                             <button
                                 disabled={currentPage === Math.ceil(users.length / itemsPerPage)}
                                 onClick={() => setCurrentPage((prev) => Math.min(prev + 1, Math.ceil(users.length / itemsPerPage)))}
-                                className={`flex items-center px-5 py-2 text-sm text-white capitalize transition-colors duration-200 bg-Red border rounded-md gap-x-2 hover:bg-red-600 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800 ${currentPage === Math.ceil(users.length / itemsPerPage) ? "opacity-50 cursor-not-allowed" : ""
+                                className={`flex items-center px-5 py-2 text-sm text-white capitalize transition-colors duration-200 bg-Red border rounded-md gap-x-2 ${currentPage === Math.ceil(users.length / itemsPerPage) ? "opacity-50 cursor-not-allowed" : ""
                                     }`}
                             >
                                 <span>Next</span>
@@ -173,6 +175,7 @@ const AllUsers = () => {
                 }
 
             </section>
+            <ThemeToggleButton/>
         </div>
     );
 };

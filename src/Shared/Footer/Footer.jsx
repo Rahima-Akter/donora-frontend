@@ -1,31 +1,32 @@
 import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa";
 import { HiOutlinePhone, HiOutlineMail } from "react-icons/hi";
 import { GoLocation } from "react-icons/go";
-import footerBg from '../../assets/footerBg.JPg'
+import footerBg from '../../assets/footerBg.JPg';
+import footerBg2 from '../../assets/darkFooter.JPG'
 import logo from '../../assets/logo.PNG'
 import { MdDoubleArrow } from "react-icons/md";
+import { useTheme } from "../../contexts/ThemeProvider/ThemeProvider";
 
 const Footer = () => {
+    const {theme} = useTheme();
     return (
-        <div className="bg-gray-50 relative" style={{
-            backgroundImage: `url(${footerBg})`,
+        <div className="bg-gray-50 dark:bg-gray-900 relative dark:border-t dark:border-Red/50" style={{
+            backgroundImage: theme === 'light' ? `url(${footerBg})` : 'url("https://c4.wallpaperflare.com/wallpaper/492/702/527/wave-red-lines-light-wallpaper-preview.jpg")',
             backgroundPosition: 'center',
             backgroundSize: 'cover',
             backgroundRepeat: 'no-repeat',
-            // opacity: '70%'
         }}>
-            {/* <div className="absolute top-0 right-0 inset-0 bg-Crimson-Red/1"></div> */}
-            <footer className="pt-12 relative w-11/12 mx-auto z-10">
-                <div className="max-w-7xl mx-auto px-4 lg:flex lg:justify-between text-gray-700">
+           <footer className="pt-12 relative w-11/12 mx-auto z-10">
+                <div className="max-w-7xl mx-auto px-4 lg:flex lg:justify-between text-gray-700 dark:text-white">
                     {/* Left Section: Logo & Description */}
                     <div className="mb-8 lg:mb-0 max-w-sm">
                         <div className="flex items-center text-red-600 text-2xl font-bold -ml-10">
-                            <div className="flex items-center justify-center text-white">
+                            <div className="flex items-center justify-center">
                                 <img src={logo} className="w-28 -mr-7 mt-2" alt="" />
                             </div>
                             DONORA
                         </div>
-                        <p className="text-sm text-gray-500 mb-4">
+                        <p className="text-sm text-gray-500 dark:text-gray-300 mb-4">
                             Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor
                             incidid.
                         </p>
@@ -48,10 +49,10 @@ const Footer = () => {
 
                     {/* Quick Links */}
                     <div className="mb-8 lg:mb-0">
-                        <h3 className="text-lg font-semibold text-gray-800 mb-4 border-b-2 border-red-600 inline-block">
+                        <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-300 mb-4 border-b-2 border-red-600 inline-block">
                             Quick Links
                         </h3>
-                        <ul className="space-y-2 text-sm text-gray-500">
+                        <ul className="space-y-2 text-sm text-gray-500 dark:text-gray-300">
                             <li>
                                 <a href="#" className="hover:text-gray-800 flex items-center hover:ml-2 duration-700">
                                     <span><MdDoubleArrow className="text-Red text-lg mr-1" /></span>About Us
@@ -77,10 +78,10 @@ const Footer = () => {
 
                     {/* Useful Links */}
                     <div className="mb-8 lg:mb-0">
-                        <h3 className="text-lg font-semibold text-gray-800 mb-4 border-b-2 border-red-600 inline-block">
+                        <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-300 mb-4 border-b-2 border-red-600 inline-block">
                             Useful Links
                         </h3>
-                        <ul className="space-y-2 text-sm text-gray-500">
+                        <ul className="space-y-2 text-sm text-gray-500 dark:text-gray-300">
                             <li className="flex items-start">
                                 <GoLocation className="text-red-600 mr-2" />
                                 <span>100 Smith Street Collingwood VIC 3066 AU</span>
@@ -98,11 +99,11 @@ const Footer = () => {
 
                     {/* Work Hours */}
                     <div>
-                        <h3 className="text-lg font-semibold text-gray-800 mb-4 border-b-2 border-red-600 inline-block">
+                        <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-300 mb-4 border-b-2 border-red-600 inline-block">
                             Work Hours
                         </h3>
-                        <p className="text-sm text-gray-500 mb-2 uppercase">everyday, anytime - 24/7</p>
-                        <h4 className="text-sm text-gray-800 font-semibold mb-5">Need For Help? Call Us</h4>
+                        <p className="text-sm text-gray-500 dark:text-gray-300 mb-2 uppercase">everyday, anytime - 24/7</p>
+                        <h4 className="text-sm text-gray-800 dark:text-gray-300 font-semibold mb-5">Need For Help? Call Us</h4>
                         <a
                             href="#contact"
                             className="inline-block bg-red-600 text-white text-lg font-medium py-3 px-8 rounded-lg hover:bg-red-700 transition"
@@ -114,7 +115,7 @@ const Footer = () => {
                 </div>
 
                 {/* Footer Bottom */}
-                <div className="border-t border-gray-200 mt-8 pt-4 pb-6 text-center text-xs text-gray-600">
+                <div className="border-t border-gray-200 dark:border-Red/70 dark:text-gray-300 mt-8 pt-4 pb-6 text-center text-xs text-gray-600">
                     Copyright © DONORA {new Date().getFullYear()}. All rights reserved.
                 </div>
             </footer>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import useAuth from '../../../Hooks/useAuth';
+import Stats from '../Shared/Stats/Stats';
 
 const AdminHome = () => {
     const { user } = useAuth();
@@ -9,7 +10,7 @@ const AdminHome = () => {
             {
                 user ? user && <p className='font-bold text-xl text-green-600'>🩸Welcome, <span className='text-Red uppercase'>{user?.displayName}</span></p> : <p className='font-bold text-xl'>Welcome....</p>
             }
-
+            <Stats/>
         </div>
     );
 };

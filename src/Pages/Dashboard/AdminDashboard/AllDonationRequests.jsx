@@ -81,7 +81,7 @@ const AllDonationRequests = () => {
                     <div className="join mb-2">
                         <select
                             onChange={(e) => setStatus(e.target.value)}
-                            className="select select-bordered join-item bg-Red rounded-lg border border-white pb-1 px-2 text-white font-bold">
+                            className="bg-transparent rounded-lg border border-Red hover:bg-red-50 px-4 py-2 text-Red font-bold text-xs appearance-none focus:outline-none md:!pr-20 !pr-10">
                             <option className='font-bold'>Filter by</option>
                             <option className='font-bold' value=''>default</option>
                             <option className='font-bold' value='pending'>pending</option>
@@ -99,9 +99,9 @@ const AllDonationRequests = () => {
                     </div> || (
                         <div className="w-full px-0 mx-auto sm:px-6 lg:px-3">
                             <div className="overflow-hidden bg-white shadow dark:bg-gray-900">
-                                <div className="overflow-x-auto">
+                                <div className="overflow-x-auto md:rounded-lg">
                                     <table className="w-full table-auto text-sm text-left text-gray-500 dark:text-gray-300">
-                                        <thead className="text-xs w-full text-Red uppercase bg-Red/10 dark:bg-gray-800 dark:text-gray-400">
+                                        <thead className="text-xs w-full text-Red uppercase bg-Red/10 dark:bg-gray-700 dark:text-white">
                                             <tr>
                                                 <th scope="col" className="text-center px-4 py-5 whitespace-nowrap">Recipient's Name</th>
                                                 <th scope="col" className="text-center px-4 py-5 whitespace-nowrap">Status</th>
@@ -116,9 +116,9 @@ const AllDonationRequests = () => {
                                                 <th scope="col" className="text-center px-4 py-5 whitespace-nowrap">Actions</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody className='bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700'>
                                             {
-                                                paginatedRequests.map(request => <tr key={request._id} className='border-b border-red-100 hover:bg-gray-50'>
+                                                paginatedRequests.map(request => <tr key={request._id} className='border-b border-red-100 hover:bg-gray-50 dark:hover:bg-gray-950'>
                                                     <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                                                         <div className="inline-flex items-center gap-x-3">
                                                             <h2 className="font-medium text-gray-800 dark:text-white">{request.recipientName}</h2>
@@ -149,7 +149,7 @@ const AllDonationRequests = () => {
                                                                 </div>
                                                             </td>
                                                         ) : (
-                                                            <td className="px-4 py-4 text-sm whitespace-nowrap text-center mt-6 font-semibold text-Red/50">N/A</td>
+                                                            <td className="px-4 py-4 text-sm whitespace-nowrap text-center mt-6 font-semibold text-Red/50 dark:text-Red">N/A</td>
                                                         )
                                                     }
                                                     <td className="px-4 py-4 text-sm whitespace-nowrap">
@@ -185,7 +185,7 @@ const AllDonationRequests = () => {
                     <button
                         disabled={currentPage === 1}
                         onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-                        className={`flex items-center px-5 py-2 text-sm text-white capitalize transition-colors duration-200 bg-Red border rounded-md gap-x-2 hover:bg-red-600 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800 ${currentPage === 1 ? "opacity-50 cursor-not-allowed" : ""
+                        className={`flex items-center px-5 py-2 text-sm text-white capitalize transition-colors duration-200 bg-Red border rounded-md gap-x-2 hover:bg-red-600 ${currentPage === 1 ? "opacity-50 cursor-not-allowed" : ""
                             }`}
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5 rtl:-scale-x-100">
@@ -212,7 +212,7 @@ const AllDonationRequests = () => {
                     <button
                         disabled={currentPage === Math.ceil(requests.length / itemsPerPage)}
                         onClick={() => setCurrentPage((prev) => Math.min(prev + 1, Math.ceil(requests.length / itemsPerPage)))}
-                        className={`flex items-center px-5 py-2 text-sm text-white capitalize transition-colors duration-200 bg-Red border rounded-md gap-x-2 hover:bg-red-600 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800 ${currentPage === Math.ceil(requests.length / itemsPerPage) ? "opacity-50 cursor-not-allowed" : ""
+                        className={`flex items-center px-5 py-2 text-sm text-white capitalize transition-colors duration-200 bg-Red border rounded-md gap-x-2 hover:bg-red-600 ${currentPage === Math.ceil(requests.length / itemsPerPage) ? "opacity-50 cursor-not-allowed" : ""
                             }`}
                     >
                         <span>Next</span>

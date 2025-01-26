@@ -2,19 +2,17 @@ import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
-import useAuth from '../../Hooks/useAuth';
 import { TbFidgetSpinner } from 'react-icons/tb';
 
-const CheckOutForm = ({ onDonationComplete }) => {
+const CheckOutForm = ({ userName, userEmail, onCloseModal,refetch }) => {
     const stripe = useStripe();
     const elements = useElements();
     const axiosSecure = useAxiosSecure();
-    const { user } = useAuth();
     const [isProcessing, setIsProcessing] = useState(false);
 
     const [donation, setDonation] = useState({
-        name: user?.displayName || '',
-        email: user?.email || '',
+        name: userName || '',
+        email: userEmail || '',
         amount: '',
     });
 
@@ -70,12 +68,17 @@ const CheckOutForm = ({ onDonationComplete }) => {
                     name,
                     email,
                     amount,
-                    date: new Date().toISOString(), 
+                    date: new Date().toISOString(),
                     transactionId: paymentIntent.id,
                 });
+                setDonation({
+                    name: userName || '',
+                    email: userEmail || '',
+                    amount: '',
+                });
+                refetch();
+                onCloseModal();
 
-                toast.success("Donation saved successfully!");
-                onDonationComplete(); // Optional: Callback to refresh UI or redirect user
             }
         } catch (error) {
             toast.error("Something went wrong. Please try again.");
@@ -86,7 +89,7 @@ const CheckOutForm = ({ onDonationComplete }) => {
 
     return (
         <div className="w-full my-12 backdrop-blur-lg">
-            <form onSubmit={handleSubmit} className="border-gray-200 shadow-lg p-5 drop-shadow-sm">
+            <form onSubmit={handleSubmit} className="border-gray-200 dark:shadow-gray-600 shadow-lg p-5 drop-shadow-sm dark:bg-gray-900 dark:rounded-lg">
                 <div className="mb-4">
                     <label className="block mb-2 text-sm font-medium text-red-600">Name</label>
                     <input
@@ -94,7 +97,7 @@ const CheckOutForm = ({ onDonationComplete }) => {
                         name="name"
                         value={donation.name}
                         readOnly
-                        className="w-full p-2 border rounded"
+                        className="w-full p-2 border rounded dark:bg-transparent dark:text-white dark:border-gray-500"
                         placeholder="Your Name"
                     />
                 </div>
@@ -105,7 +108,7 @@ const CheckOutForm = ({ onDonationComplete }) => {
                         name="email"
                         value={donation.email}
                         readOnly
-                        className="w-full p-2 border rounded"
+                        className="w-full p-2 border rounded dark:bg-transparent dark:text-white dark:border-gray-500"
                         placeholder="Your Email"
                     />
                 </div>
@@ -116,12 +119,12 @@ const CheckOutForm = ({ onDonationComplete }) => {
                         name="amount"
                         value={donation.amount}
                         onChange={handleChange}
-                        className="w-full p-2 border rounded"
+                        className="w-full p-2 border rounded dark:bg-transparent dark:text-white dark:border-gray-500"
                         placeholder="Enter Amount"
                     />
                 </div>
                 <CardElement
-                    className="border border-red-400 col-span-2 py-3 px-4 rounded-md mb-4"
+                    className="border dark:border-gray-500 border-red-400 col-span-2 py-3 px-4 rounded-md mb-4"
                     options={{
                         style: {
                             base: {
@@ -138,7 +141,7 @@ const CheckOutForm = ({ onDonationComplete }) => {
                     disabled={!stripe || isProcessing}
                     className="btn btn-md w-full bg-red-600 text-white hover:bg-red-700"
                 >
-                    {isProcessing ? <TbFidgetSpinner className='animate-spin' /> : 'Donate'}
+                    {isProcessing ? <TbFidgetSpinner className='animate-spin text-Red' /> : 'Donate'}
                 </button>
             </form>
         </div>

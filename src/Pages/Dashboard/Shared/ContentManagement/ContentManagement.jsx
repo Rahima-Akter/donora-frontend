@@ -55,13 +55,13 @@ const ContentManagement = () => {
 
     if (isLoading) return <Spinner />
     return (
-        <div className='md:py-8 py-3 px-6'>
+        <div className='md:py-8 py-3 px-6 min-h-full'>
             <div className='flex justify-between items-center'>
                 <div className="md:mb-2">
                     <select
                         onChange={(e) => setFilter(e.target.value)}
                         value={filter}
-                        className="bg-transparent rounded-lg border border-Red hover:bg-red-50 px-4 py-2 text-Red font-bold text-xs appearance-none focus:outline-none !pr-28   ">
+                        className="bg-transparent rounded-lg border border-Red hover:bg-red-50 px-4 py-2 text-Red font-bold text-xs appearance-none focus:outline-none !pr-28">
                         <option className='font-bold' value=''>Filter by</option>
                         <option className='font-bold' value=''>default</option>
                         <option className='font-bold' value='draft'>draft</option>
@@ -77,7 +77,7 @@ const ContentManagement = () => {
             </div>
 
             {
-                blogs.length !== 0 && <div>
+                blogs.length === 0 && <div>
                     <img src="https://media1.tenor.com/m/YvOjHMyFlH0AAAAd/empty-box.gif" alt="" className='lg:w-[80%] mx-auto w-full h-full lg:mt-5 mt-12' />
                     <p className='font-bold drop-shadow-lg uppercase text-Red text-xl my-4 text-center'>No data to show</p>
                 </div> || (

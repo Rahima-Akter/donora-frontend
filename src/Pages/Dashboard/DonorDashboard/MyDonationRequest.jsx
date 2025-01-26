@@ -86,7 +86,7 @@ const MyDonationRequest = () => {
                     <div className="join mb-2">
                         <select
                             onChange={(e) => setStatus(e.target.value)}
-                            className="select select-bordered join-item bg-transparent rounded-lg border border-Red pb-1 px-2 text-Red font-bold appearance-none"
+                            className="select select-bordered join-item bg-transparent rounded-lg border border-Red pb-1 px-5 text-Red font-bold appearance-none"
                         >
                             <option className="font-bold" value="">
                                 Filter by

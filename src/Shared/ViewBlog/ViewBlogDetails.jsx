@@ -30,7 +30,7 @@ const ViewBlogDetails = () => {
             </div>
 
             {/* text content */}
-            <p className='font-semibold px-6 md:px-16 py-8'>{detail.content}</p>
+            <p className='font-semibold px-6 md:px-16 py-8 dark:text-gray-300'>{detail.content}</p>
 
             <div className='w-[100%] h-[20%] mb-16 mt-3'>
                 <img src={detail.thumb} alt="" className='object-fill mx-auto' />

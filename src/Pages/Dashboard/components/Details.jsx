@@ -31,8 +31,8 @@ const Details = () => {
 
     return (
         <>
-            <div className='flex justify-center items-center m-auto min-h-screen bg-red-50'>
-                <div className="max-w-2xl m-auto px-8 py-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
+            <div className='flex justify-center items-center m-auto min-h-screen bg-red-50 dark:bg-gray-800'>
+                <div className="max-w-2xl m-auto px-8 py-4 bg-white rounded-lg shadow-md dark:shadow-gray-500 dark:bg-gray-900">
                     <div className="flex items-center justify-between">
                         <span className="text-sm font-light text-gray-600 dark:text-gray-400">{format(new Date(details.
                             donationDate), 'P')}, <span>{format(new Date(`1970-01-01T${details.donationTime}:00Z`), "hh:mm a")}</span></span>
@@ -41,13 +41,13 @@ const Details = () => {
 
                     <div className="mt-2">
                         <div className='flex items-center gap-1'>
-                            <p className="text-xl font-bold text-gray-700 dark:text-white hover:text-gray-600 dark:hover:text-gray-200 hover:underline" tabIndex="0" role="link">{details.recipientName}</p>
+                            <p className="text-xl font-bold text-gray-700 dark:text-Red hover:text-gray-600 dark:hover:text-Racing-Red hover:underline" tabIndex="0" role="link">{details.recipientName}</p>
                             <span className='font-semibold text-Red'>({details.bloodGroup})</span>
                         </div>
                         <p className="mt-2 text-gray-600 dark:text-gray-300">{details.details}</p>
                     </div>
                     <div className="mt-2 md:flex gap-1 items-center">
-                        <p className="text-lg font-bold text-Red dark:text-white hover:text-gray-600 dark:hover:text-gray-200" tabIndex="0" role="link">{details.hospital},</p>
+                        <p className="text-lg font-bold text-Red hover:text-gray-600 dark:hover:text-Racing-Red" tabIndex="0" role="link">{details.hospital},</p>
                         <p className="mt-2 md:mt-0 text-gray-600 dark:text-gray-300">{details.fullAddress}</p>
                     </div>
                     <div className="mt-2">
@@ -62,7 +62,7 @@ const Details = () => {
 
                         <div className="flex items-center">
                             <img className="hidden object-cover w-10 h-10 sm:block" src={logo} alt="avatar" />
-                            <a href='/' className="font-bold -mt-1 -ml-1 text-Red uppercase cursor-pointer dark:text-gray-200" tabIndex="0" role="link">donora</a>
+                            <a href='/' className="font-bold -mt-1 -ml-1 text-Red uppercase cursor-pointer" tabIndex="0" role="link">donora</a>
                         </div>
                     </div>
                 </div>

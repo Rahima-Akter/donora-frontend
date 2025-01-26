@@ -4,6 +4,7 @@ import { useState } from "react";
 import Spinner from "../../Components/Spinner";
 import useDistricts from "../../Hooks/useDistricts";
 import { format } from "date-fns";
+import { useNavigate } from "react-router-dom";
 
 const Search = () => {
     const { districts, upazilas } = useDistricts();
@@ -11,6 +12,7 @@ const Search = () => {
     const [searchUpazila, setSearchUpazila] = useState('');
     const [searchDistrict, setSearchDistrict] = useState('');
     const axiosSecure = useAxiosSecure();
+    const navigate = useNavigate();
     const { data: searches = [], isLoading } = useQuery({
         queryKey: ['search', searchBlood, searchUpazila, searchDistrict],
         queryFn: async () => {
@@ -73,9 +75,9 @@ const Search = () => {
                     {
                         searches.length === 0 ? <p className='font-bold drop-shadow-lg col-span-5 uppercase text-Red text-xl mb-4 text-center mt-12'>Search for donation....</p> : (
                             searches.map(search => (
-                                <div key={search._id} className="flex flex-col max-w-sm overflow-hidden bg-red-50 rounded-lg shadow-lg dark:bg-gray-800 border border-red-100">
+                                <div key={search._id} className="flex flex-col max-w-sm overflow-hidden bg-red-50 rounded-lg shadow-lg dark:bg-gray-800 border border-red-100 dark:border-none">
                                     <div className="p-4 md:py-4 md:px-5 w-full flex flex-col flex-grow">
-                                        <h1 className="text-xl font-bold text-Red dark:text-white">{search.recipientName} ({search.bloodGroup})</h1>
+                                        <h1 className="text-xl font-bold text-Red">{search.recipientName} ({search.bloodGroup})</h1>
                                         <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
                                             {search.hospital}, {search.fullAddress}
                                         </p>
@@ -86,10 +88,10 @@ const Search = () => {
 
                                         {/*  */}
                                         <div className="flex items-center mt-auto">
-                                            <h1 className="text-xs font-bold text-Red dark:text-gray-200 md:text-sm">{search.status}....</h1>
+                                            <h1 className="text-xs font-bold text-Red md:text-sm">{search.status}....</h1>
                                             <button
                                                 onClick={() => navigate(`/dashboard/details/${search._id}`)}
-                                                className="ml-auto px-2 py-1 text-xs font-bold text-white uppercase transition-colors duration-300 transform bg-Red rounded dark:bg-gray-700 hover:bg-red-600 dark:hover:bg-gray-600 focus:outline-none focus:bg-gray-700 dark:focus:bg-gray-600">
+                                                className="ml-auto px-2 py-1 text-xs font-bold text-white uppercase transition-colors duration-300 transform bg-Red rounded hover:bg-red-600 focus:outline-none focus:bg-gray-700 dark:focus:bg-gray-600">
                                                 View
                                             </button>
                                         </div>

@@ -15,7 +15,7 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <ThemeProvider>
       <QueryClientProvider client={queryClient}>
-        <div className=''>
+        <div className='dark:bg-gray-900'>
           <Context>
             <RouterProvider router={router} />
             <Toaster position='top-right' reverseOrder={false} />

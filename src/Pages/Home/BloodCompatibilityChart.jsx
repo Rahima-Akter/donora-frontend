@@ -35,7 +35,7 @@ const BloodCompatibilityChart = () => {
 
     return (
         <motion.div
-            className="lg:w-11/12 w-full mx-auto px-6 py-8 my-12"
+            className="lg:w-11/12 w-full mx-auto px-6 py-20 dark:bg-gray-900"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1 }}
@@ -43,10 +43,10 @@ const BloodCompatibilityChart = () => {
             <h2 className="md:text-3xl text-2xl font-bold text-center text-Red mb-5 drop-shadow-xl">Blood Compatibility Chart</h2>
 
             <div className="">
-                <table className="min-w-full table-auto text-center border-collapse bg-red-50">
+                <table className="min-w-full rounded-md table-auto text-center border-collapse bg-red-50 dark:bg-Red/30">
                     <thead>
                         <tr>
-                            <th className="text-Red font-semibold"></th>
+                            <th className="text-Red font-semibold dark:font-bold"></th>
                             {bloodTypes.map((type, index) => (
                                 <th
                                     key={index}
@@ -67,7 +67,7 @@ const BloodCompatibilityChart = () => {
                                 {bloodTypes.map((colType, colIndex) => (
                                     <motion.td
                                         key={colIndex}
-                                        className={`font-bold transition-all rounded-lg m-2 w-32 md:py-9 text-white ${checkCompatibility(rowType, colType) ? "bg-white" : "bg-white"
+                                        className={`font-bold transition-all rounded-lg m-2 w-32 md:py-9 text-white dark:bg-Red/20 ${checkCompatibility(rowType, colType) ? "bg-white" : "bg-white"
                                             } transform hover:scale-110 hover:shadow-lg`}
                                         data-aos="fade-up"
                                     >
