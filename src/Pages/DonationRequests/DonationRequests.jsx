@@ -4,6 +4,7 @@ import useAxiosPublic from '../../Hooks/useAxiosPublic';
 import Spinner from '../../Components/Spinner';
 import { useNavigate } from 'react-router-dom';
 import { format } from 'date-fns';
+import { Helmet } from 'react-helmet-async';
 
 const DonationRequests = () => {
     const axiosPublic = useAxiosPublic();
@@ -22,6 +23,9 @@ const DonationRequests = () => {
 
     return (
         <div className='md:mt-[130px] my-[65px] w-11/12 mx-auto'>
+            <Helmet>
+                <title>DONORA || donation requests</title>
+            </Helmet>
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5">
                 {
                     requests.length === 0 ?

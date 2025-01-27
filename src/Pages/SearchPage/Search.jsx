@@ -5,6 +5,7 @@ import Spinner from "../../Components/Spinner";
 import useDistricts from "../../Hooks/useDistricts";
 import { format } from "date-fns";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const Search = () => {
     const { districts, upazilas } = useDistricts();
@@ -25,6 +26,9 @@ const Search = () => {
     if (isLoading) return <Spinner />
     return (
         <div className="min-h-screen pb-12">
+            <Helmet>
+                <title>DONORA || search</title>
+            </Helmet>
             <div className="md:mt-[80px] my-[65px] w-11/12 mx-auto">
                 <div className="w-2/3 mx-auto pt-10 flex justify-between items-center gap-5">
                     {/* blood group */}

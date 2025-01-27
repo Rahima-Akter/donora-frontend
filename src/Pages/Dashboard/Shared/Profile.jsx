@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import Spinner from "../../../Components/Spinner";
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 const Profile = () => {
     const { districts, upazilas } = useDistricts();
@@ -85,6 +86,9 @@ const Profile = () => {
             objectFit: 'cover',
             minHeight: '100vh',
         }}>
+            <Helmet>
+                <title>Dashboard || Profile</title>
+            </Helmet>
 
             <div className="w-full bg-white/30 backdrop-blur-sm h-full relative z-10">
                 <div className="md:w-4/6 lg:w-3/6 w-full mx-auto px-5 lg:py-6 py-32 lg:translate-x-[25%] -translate-y-6 md:-translate-y-0">

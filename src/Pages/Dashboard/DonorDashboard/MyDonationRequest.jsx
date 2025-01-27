@@ -10,6 +10,7 @@ import Spinner from '../../../Components/Spinner';
 import { useEffect, useState } from 'react';
 import HandleStatus from '../../../Hooks/HandleStatus';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
+import { Helmet } from 'react-helmet-async';
 
 const MyDonationRequest = () => {
     const [handleStatus, status] = HandleStatus();
@@ -76,6 +77,9 @@ const MyDonationRequest = () => {
 
     return (
         <div className="p-5">
+            <Helmet>
+                <title>Dashboard || my requests</title>
+            </Helmet>
             {/* Table Section */}
             <section className="py-8">
                 <div className="flex justify-between items-center md:mb-0 mb-2 md:px-6 lg:px-0 px-0">

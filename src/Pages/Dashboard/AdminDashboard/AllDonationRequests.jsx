@@ -11,6 +11,7 @@ import { useEffect, useState } from 'react';
 import HandleStatus from '../../../Hooks/HandleStatus';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import useGetRole from '../../../Hooks/useGetRole';
+import { Helmet } from 'react-helmet-async';
 
 const AllDonationRequests = () => {
     const [userRole] = useGetRole();
@@ -74,6 +75,9 @@ const AllDonationRequests = () => {
 
     return (
         <div className='p-4'>
+            <Helmet>
+                <title>Dashboard || all donation requests</title>
+            </Helmet>
             <section className="">
                 <div className='flex justify-between items-center lg:px-3 md:px-6 px-0'>
                     <p className='font-semibold uppercase text-Red text-xs md:text-lg mb-4'>All donation requests({requests.length})</p>

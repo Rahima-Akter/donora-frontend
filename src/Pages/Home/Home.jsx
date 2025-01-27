@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import Banner from "./Banner";
 import BloodCompatibilityChart from "./BloodCompatibilityChart";
 import ContactUs from "./ContactUs";
@@ -9,6 +10,9 @@ import Testimonial from "./Testimonial";
 const Home = () => {
     return (
         <div className='text-xl font-bold text-red-500 text-center w-full min-w-full dark:bg-gray-900'>
+            <Helmet>
+                <title>DONORA || Home</title>
+            </Helmet>
             <Banner />
             <ExtraSection1 />
             <BloodCompatibilityChart />

@@ -2,11 +2,15 @@ import { useLoaderData } from 'react-router-dom';
 import banner from '../../assets/detailBg.JPG'
 import { format } from 'date-fns';
 import { FaCalendar } from 'react-icons/fa';
+import { Helmet } from 'react-helmet-async';
 
 const ViewBlogDetails = () => {
     const detail = useLoaderData();
     return (
         <div className='md:mt-[82px] mt-[65px]'>
+            <Helmet>
+                <title>DONORA || Blog</title>
+            </Helmet>
             <div className='relative'>
                 <div className='w-full h-[60vh]' style={{
                     backgroundImage: `url(${banner})`,

@@ -5,6 +5,7 @@ import HandleStatus from '../../../Hooks/HandleStatus';
 import useRole from '../../../Hooks/useRole';
 import { useEffect, useState } from 'react';
 import ThemeToggleButton from '../../../contexts/ThemeProvider/ThemeToggleButton';
+import { Helmet } from 'react-helmet-async';
 
 const AllUsers = () => {
     const [handleStatus, status] = HandleStatus();
@@ -46,6 +47,9 @@ const AllUsers = () => {
     if (isLoading) return <Spinner />
     return (
         <div className='md:p-6 p-3 overflow-auto'>
+            <Helmet>
+                <title>Dashboard || all users</title>
+            </Helmet>
             <section className='lg:w-[90%]'>
                 {
                     users.length === 0 &&
@@ -85,43 +89,43 @@ const AllUsers = () => {
                                     <tbody className="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
 
                                         {
-                                            paginatedRequests.map(user => 
-                                            <tr key={user._id} className='hover:bg-gray-50 dark:hover:bg-gray-950'>
-                                                <td className="px-2 pl-8">
-                                                    <img className="object-cover w-10 h-10 rounded-lg" src={user.image} alt="" />
-                                                </td>
-                                                <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">{user.name}</td>
-                                                <td className="px-2 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                                                    <div className="inline-flex items-center gap-x-1 dark:bg-gray-800">
-                                                        <span className={`h-1.5 w-1.5 rounded-full ${user.status === 'active' ? "bg-emerald-500" : "bg-Red"}`}></span>
-                                                        <h2 className={`text-sm font-normal ${user.status === 'active' ? "text-emerald-500" : "text-Red"}`}>{user.status}</h2>
-                                                    </div>
-                                                </td>
-                                                <td className="px-2 py-4 text-sm  text-gray-500 dark:text-gray-300 whitespace-nowrap">{user.role}</td>
-                                                <td className="px-2 py-4 text-sm  text-gray-500 dark:text-gray-300 whitespace-nowrap">{user.email}</td>
-                                                <td className="px-2 py-4 text-sm flex justify-center whitespace-nowrap">
-                                                    <div className="flex items-center gap-x-6">
-                                                        {
-                                                            user.status === 'active' ? (<button
-                                                                onClick={() => handleBlock(`${user._id}`)}
+                                            paginatedRequests.map(user =>
+                                                <tr key={user._id} className='hover:bg-gray-50 dark:hover:bg-gray-950'>
+                                                    <td className="px-2 pl-8">
+                                                        <img className="object-cover w-10 h-10 rounded-lg" src={user.image} alt="" />
+                                                    </td>
+                                                    <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">{user.name}</td>
+                                                    <td className="px-2 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+                                                        <div className="inline-flex items-center gap-x-1 dark:bg-gray-800">
+                                                            <span className={`h-1.5 w-1.5 rounded-full ${user.status === 'active' ? "bg-emerald-500" : "bg-Red"}`}></span>
+                                                            <h2 className={`text-sm font-normal ${user.status === 'active' ? "text-emerald-500" : "text-Red"}`}>{user.status}</h2>
+                                                        </div>
+                                                    </td>
+                                                    <td className="px-2 py-4 text-sm  text-gray-500 dark:text-gray-300 whitespace-nowrap">{user.role}</td>
+                                                    <td className="px-2 py-4 text-sm  text-gray-500 dark:text-gray-300 whitespace-nowrap">{user.email}</td>
+                                                    <td className="px-2 py-4 text-sm flex justify-center whitespace-nowrap">
+                                                        <div className="flex items-center gap-x-6">
+                                                            {
+                                                                user.status === 'active' ? (<button
+                                                                    onClick={() => handleBlock(`${user._id}`)}
+                                                                    disabled={user.role === 'admin'}
+                                                                    className={`text-xs font-semibold bg-red-500 hover:bg-red-600 text-white rounded-md px-2 py-1 ${user.role === 'admin' && 'cursor-not-allowed opacity-40'}`}>Block</button>
+                                                                ) : (<button
+                                                                    onClick={() => handleActive(`${user._id}`)}
+                                                                    disabled={user.role === 'admin'}
+                                                                    className={`text-xs font-semibold bg-green-500 hover:bg-green-600 text-white rounded-md px-2 py-1 ${user.role === 'admin' && 'cursor-not-allowed opacity-40'}`}>Active</button>)
+                                                            }
+                                                            <button
+                                                                onClick={() => handleMakeAdmin(`${user._id}`)}
                                                                 disabled={user.role === 'admin'}
-                                                                className={`text-xs font-semibold bg-red-500 hover:bg-red-600 text-white rounded-md px-2 py-1 ${user.role === 'admin' && 'cursor-not-allowed opacity-40'}`}>Block</button>
-                                                            ) : (<button
-                                                                onClick={() => handleActive(`${user._id}`)}
+                                                                className={`text-xs font-semibold bg-yellow-500 hover:bg-yellow-600 text-white rounded-md px-2 py-1 ${user.role === 'admin' && 'cursor-not-allowed opacity-40'}`}>Make Admin</button>
+                                                            <button
+                                                                onClick={() => handleMakeVolunteer(`${user._id}`)}
                                                                 disabled={user.role === 'admin'}
-                                                                className={`text-xs font-semibold bg-green-500 hover:bg-green-600 text-white rounded-md px-2 py-1 ${user.role === 'admin' && 'cursor-not-allowed opacity-40'}`}>Active</button>)
-                                                        }
-                                                        <button
-                                                            onClick={() => handleMakeAdmin(`${user._id}`)}
-                                                            disabled={user.role === 'admin'}
-                                                            className={`text-xs font-semibold bg-yellow-500 hover:bg-yellow-600 text-white rounded-md px-2 py-1 ${user.role === 'admin' && 'cursor-not-allowed opacity-40'}`}>Make Admin</button>
-                                                        <button
-                                                            onClick={() => handleMakeVolunteer(`${user._id}`)}
-                                                            disabled={user.role === 'admin'}
-                                                            className={`text-xs font-semibold bg-blue-500 hover:bg-blue-600 text-white rounded-md px-2 py-1 ${user.role === 'admin' && 'cursor-not-allowed opacity-40'}`}>Make Volunteer</button>
-                                                    </div>
-                                                </td>
-                                            </tr>)
+                                                                className={`text-xs font-semibold bg-blue-500 hover:bg-blue-600 text-white rounded-md px-2 py-1 ${user.role === 'admin' && 'cursor-not-allowed opacity-40'}`}>Make Volunteer</button>
+                                                        </div>
+                                                    </td>
+                                                </tr>)
                                         }
 
                                         {/* Add more rows as needed */}
@@ -175,7 +179,7 @@ const AllUsers = () => {
                 }
 
             </section>
-            <ThemeToggleButton/>
+            <ThemeToggleButton />
         </div>
     );
 };

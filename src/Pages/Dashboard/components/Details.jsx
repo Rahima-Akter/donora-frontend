@@ -7,6 +7,7 @@ import logo from '../../../assets/logo.PNG'
 import useAuth from '../../../Hooks/useAuth';
 import HandleStatus from '../../../Hooks/HandleStatus';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
+import { Helmet } from 'react-helmet-async';
 
 const Details = () => {
     const [handleStatus, status] = HandleStatus();
@@ -32,6 +33,9 @@ const Details = () => {
     return (
         <>
             <div className='flex justify-center items-center m-auto min-h-screen bg-red-50 dark:bg-gray-800'>
+                <Helmet>
+                    <title>DONORA || Details</title>
+                </Helmet>
                 <div className="max-w-2xl m-auto px-8 py-4 bg-white rounded-lg shadow-md dark:shadow-gray-500 dark:bg-gray-900">
                     <div className="flex items-center justify-between">
                         <span className="text-sm font-light text-gray-600 dark:text-gray-400">{format(new Date(details.

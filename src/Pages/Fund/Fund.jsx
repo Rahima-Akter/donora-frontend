@@ -7,6 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import Spinner from "../../Components/Spinner";
 import { format } from "date-fns";
+import { Helmet } from "react-helmet-async";
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PK);
 const Fund = () => {
@@ -24,6 +25,9 @@ const Fund = () => {
         <>
             {/* table */}
             <section className="md:mt-[130px] mt-24 my-[65px] md:w-9/12 w-full mx-auto">
+                <Helmet>
+                    <title>DONORA || Funds</title>
+                </Helmet>
                 <div className='flex justify-between items-center lg:mb-0 px-2 lg:px-0'>
                     <p className='font-semibold uppercase text-Red md:text-lg mb-3 text-xs'>All funds</p>
                     <div>

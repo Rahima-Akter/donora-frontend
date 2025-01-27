@@ -6,6 +6,7 @@ import Spinner from '../../../../Components/Spinner';
 import Swal from 'sweetalert2';
 import useGetRole from '../../../../Hooks/useGetRole';
 import HandleStatus from '../../../../Hooks/HandleStatus';
+import { Helmet } from 'react-helmet-async';
 
 const ContentManagement = () => {
     const [filter, setFilter] = useState('');
@@ -56,6 +57,9 @@ const ContentManagement = () => {
     if (isLoading) return <Spinner />
     return (
         <div className='md:py-8 py-3 px-6 min-h-full'>
+            <Helmet>
+                <title>Dashboard || Content Management</title>
+            </Helmet>
             <div className='flex justify-between items-center'>
                 <div className="md:mb-2">
                     <select

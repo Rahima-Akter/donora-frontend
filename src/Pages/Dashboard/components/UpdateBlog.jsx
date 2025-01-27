@@ -5,6 +5,7 @@ import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import toast from 'react-hot-toast';
 import JoditEditor from 'jodit-react';
 import { useLoaderData, useNavigate, useParams } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 const UpdateBlog = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
@@ -63,8 +64,11 @@ const UpdateBlog = () => {
     };
 
     return (
-        <div className='bg-gray-100 my-20 rounded-md shadow-lg lg:w-7/12 w-11/12 mx-auto bg-Red/5 p-8'>
+        <div className='bg-gray-100 dark:bg-Red/60 my-0 rounded-md shadow-lg lg:w-7/12 w-11/12 mx-auto bg-Red/5 p-8'>
             <h1 className='text-center font-bold text-Red drop-shadow-md text-lg px-8'>
+            <Helmet>
+                <title>Dashboard || Update Blog</title>
+            </Helmet>
                 Update? {blog.title}
             </h1>
             <form onSubmit={handleSubmit(onSubmit)}>

@@ -13,6 +13,7 @@ import { useQuery } from '@tanstack/react-query';
 import useDistricts from '../../../Hooks/useDistricts';
 import Spinner from '../../../Components/Spinner';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
+import { Helmet } from 'react-helmet-async';
 const UpdateRequests = () => {
     const axiosSecure = useAxiosSecure();
     const { user } = useAuth();
@@ -94,6 +95,9 @@ const UpdateRequests = () => {
 
     return (
         <div className='bg-red-100 py-4'>
+            <Helmet>
+                <title>Dashboard || Update Requests</title>
+            </Helmet>
             <div className="flex lg:w-10/12 w-11/12 mx-auto bg-Red/5 overflow-hidden rounded-lg shadow-lg dark:bg-gray-800 my-7">
                 <div className="w-full px-6 py-8 md:px-8">
                     <Link to="/dashboard" className="text-xs text-Red flex items-center hover:text-Racing-Red">

@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import Spinner from '../../../Components/Spinner';
 import HandleStatus from '../../../Hooks/HandleStatus';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
+import { Helmet } from 'react-helmet-async';
 
 const DonorHome = () => {
     const { user } = useAuth();
@@ -58,6 +59,9 @@ const DonorHome = () => {
     if (isLoading) return <Spinner />
     return (
         <div className='p-5'>
+            <Helmet>
+                <title>Dashboard || Home</title>
+            </Helmet>
             {
                 user ? user && <p className='font-bold text-xl text-green-600'>🩸Welcome, <span className='text-Red uppercase'>{user?.displayName}</span></p> : <p className='font-bold text-xl'>Welcome....</p>
             }
@@ -76,77 +80,77 @@ const DonorHome = () => {
                         <p className='font-bold drop-shadow-lg uppercase text-Red text-xl my-4 text-center '>No data to show</p>
                     </div> || (
                         <div className="min-w-full px-4 mx-auto lg:px-0">
-                        <div className="overflow-hidden bg-white shadow rounded-lg dark:bg-gray-900 md:w-full md:-ml-0 -ml-7 w-[120%]">
-                            <div className="overflow-x-auto">
-                                <table className="w-full table-auto text-sm text-left text-gray-500 dark:text-gray-300">
-                                    <thead className="text-xs text-Red uppercase bg-Red/10 dark:bg-gray-800 dark:text-white">
-                                        <tr>
-                                            <th scope="col" className="text-center px-4 py-5 whitespace-nowrap">Recipient's Name</th>
-                                            <th scope="col" className="text-center px-4 py-5 whitespace-nowrap">Status</th>
-                                            <th scope="col" className="text-center px-4 py-5 whitespace-nowrap">Recipient's Location</th>
-                                            <th scope="col" className="text-center px-4 py-5 whitespace-nowrap">Donation Date</th>
-                                            <th scope="col" className="text-center px-4 py-5 whitespace-nowrap">Blood Type</th>
-                                            <th scope="col" className="text-center px-4 py-5 whitespace-nowrap">Donor Info</th>
+                            <div className="overflow-hidden bg-white shadow rounded-lg dark:bg-gray-900 md:w-full md:-ml-0 -ml-7 w-[120%]">
+                                <div className="overflow-x-auto">
+                                    <table className="w-full table-auto text-sm text-left text-gray-500 dark:text-gray-300">
+                                        <thead className="text-xs text-Red uppercase bg-Red/10 dark:bg-gray-800 dark:text-white">
+                                            <tr>
+                                                <th scope="col" className="text-center px-4 py-5 whitespace-nowrap">Recipient's Name</th>
+                                                <th scope="col" className="text-center px-4 py-5 whitespace-nowrap">Status</th>
+                                                <th scope="col" className="text-center px-4 py-5 whitespace-nowrap">Recipient's Location</th>
+                                                <th scope="col" className="text-center px-4 py-5 whitespace-nowrap">Donation Date</th>
+                                                <th scope="col" className="text-center px-4 py-5 whitespace-nowrap">Blood Type</th>
+                                                <th scope="col" className="text-center px-4 py-5 whitespace-nowrap">Donor Info</th>
 
-                                            <th scope="col" className="text-center px-4 py-5 whitespace-nowrap">Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {
-                                            requests.map(request => <tr key={request._id} className='border-b border-red-100 dark:border-gray-500 hover:bg-gray-50 dark:hover:bg-gray-950'>
-                                                <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                                                    <div className="inline-flex items-center gap-x-3">
-                                                        <h2 className="font-medium text-gray-800 dark:text-gray-300">{request.recipientName}</h2>
-                                                    </div>
-                                                </td>
-                                                <td className="px-12 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+                                                <th scope="col" className="text-center px-4 py-5 whitespace-nowrap">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {
+                                                requests.map(request => <tr key={request._id} className='border-b border-red-100 dark:border-gray-500 hover:bg-gray-50 dark:hover:bg-gray-950'>
+                                                    <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+                                                        <div className="inline-flex items-center gap-x-3">
+                                                            <h2 className="font-medium text-gray-800 dark:text-gray-300">{request.recipientName}</h2>
+                                                        </div>
+                                                    </td>
+                                                    <td className="px-12 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+                                                        {
+                                                            request.status === 'inprogress' && <div className='flex items-center gap-1 mt-1'>
+                                                                <button onClick={() => handleDone(`${request._id}`)} className='text-xs font-semibold bg-green-500 hover:bg-green-600 text-white rounded-md px-2 py-1'>Done</button>
+                                                                <button onClick={() => handleCancel(`${request._id}`)} className='text-xs font-semibold bg-red-500 hover:bg-red-600 text-white rounded-md px-2 py-1'>Cancel</button>
+                                                            </div> || request.status === 'pending' && <p className='text-amber-500 rounded-lg text-center py-1 px-3 bg-amber-100/50 cursor-not-allowed'>pending</p> ||
+                                                            request.status === 'done' && <p className='text-emerald-500 rounded-lg text-center py-1 px-3 bg-emerald-100/50 cursor-not-allowed'>done</p> ||
+                                                            request.status === 'canceled' && <p className='text-red-500 rounded-lg text-center py-1 px-3 bg-red-100/50 cursor-not-allowed'>canceled</p>
+                                                        }
+                                                    </td>
+                                                    <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">{request.district},<span>{request.upazila}</span></td>
+                                                    <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">{format(new Date(request.
+                                                        donationDate), 'P')}, <span>{format(new Date(`1970-01-01T${request.donationTime}:00Z`), "hh:mm a")}</span>
+                                                    </td>
+                                                    <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap text-center font-bold">{request.
+                                                        bloodGroup}</td>
                                                     {
-                                                        request.status === 'inprogress' && <div className='flex items-center gap-1 mt-1'>
-                                                            <button onClick={() => handleDone(`${request._id}`)} className='text-xs font-semibold bg-green-500 hover:bg-green-600 text-white rounded-md px-2 py-1'>Done</button>
-                                                            <button onClick={() => handleCancel(`${request._id}`)} className='text-xs font-semibold bg-red-500 hover:bg-red-600 text-white rounded-md px-2 py-1'>Cancel</button>
-                                                        </div> || request.status === 'pending' && <p className='text-amber-500 rounded-lg text-center py-1 px-3 bg-amber-100/50 cursor-not-allowed'>pending</p> ||
-                                                        request.status === 'done' && <p className='text-emerald-500 rounded-lg text-center py-1 px-3 bg-emerald-100/50 cursor-not-allowed'>done</p> ||
-                                                        request.status === 'canceled' && <p className='text-red-500 rounded-lg text-center py-1 px-3 bg-red-100/50 cursor-not-allowed'>canceled</p>
+                                                        request.status === 'inprogress' ? (
+                                                            <td className="px-4 py-4 text-sm whitespace-nowrap">
+                                                                <div className="flex flex-col">
+                                                                    <p className="px-3 py-1 text-xs text-center">{user?.displayName}</p>
+                                                                    <p className="px-3 py-1 text-xs">{user?.email}</p>
+                                                                </div>
+                                                            </td>
+                                                        ) : (
+                                                            <td className="px-4 py-4 text-sm whitespace-nowrap text-center mt-6 font-semibold text-Red/50">N/A</td>
+                                                        )
                                                     }
-                                                </td>
-                                                <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">{request.district},<span>{request.upazila}</span></td>
-                                                <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">{format(new Date(request.
-                                                    donationDate), 'P')}, <span>{format(new Date(`1970-01-01T${request.donationTime}:00Z`), "hh:mm a")}</span>
-                                                </td>
-                                                <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap text-center font-bold">{request.
-                                                    bloodGroup}</td>
-                                                {
-                                                    request.status === 'inprogress' ? (
-                                                        <td className="px-4 py-4 text-sm whitespace-nowrap">
-                                                            <div className="flex flex-col">
-                                                                <p className="px-3 py-1 text-xs text-center">{user?.displayName}</p>
-                                                                <p className="px-3 py-1 text-xs">{user?.email}</p>
-                                                            </div>
-                                                        </td>
-                                                    ) : (
-                                                        <td className="px-4 py-4 text-sm whitespace-nowrap text-center mt-6 font-semibold text-Red/50">N/A</td>
-                                                    )
-                                                }
-                                                <td className="px-4 py-4 text-sm whitespace-nowrap">
-                                                    <div className="flex items-center gap-x-6">
-                                                        <button onClick={() => handleDelete(request._id)} className="text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none">
-                                                            <AiOutlineDelete className='text-2xl' />
-                                                        </button>
-                                                        <Link to={`/dashboard/UpdateRequest/${request._id}`} className="text-gray-500 transition-colors duration-200 dark:hover:text-blue-500 dark:text-gray-300 hover:text-blue-500 focus:outline-none">
-                                                            <BiEdit className='text-2xl' />
-                                                        </Link>
-                                                        <Link to={`/dashboard/details/${request._id}`} className="text-gray-500 transition-colors duration-200 dark:hover:text-yellow-500 dark:text-gray-300 hover:text-yellow-500 focus:outline-none">
-                                                            <IoEyeOutline className='text-2xl' />
-                                                        </Link>
-                                                    </div>
-                                                </td>
-                                            </tr>)
-                                        }
-                                    </tbody>
-                                </table>
+                                                    <td className="px-4 py-4 text-sm whitespace-nowrap">
+                                                        <div className="flex items-center gap-x-6">
+                                                            <button onClick={() => handleDelete(request._id)} className="text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none">
+                                                                <AiOutlineDelete className='text-2xl' />
+                                                            </button>
+                                                            <Link to={`/dashboard/UpdateRequest/${request._id}`} className="text-gray-500 transition-colors duration-200 dark:hover:text-blue-500 dark:text-gray-300 hover:text-blue-500 focus:outline-none">
+                                                                <BiEdit className='text-2xl' />
+                                                            </Link>
+                                                            <Link to={`/dashboard/details/${request._id}`} className="text-gray-500 transition-colors duration-200 dark:hover:text-yellow-500 dark:text-gray-300 hover:text-yellow-500 focus:outline-none">
+                                                                <IoEyeOutline className='text-2xl' />
+                                                            </Link>
+                                                        </div>
+                                                    </td>
+                                                </tr>)
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-                        </div>
-                    </div>)
+                        </div>)
                 }
 
             </section>

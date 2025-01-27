@@ -46,7 +46,7 @@ const router = createBrowserRouter([
                 </PrivateRoute>,
                 loader: async ({ params }) => {
                     const token = localStorage.getItem('access-token');
-                    const response = await fetch(`http://localhost:5000/single-blog/${params.id}`, {
+                    const response = await fetch(`https://donora-backend-sigma.vercel.app/single-blog/${params.id}`, {
                         method: 'GET',
                         headers: {
                             'Authorization': `Bearer ${token}`, // adding the token
@@ -63,7 +63,7 @@ const router = createBrowserRouter([
                 </PrivateRoute>,
                 loader: async ({ params }) => {
                     const token = localStorage.getItem('access-token');
-                    const response = await fetch(`http://localhost:5000/blood-request/${params.id}`, {
+                    const response = await fetch(`https://donora-backend-sigma.vercel.app/blood-request/${params.id}`, {
                         method: 'GET',
                         headers: {
                             'Authorization': `Bearer ${token}`, // adding the token
@@ -87,7 +87,9 @@ const router = createBrowserRouter([
             },
             {
                 path: 'funds',
-                element: <Fund />
+                element: <PrivateRoute>
+                    <Fund />
+                </PrivateRoute>
             },
         ]
     },
@@ -129,7 +131,7 @@ const router = createBrowserRouter([
                 </PrivateRoute>,
                 loader: async ({ params }) => {
                     const token = localStorage.getItem('access-token');
-                    const response = await fetch(`http://localhost:5000/blood-request/${params.id}`, {
+                    const response = await fetch(`https://donora-backend-sigma.vercel.app/blood-request/${params.id}`, {
                         method: 'GET',
                         headers: {
                             'Authorization': `Bearer ${token}`, // adding the token
@@ -177,7 +179,7 @@ const router = createBrowserRouter([
                 element: <UpdateBlog />,
                 loader: async ({ params }) => {
                     const token = localStorage.getItem('access-token');
-                    const response = await fetch(`http://localhost:5000/single-blog/${params.id}`, {
+                    const response = await fetch(`https://donora-backend-sigma.vercel.app/single-blog/${params.id}`, {
                         method: 'GET',
                         headers: {
                             'Authorization': `Bearer ${token}`,

@@ -12,6 +12,7 @@ import { format } from 'date-fns';
 import toast from 'react-hot-toast';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
+import { Helmet } from 'react-helmet-async';
 
 const DonationReqForm = () => {
     const { user } = useAuth();
@@ -77,6 +78,9 @@ const DonationReqForm = () => {
 
     return (
         <div className='bg-red-100 dark:bg-gray-900 py-4 min-h-screen'>
+            <Helmet>
+                <title>DONORA || Requests Form</title>
+            </Helmet>
             <div className="flex lg:w-10/12 w-11/12 mx-auto bg-Red/5 overflow-hidden rounded-lg shadow-lg dark:bg-gray-800 my-7 md:translate-y-16 lg:translate-y-0">
                 <div className="w-full px-6 py-8 md:px-8">
                     <Link to="/" className="text-xs text-Red flex items-center hover:text-Racing-Red">
