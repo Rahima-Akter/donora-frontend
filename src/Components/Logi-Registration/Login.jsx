@@ -28,9 +28,9 @@ const Login = () => {
     } = useForm();
 
     const rolesCredentials = {
-        admin: { email: 'donora@admin.com', password: 'donoraAdmin' },
-        volunteer: { email: 'test@gmail.com', password: '123456' },
-        donor: { email: 'xyz123@gmail.com', password: '123456' }
+        admin: { email: import.meta.env.VITE_Admin_Email, password: import.meta.env.VITE_Admin_Pass },
+        volunteer: { email: import.meta.env.VITE_Volunteer_Email, password: import.meta.env.VITE_Volunteer_Pass },
+        donor: { email: import.meta.env.VITE_Donor_Email, password: import.meta.env.VITE_Donor_Pass }
     };
 
     const handleRoleSelection = (selectRole) => {
