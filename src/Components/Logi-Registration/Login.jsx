@@ -14,6 +14,7 @@ const Login = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const from = location?.state?.from || '/';;
+    const [role, setRole] = useState('')
 
     const handlePasswordShow = () => {
         setShow(!show)
@@ -22,27 +23,55 @@ const Login = () => {
         register,
         handleSubmit,
         reset,
+        setValue,
         formState: { errors },
     } = useForm();
+
+    const rolesCredentials = {
+        admin: { email: 'donora@admin.com', password: 'donoraAdmin' },
+        volunteer: { email: 'test@gmail.com', password: '123456' },
+        donor: { email: 'xyz123@gmail.com', password: '123456' }
+    };
+
+    const handleRoleSelection = (selectRole) => {
+        setRole(selectRole);
+        setValue('email', rolesCredentials[selectRole]?.email || '');
+        setValue('password', rolesCredentials[selectRole]?.password || '');
+    }
+
 
     const onSubmit = async (data) => {
         const email = data.email;
         const password = data.password;
         try {
-            await logIn(email, password)
-                .then(() => {
-                    toast.success('Login Successfull')
-                    navigate(from)
-                })
-            reset();
-            setError('');
+            if (role) {
+                await logIn(email, password, role)
+                    .then(() => {
+                        toast.success('Login Successfull')
+                        navigate(from)
+                    })
+                reset();
+                setError('');
+            } else {
+                await logIn(email, password)
+                    .then(() => {
+                        toast.success('Login Successfull')
+                        navigate(from)
+                    })
+                reset();
+                setError('');
+            }
         } catch (error) {
             console.error('Error code:', error.code);
             console.error('Error message:', error.message);
 
             // Firebase Authentication Errors
             if (error.code === 'auth/invalid-credential') {
-                setError('invalid-credential. Please try again!');
+                setError('Invalid credentials. Please try again!');
+            } else if (error.code === 'auth/user-not-found') {
+                setError('No account found with this email.');
+            } else if (error.code === 'auth/wrong-password') {
+                setError('Incorrect password. Please try again!');
             } else {
                 setError('Failed to log in. Please try again.');
             }
@@ -85,6 +114,11 @@ const Login = () => {
                 </div>
 
                 <form onSubmit={handleSubmit(onSubmit)} className="mt-4">
+                    <div className='flex justify-center items-center gap-2'>
+                        <button onClick={() => handleRoleSelection('admin')} className='font-bold text-white bg-Red rounded-xl px-3 py-1 hover:bg-red-600 text-xs'>Admin</button>
+                        <button onClick={() => handleRoleSelection('volunteer')} className='font-bold text-white bg-Red rounded-xl px-3 py-1 hover:bg-red-600 text-xs'>Volunteer</button>
+                        <button onClick={() => handleRoleSelection('donor')} className='font-bold text-white bg-Red rounded-xl px-3 py-1 hover:bg-red-600 text-xs'>Donor</button>
+                    </div>
                     {/* Email Field */}
                     <div className="mt-4">
                         <label className="block mb-2 text-sm font-medium text-Red dark:text-gray-200" htmlFor="LoggingEmailAddress">
