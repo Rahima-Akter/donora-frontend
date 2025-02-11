@@ -4,7 +4,7 @@ import Button from '../../Shared/Button/Button';
 
 const Banner = () => {
     return (
-        <div className='lg:h-[70vh] md:h-[50vh] h-[55vh] md:mt-[82px] mt-[65px]' style={{
+        <div className='lg:h-[75vh] md:h-[50vh] h-[55vh] md:mt-[82px] mt-[65px]' style={{
             backgroundImage: `url(${bannerImg})`,
             backgroundPosition: 'center',
             backgroundSize: 'cover',

@@ -24,7 +24,7 @@ const DashboardLayout = () => {
 
             {/* Sidebar */}
             <div
-                className={`lg:w-[25%] md:w-[40%] w-64 fixed lg:static bg-white dark:bg-gray-900 border-r dark:border-gray-700 transform transition-transform duration-300 top-0 left-0 h-full ${isSidebarOpen ? "translate-x-0 z-40" : "-translate-x-full z-40"} lg:translate-x-0`}
+                className={`lg:w-[25%] md:w-[40%] w-64 fixed bg-white dark:bg-gray-900 border-r dark:border-gray-700 transform transition-transform duration-300 top-0 left-0 h-full ${isSidebarOpen ? "translate-x-0 z-40" : "-translate-x-full z-40"} lg:translate-x-0`}
             >
                 <DashNavbar />
             </div>
