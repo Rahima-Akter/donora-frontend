@@ -8,8 +8,8 @@ import ThemeToggleButton from '../../../contexts/ThemeProvider/ThemeToggleButton
 import { Helmet } from 'react-helmet-async';
 
 const AllUsers = () => {
-    const [handleStatus, status] = HandleStatus();
-    const [handleRole, role] = useRole();
+    const [handleStatus] = HandleStatus();
+    const [handleRole] = useRole();
     const axiosSecure = useAxiosSecure();
     const [statusFilter, setStatusFilter] = useState('')
     const { data: users = [], isLoading, refetch } = useQuery({

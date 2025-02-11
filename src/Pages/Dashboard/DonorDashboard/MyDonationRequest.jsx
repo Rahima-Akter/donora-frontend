@@ -17,7 +17,7 @@ const MyDonationRequest = () => {
     const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
     // Status filter state
-    const [statuss, setStatus] = useState('');
+    const [statuss, setStatuss] = useState('');
     const { data: requests = [], isLoading, refetch } = useQuery({
         queryKey: ['requests', user?.email, statuss],
         queryFn: async () => {
@@ -89,7 +89,7 @@ const MyDonationRequest = () => {
                     {/* Filter Dropdown */}
                     <div className="join mb-2">
                         <select
-                            onChange={(e) => setStatus(e.target.value)}
+                            onChange={(e) => setStatuss(e.target.value)}
                             className="select select-bordered join-item bg-transparent rounded-lg border border-Red pb-1 px-5 text-Red font-bold appearance-none lg:pr-12"
                         >
                             <option className="font-bold" value="">
