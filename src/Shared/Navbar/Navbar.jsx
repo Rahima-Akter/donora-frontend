@@ -3,7 +3,6 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider/Context";
 import { useContext, useState } from "react";
-// import ThemeSwitcher from "./ThemeSwitcher";
 import logo from "../../assets/logo.PNG"
 
 const Navbar = () => {
@@ -50,24 +49,28 @@ const Navbar = () => {
                     >
                         Blog
                     </NavLink>
-                    <NavLink
-                        to="funds"
-                        className={({ isActive }) =>
-                            `flex items-center space-x-2 uppercase font-semibold ${isActive ? "text-white bg-Red px-3 py-2 rounded-md ring-1 ring-white hover:bg-red-600" : ""
-                            }`
-                        }
-                    >
-                        Funds
-                    </NavLink>
-                    <NavLink
-                        to="search"
-                        className={({ isActive }) =>
-                            `flex items-center space-x-2 uppercase font-semibold ${isActive ? "text-white bg-Red px-3 py-2 rounded-md ring-1 ring-white hover:bg-red-600" : ""
-                            }`
-                        }
-                    >
-                        search
-                    </NavLink>
+                    {
+                        user ? <NavLink
+                            to="funds"
+                            className={({ isActive }) =>
+                                `flex items-center space-x-2 uppercase font-semibold ${isActive ? "text-white bg-Red px-3 py-2 rounded-md ring-1 ring-white hover:bg-red-600" : ""
+                                }`
+                            }
+                        >
+                            Funds
+                        </NavLink> : ''
+                    }
+                    {
+                        user ? <NavLink
+                            to="search"
+                            className={({ isActive }) =>
+                                `flex items-center space-x-2 uppercase font-semibold ${isActive ? "text-white bg-Red px-3 py-2 rounded-md ring-1 ring-white hover:bg-red-600" : ""
+                                }`
+                            }
+                        >
+                            search
+                        </NavLink> : ''
+                    }
 
                 </div>
 
@@ -137,7 +140,7 @@ const Navbar = () => {
                             )}
                         </div>
                     )}
-                    {/* <ThemeSwitcher /> */}
+
                     <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
                         {isMobileMenuOpen ? <FaTimes className="md:text-2xl text-xl mr-3" /> : <FaBars className="md:text-2xl text-xl mr-3" />}
                     </button>
@@ -155,11 +158,13 @@ const Navbar = () => {
                     <NavLink to="funds" className="text-white hover:text-Red font-semibold uppercase">
                         funds
                     </NavLink>
+                    <NavLink to="search" className="text-white hover:text-Red font-semibold uppercase">
+                        Search
+                    </NavLink>
                     <NavLink to="donation-request" className="text-white hover:text-Red font-semibold uppercase">
                         Donation request
                     </NavLink>
                     <button onClick={() => navigate('/login')} className="bg-Red px-3 py-2 text-white font-semibold hover:bg-pink-700 text-xs w-full">Login</button>
-                    <button onClick={() => navigate('/register')} className="bg-Red px-3 py-2 text-white font-semibold hover:bg-pink-700 text-xs w-full">Register</button>
                 </div>
             )}
         </nav>

@@ -50,7 +50,7 @@ const AllUsers = () => {
             <Helmet>
                 <title>Dashboard || all users</title>
             </Helmet>
-            <section className='lg:w-[90%]'>
+            <section className='lg:w-[90%] mx-auto'>
                 {
                     users.length === 0 &&
                     <div>

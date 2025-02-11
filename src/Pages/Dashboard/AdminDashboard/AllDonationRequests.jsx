@@ -19,7 +19,7 @@ const AllDonationRequests = () => {
     const { user } = useAuth();
     const navigate = useNavigate();
     const axiosSecure = useAxiosSecure();
-    const [statuss, setStatus] = useState('')
+    const [statuss, setStatuss] = useState('')
     const { data: requests = [], isLoading, refetch } = useQuery({
         queryKey: ['requests', statuss],
         queryFn: async () => {
@@ -84,9 +84,9 @@ const AllDonationRequests = () => {
                     {/* button group for filter */}
                     <div className="join mb-2">
                         <select
-                            onChange={(e) => setStatus(e.target.value)}
+                            onChange={(e) => setStatuss(e.target.value)}
                             className="bg-transparent rounded-lg border border-Red hover:bg-red-50 px-4 py-2 text-Red font-bold text-xs appearance-none focus:outline-none md:!pr-20 !pr-10">
-                            <option className='font-bold'>Filter by</option>
+                            <option className='font-bold' value=''>Filter by</option>
                             <option className='font-bold' value=''>default</option>
                             <option className='font-bold' value='pending'>pending</option>
                             <option className='font-bold' value='inprogress'>inprogress</option>
@@ -112,11 +112,7 @@ const AllDonationRequests = () => {
                                                 <th scope="col" className="text-center px-4 py-5 whitespace-nowrap">Recipient's Location</th>
                                                 <th scope="col" className="text-center px-4 py-5 whitespace-nowrap">Donation Date</th>
                                                 <th scope="col" className="text-center px-4 py-5 whitespace-nowrap">Blood Type</th>
-                                                {
-                                                    requests.some(request => request.status === 'inprogress') && (
-                                                        <th scope="col" className="text-center px-4 py-5 whitespace-nowrap">Donor Info</th>
-                                                    )
-                                                }
+                                                <th scope="col" className="text-center px-4 py-5 whitespace-nowrap">Donor Info</th>
                                                 <th scope="col" className="text-center px-4 py-5 whitespace-nowrap">Actions</th>
                                             </tr>
                                         </thead>

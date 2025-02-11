@@ -13,7 +13,8 @@ const Login = () => {
     const [show, setShow] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
-    const from = location?.state?.from || '/';
+    const from = location?.state?.from || '/';;
+
     const handlePasswordShow = () => {
         setShow(!show)
     }
@@ -45,7 +46,7 @@ const Login = () => {
             } else {
                 setError('Failed to log in. Please try again.');
             }
-        }
+        };
 
     };
 

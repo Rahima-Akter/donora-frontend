@@ -21,7 +21,7 @@ const Banner = () => {
                     <p>Together, We Create a World Where No One Waits for Blood, Hope is Restored, and Lives are Saved</p>
                     <div className='space-x-4 mt-6'>
                         <Link to="/register"><Button buttonText="Join As A Doner"></Button></Link>
-                        <Button buttonText="Search Donor"></Button>
+                        <Link to="search"><Button buttonText="Search Donor"></Button></Link>
                     </div>
                 </div>
             </div>

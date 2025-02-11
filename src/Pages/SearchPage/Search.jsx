@@ -30,7 +30,7 @@ const Search = () => {
                 <title>DONORA || search</title>
             </Helmet>
             <div className="md:mt-[80px] my-[65px] w-11/12 mx-auto">
-                <div className="w-2/3 mx-auto pt-10 flex justify-between items-center gap-5">
+                <div className="md:w-2/3 w-full mx-auto pt-10 flex md:flex-row flex-col justify-between items-center gap-5">
                     {/* blood group */}
                     <select id="bloodGroup"
                         value={searchBlood}
