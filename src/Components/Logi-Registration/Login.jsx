@@ -97,7 +97,7 @@ const Login = () => {
 
                 <a
                     href="#"
-                    className="flex items-center justify-center mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg dark:border-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600"
+                    className=" items-center justify-center mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg dark:border-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600 hidden"
                 >
                     <div className="px-4 py-4 flex justify-center items-center gap-2">
                         <FaGoogle className='text-Red text-2xl' />
@@ -105,7 +105,7 @@ const Login = () => {
                     </div>
                 </a>
 
-                <div className="flex items-center justify-between mt-4">
+                <div className=" items-center justify-between mt-4 hidden">
                     <span className="w-1/5 border-b dark:border-gray-600 lg:w-1/4"></span>
                     <p className="text-xs text-center text-Red/50 uppercase dark:text-gray-400 hover:underline">
                         or login with email
