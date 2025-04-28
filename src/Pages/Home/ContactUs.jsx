@@ -42,7 +42,7 @@ const ContactUs = () => {
                                 </span>
                                 <h2 class="text-xl font-bold text-Red">Phone</h2>
                             </div>
-                            <p class="mt-2 text-Red/50 dark:text-Red/90 dark:text-gray-400 text-sm">Everyday 24/7</p>
+                            <p class="mt-2 text-Red/50 dark:text-Red/90 text-sm">Everyday 24/7</p>
                             <p class="mt-2 text-Red">+1 (555) 000-0000</p>
                         </div>
                     </div>
