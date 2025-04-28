@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaEnvelopeOpen, FaMobile, FaPhoneAlt } from 'react-icons/fa';
+import { FaPhoneAlt } from 'react-icons/fa';
 import { FaEnvelopeCircleCheck, FaMapLocation } from 'react-icons/fa6';
 
 const ContactUs = () => {
