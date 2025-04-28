@@ -7,6 +7,7 @@ import ExtraSection2 from "./ExtraSection2";
 import Faq from "./Faq";
 import Testimonial from "./Testimonial";
 import DonationProcess from "./DonationProcess";
+import T from "./T";
 
 const Home = () => {
   return (
@@ -15,6 +16,7 @@ const Home = () => {
         <title>DONORA || Home</title>
       </Helmet>
       <Banner />
+      <T/>
       <ExtraSection1 />
       <BloodCompatibilityChart />
       <DonationProcess/>
