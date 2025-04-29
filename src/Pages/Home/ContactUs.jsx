@@ -5,7 +5,7 @@ import { FaEnvelopeCircleCheck, FaMapLocation } from 'react-icons/fa6';
 const ContactUs = () => {
     return (
         <div id='contact' className='lg:w-10/12 md:w-full w-11/12 mx-auto'>
-            <section class=" dark:bg-gray-900">
+            <section class=" dark:bg-black">
                 <div class="container px-6 py-12 mx-auto">
                     <div class="text-center">
                         <h1 class="mt-5 text-2xl font-bold text-Red md:text-3xl">Get in touch</h1>

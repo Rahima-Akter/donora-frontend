@@ -45,11 +45,11 @@ const Testimonial = () => {
 
 
     return (
-        <section className="bg-white dark:bg-gray-900">
+        <section className="bg-white dark:bg-black">
             <div className="max-w-6xl px-6 py-10 mx-auto">
                 <p className="text-4xl drop-shadow-lg font-bold text-Red">Testimonials</p>
 
-                <main className="bg-Crimson-Red rounded-lg lg:py-12 w-full mt-6 md:flex md:items-center xl:mt-12">
+                <main className="bg-Crimson-Red rounded-lg mt-6 lg:py-10 w-full md:flex md:items-center xl:mt-12">
                     {/* Swiper component */}
                     <Swiper
                         cssMode={true}

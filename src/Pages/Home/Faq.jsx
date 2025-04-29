@@ -3,7 +3,7 @@ import { TbDropletFilled } from 'react-icons/tb';
 
 const Faq = () => {
     return (
-        <section class="bg-white dark:bg-gray-900 w-11/12 mx-auto">
+        <section class="bg-white dark:bg-black w-11/12 mx-auto">
             <div class="container px-6 py-12 mx-auto">
                 <h1 class="text-2xl font-bold text-Red drop-shadow-lg lg:text-3xl dark:text-white">Frequently Asked Questions.</h1>
 
