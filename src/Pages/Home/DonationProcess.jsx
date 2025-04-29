@@ -37,19 +37,19 @@ const DonationProcess = () => {
   ];
 
   return (
-    <section className="pb-16">
+    <section className="md:pb-16 pb-5">
       <div className="container mx-auto px-4">
         <div className="text-center mb-9">
-          <h2 className="text-4xl font-bold text-Red mb-1 drop-shadow-md">
-            The Donation Process
+          <h2 className="md:text-4xl text-3xl font-bold text-Red dark:text-white mb-1 drop-shadow-md">
+            The <span className="text-Red">Donation</span> Process
           </h2>
-          <p className="text-lg text-Red max-w-2xl mx-auto">
+          <p className="md:text-lg text-sm text-Red max-w-2xl mx-auto">
             Donating blood is simple, safe, and saves lives. Here’s what to
             expect.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
           {steps.map((step, index) => (
             <div
               key={index}

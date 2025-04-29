@@ -5,7 +5,7 @@ const Faq = () => {
     return (
         <section class="bg-white dark:bg-black w-11/12 mx-auto">
             <div class="container px-6 py-12 mx-auto">
-                <h1 class="text-2xl font-bold text-Red drop-shadow-lg lg:text-3xl dark:text-white">Frequently Asked Questions.</h1>
+                <h1 class="font-bold text-Red drop-shadow-lg text-3xl dark:text-white">Frequently Asked Questions.</h1>
 
                 <div class="grid grid-cols-1 gap-8 mt-8 lg:mt-12 md:grid-cols-2 xl:grid-cols-3">
                     <div>

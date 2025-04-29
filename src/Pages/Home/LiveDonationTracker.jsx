@@ -84,10 +84,10 @@ const LiveDonationTracker = () => {
   return (
     <section className="pt-8">
       <div className="container mx-auto px-4 text-center">
-        <h2 className="text-4xl font-bold text-gray-900 drop-shadow-lg dark:text-white mb-1">
+        <h2 className="md:text-4xl text-[28px] font-bold text-gray-900 drop-shadow-lg dark:text-white md:mb-1 mb-2">
           <span className="text-Red">Live</span> Donations Across Bangladesh
         </h2>
-        <p className="text-xltext-Red/80 mb-8 max-w-2xl mx-auto">
+        <p className="md:text-xl text-lg text-Red/80 mb-8 max-w-2xl mx-auto">
           {donations}+ donations today! Join the movement.
         </p>
 

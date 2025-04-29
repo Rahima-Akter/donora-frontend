@@ -88,7 +88,7 @@ const MythBusters = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
-            className="text-xl text-Red dark:text-Red/80 max-w-2xl mx-auto"
+            className="md:text-xl text-lg text-Red dark:text-Red/80 max-w-2xl mx-auto"
           >
             Click a myth to reveal the shocking truth!
           </motion.p>

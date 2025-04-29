@@ -35,7 +35,7 @@ const BloodCompatibilityChart = () => {
 
     return (
         <motion.div
-            className="lg:w-11/12 w-full mx-auto px-6 py-20 dark:bg-black"
+            className="lg:w-11/12 w-full mx-auto px-6 md:py-20 py-16 dark:bg-black"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1 }}
