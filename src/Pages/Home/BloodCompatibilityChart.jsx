@@ -40,7 +40,7 @@ const BloodCompatibilityChart = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 1 }}
         >
-            <h2 className="md:text-3xl text-2xl font-bold text-center text-Red mb-5 drop-shadow-xl">Blood Compatibility Chart</h2>
+            <h2 className="md:text-3xl text-2xl font-bold text-center text-Red mb-5 drop-shadow-lg">Blood Compatibility Chart</h2>
 
             <div className="">
                 <table className="min-w-full rounded-md table-auto text-center border-collapse bg-red-50 dark:bg-Red/30">

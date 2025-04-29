@@ -1,0 +1,290 @@
+[
+    {
+        "id": 1,
+        "name": "Dhaka Medical College Blood Bank",
+        "city": "Dhaka",
+        "division": "Dhaka",
+        "address": "1000, Dhaka Medical College Rd, Dhaka",
+        "contact": "+880 1234-567890",
+        "coordinates": {
+            "lat": 23.7104,
+            "lng": 90.4074
+        },
+        "blood_stock": {
+            "A+": {
+                "status": "low",
+                "units": 5,
+                "updated": "2023-11-20T10:15:00+06:00"
+            },
+            "A-": {
+                "status": "critical",
+                "units": 2,
+                "updated": "2023-11-20T09:30:00+06:00"
+            },
+            "B+": {
+                "status": "adequate",
+                "units": 12,
+                "updated": "2023-11-20T11:45:00+06:00"
+            },
+            "B-": {
+                "status": "low",
+                "units": 3,
+                "updated": "2023-11-19T16:20:00+06:00"
+            },
+            "O+": {
+                "status": "critical",
+                "units": 1,
+                "updated": "2023-11-20T13:10:00+06:00"
+            },
+            "O-": {
+                "status": "adequate",
+                "units": 8,
+                "updated": "2023-11-20T08:45:00+06:00"
+            },
+            "AB+": {
+                "status": "adequate",
+                "units": 7,
+                "updated": "2023-11-20T12:30:00+06:00"
+            },
+            "AB-": {
+                "status": "low",
+                "units": 4,
+                "updated": "2023-11-18T14:00:00+06:00"
+            }
+        },
+        "donations_today": 23,
+        "active_donors": 5
+    },
+    {
+        "id": 2,
+        "name": "Chittagong Medical College Blood Center",
+        "city": "Chittagong",
+        "division": "Chittagong",
+        "address": "Zakir Hossain Rd, Chattogram",
+        "contact": "+880 9876-543210",
+        "coordinates": {
+            "lat": 22.3569,
+            "lng": 91.7832
+        },
+        "blood_stock": {
+            "A+": {
+                "status": "adequate",
+                "units": 9,
+                "updated": "2023-11-20T09:45:00+06:00"
+            },
+            "A-": {
+                "status": "low",
+                "units": 3,
+                "updated": "2023-11-20T07:30:00+06:00"
+            },
+            "B+": {
+                "status": "critical",
+                "units": 0,
+                "updated": "2023-11-20T14:00:00+06:00"
+            },
+            "O+": {
+                "status": "adequate",
+                "units": 11,
+                "updated": "2023-11-20T10:20:00+06:00"
+            },
+            "AB+": {
+                "status": "low",
+                "units": 2,
+                "updated": "2023-11-19T18:15:00+06:00"
+            }
+        },
+        "donations_today": 17,
+        "active_donors": 3
+    },
+    {
+        "id": 3,
+        "name": "Rajshahi Central Hospital Blood Bank",
+        "city": "Rajshahi",
+        "division": "Rajshahi",
+        "address": "Shaheb Bazar Rd, Rajshahi",
+        "contact": "+880 2461-611234",
+        "coordinates": {
+            "lat": 24.3745,
+            "lng": 88.6042
+        },
+        "blood_stock": {
+            "A+": {
+                "status": "adequate",
+                "units": 7,
+                "updated": "2023-11-20T11:10:00+06:00"
+            },
+            "B+": {
+                "status": "low",
+                "units": 4,
+                "updated": "2023-11-20T08:50:00+06:00"
+            },
+            "O+": {
+                "status": "critical",
+                "units": 1,
+                "updated": "2023-11-20T13:45:00+06:00"
+            },
+            "AB+": {
+                "status": "adequate",
+                "units": 6,
+                "updated": "2023-11-20T10:05:00+06:00"
+            }
+        },
+        "donations_today": 12,
+        "active_donors": 2
+    },
+    {
+        "id": 4,
+        "name": "Khulna Blood Transfusion Center",
+        "city": "Khulna",
+        "division": "Khulna",
+        "address": "Khalishpur, Khulna",
+        "contact": "+880 1987-654321",
+        "coordinates": {
+            "lat": 22.8456,
+            "lng": 89.5403
+        },
+        "blood_stock": {
+            "A+": {
+                "status": "low",
+                "units": 3,
+                "updated": "2023-11-19T15:40:00+06:00"
+            },
+            "B+": {
+                "status": "adequate",
+                "units": 8,
+                "updated": "2023-11-20T12:25:00+06:00"
+            },
+            "O+": {
+                "status": "adequate",
+                "units": 10,
+                "updated": "2023-11-20T09:15:00+06:00"
+            }
+        },
+        "donations_today": 9,
+        "active_donors": 1
+    },
+    {
+        "id": 5,
+        "name": "Sylhet MAG Osmani Medical College",
+        "city": "Sylhet",
+        "division": "Sylhet",
+        "address": "Upashahar, Sylhet",
+        "contact": "+880 1789-012345",
+        "coordinates": {
+            "lat": 24.8918,
+            "lng": 91.8830
+        },
+        "blood_stock": {
+            "A+": {
+                "status": "critical",
+                "units": 0,
+                "updated": "2023-11-20T14:20:00+06:00"
+            },
+            "B+": {
+                "status": "low",
+                "units": 2,
+                "updated": "2023-11-20T10:50:00+06:00"
+            },
+            "O+": {
+                "status": "adequate",
+                "units": 7,
+                "updated": "2023-11-20T11:30:00+06:00"
+            },
+            "AB+": {
+                "status": "low",
+                "units": 3,
+                "updated": "2023-11-19T17:00:00+06:00"
+            }
+        },
+        "donations_today": 14,
+        "active_donors": 4
+    },
+    {
+        "id": 6,
+        "name": "Barishal Sher-e-Bangla Medical College",
+        "city": "Barishal",
+        "division": "Barishal",
+        "address": "Natun Bazar, Barishal",
+        "contact": "+880 1712-345678",
+        "coordinates": {
+            "lat": 22.7029,
+            "lng": 90.3703
+        },
+        "blood_stock": {
+            "A+": {
+                "status": "adequate",
+                "units": 6,
+                "updated": "2023-11-20T08:40:00+06:00"
+            },
+            "B+": {
+                "status": "adequate",
+                "units": 5,
+                "updated": "2023-11-20T13:20:00+06:00"
+            },
+            "O+": {
+                "status": "low",
+                "units": 4,
+                "updated": "2023-11-20T07:15:00+06:00"
+            }
+        },
+        "donations_today": 11,
+        "active_donors": 2
+    },
+    {
+        "id": 7,
+        "name": "Rangpur Medical College Blood Bank",
+        "city": "Rangpur",
+        "division": "Rangpur",
+        "address": "Medical College Rd, Rangpur",
+        "contact": "+880 1523-456789",
+        "coordinates": {
+            "lat": 25.7439,
+            "lng": 89.2752
+        },
+        "blood_stock": {
+            "A+": {
+                "status": "low",
+                "units": 3,
+                "updated": "2023-11-19T16:45:00+06:00"
+            },
+            "B+": {
+                "status": "critical",
+                "units": 1,
+                "updated": "2023-11-20T14:10:00+06:00"
+            },
+            "O+": {
+                "status": "adequate",
+                "units": 9,
+                "updated": "2023-11-20T10:30:00+06:00"
+            }
+        },
+        "donations_today": 8,
+        "active_donors": 1
+    },
+    {
+        "id": 8,
+        "name": "Cox's Bazar District Hospital",
+        "city": "Cox's Bazar",
+        "division": "Chittagong",
+        "address": "Hospital Rd, Cox's Bazar",
+        "contact": "+880 1834-567890",
+        "coordinates": {
+            "lat": 21.4272,
+            "lng": 92.0058
+        },
+        "blood_stock": {
+            "O+": {
+                "status": "critical",
+                "units": 0,
+                "updated": "2023-11-20T13:50:00+06:00"
+            },
+            "B+": {
+                "status": "low",
+                "units": 2,
+                "updated": "2023-11-20T09:20:00+06:00"
+            }
+        },
+        "donations_today": 5,
+        "active_donors": 0
+    }
+]

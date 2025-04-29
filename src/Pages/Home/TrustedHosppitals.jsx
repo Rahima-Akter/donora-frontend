@@ -1,11 +1,11 @@
 import Marquee from "react-fast-marquee";
 
-const T = () => {
+const TrustedHosppitals = () => {
   return (
     <div>
       <section className="pt-8">
         <div className=" px-4 lg:w-10/12 mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12 drop-shadow-md">Trusted By</h2>
+          <h2 className="text-3xl font-bold text-center mb-12 drop-shadow-lg text-Red">Trusted By</h2>
           <div className="overflow-hidden">
             <Marquee pauseOnHover={true} className="flex justify-center gap-8">
               <img
@@ -67,4 +67,4 @@ const T = () => {
   );
 };
 
-export default T;
+export default TrustedHosppitals;
