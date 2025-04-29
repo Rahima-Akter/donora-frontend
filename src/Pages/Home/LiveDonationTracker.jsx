@@ -7,7 +7,7 @@ const LiveDonationTracker = () => {
   const [bloodData, setBloodData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Predefined positions for up to 8 cities (Bangladesh divisions)
+  // positions for cities
   const cityPositions = [
     { top: '25%', left: '33%' },  // Dhaka
     { top: '40%', left: '65%' },  // Chittagong

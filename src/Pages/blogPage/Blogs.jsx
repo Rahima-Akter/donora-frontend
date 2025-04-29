@@ -33,7 +33,7 @@ const Blogs = () => {
                             <p className='font-bold drop-shadow-lg uppercase text-Red text-xl my-4 text-center'>No data to show</p>
                         </div> : (
                             blogs?.map(blog =>
-                                <div key={blog._id} className="max-w-[260px] mx-auto bg-red-50 rounded-lg shadow-lg dark:bg-gray-800 pb-0 dark:shadow-md dark:shadow-gray-600">
+                                <div key={blog._id} className="max-w-[260px] mx-auto bg-red-50 rounded-lg shadow-lg dark:bg-gray-900 pb-0 dark:shadow-md dark:shadow-gray-600">
                                     <div className="px-3 py-2">
                                         <h1 className="text-lg font-bold text-Red uppercase">{blog.title.slice(0, 29)}...</h1>
                                         <p className="mt-1 text-sm text-gray-950 dark:text-gray-400">

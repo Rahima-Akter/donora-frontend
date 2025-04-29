@@ -35,7 +35,7 @@ const Search = () => {
                     <select id="bloodGroup"
                         value={searchBlood}
                         onChange={(e) => setSearchBlood(e.target.value)}
-                        className="block w-full px-4 py-2 text-sm text-Red bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-Racing-Red focus:outline-none focus:ring focus:ring-Racing-Red">
+                        className="block w-full px-4 py-2 text-sm text-Red bg-white border rounded-lg dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-Racing-Red focus:outline-none focus:ring focus:ring-Racing-Red">
                         <option value=''>Select Blood Type</option>
                         {
                             (["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"]).map((blood, idx) => (
@@ -51,7 +51,7 @@ const Search = () => {
                         id="district"
                         value={searchDistrict}
                         onChange={(e) => setSearchDistrict(e.target.value)}
-                        className="block w-full px-4 py-2 text-sm text-Red bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-Racing-Red focus:outline-none focus:ring focus:ring-Racing-Red">
+                        className="block w-full px-4 py-2 text-sm text-Red bg-white border rounded-lg dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-Racing-Red focus:outline-none focus:ring focus:ring-Racing-Red">
                         <option value=""> Select District </option>
                         {districts.map((district) => (
                             <option key={district.id} value={district.name}>
@@ -64,7 +64,7 @@ const Search = () => {
                         id="upazila"
                         value={searchUpazila}
                         onChange={(e) => setSearchUpazila(e.target.value)}
-                        className="block w-full px-4 py-2 text-sm text-Red bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-Racing-Red focus:outline-none focus:ring focus:ring-Racing-Red">
+                        className="block w-full px-4 py-2 text-sm text-Red bg-white border rounded-lg dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-Racing-Red focus:outline-none focus:ring focus:ring-Racing-Red">
                         <option value=""> Select District </option>
                         {upazilas.map((upazila) => (
                             <option key={upazila.id} value={upazila.name}>

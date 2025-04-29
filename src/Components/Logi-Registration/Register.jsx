@@ -91,8 +91,8 @@ const Register = () => {
     };
 
     return (
-        <div className="flex lg:w-10/12 md:w-11/12 mx-auto bg-Red/5 overflow-hidden rounded-lg shadow-lg dark:bg-gray-800 my-7 md:translate-y-[15%] lg:translate-y-0 -inset-0 -translate-y-[3%]">
-            <div className="hidden lg:flex lg:justify-center lg:items-center lg:w-1/2">
+        <div className="flex lg:w-10/12 md:w-11/12 mx-auto bg-Red/5 overflow-hidden rounded-lg shadow-lg dark:bg-gray-900 my-7 dark:my-0 md:translate-y-[15%] lg:translate-y-0 -inset-0 -translate-y-[3%]">
+            <div className="hidden lg:flex lg:justify-center lg:items-center lg:w-1/2 dark:bg-red-50">
                 <img src={loginImage} className='flex justify-center items-center my-auto ' alt="" />
             </div>
 
@@ -250,7 +250,7 @@ const Register = () => {
 
                     {/* district Dropdown */}
                     <div className="mt-4 md:ml-5">
-                        <label className="block mb-2 text-sm font-medium text-Red" htmlFor="district">
+                        <label className="block mb-2 text-sm font-medium text-Red dark:text-white" htmlFor="district">
                             Select Your District
                         </label>
                         <select
@@ -272,7 +272,7 @@ const Register = () => {
 
                     {/* district Dropdown */}
                     <div className="mt-4 md:ml-5">
-                        <label className="block mb-2 text-sm font-medium text-Red" htmlFor="upazila">
+                        <label className="block mb-2 text-sm font-medium text-Red dark:text-white" htmlFor="upazila">
                             Select Your Upozila
                         </label>
                         <select
@@ -294,7 +294,7 @@ const Register = () => {
 
                     {/* blood group */}
                     <div className="mt-4 md:ml-5 md:col-span-2">
-                        <label className="block mb-2 text-sm font-medium text-Red" htmlFor="blood">
+                        <label className="block mb-2 text-sm font-medium text-Red dark:text-white" htmlFor="blood">
                             Select Your Blood Type...
                         </label>
                         <div className="flex flex-wrap gap-2">
@@ -307,7 +307,7 @@ const Register = () => {
                                         className="peer hidden"
                                         {...register("bloodGroup", { required: "Please select your Blood Group" })}
                                     />
-                                    <span className="py-2 px-2.5 border-2  hover:bg-white border-Red/20 text-Crimson-Red rounded-full flex justify-center items-center peer-checked:border-Red peer-checked:bg-Red peer-checked:text-white text-xs peer-checked:ring peer-checked:ring-offset-gray-300">
+                                    <span className="py-2 px-2.5 border-2  hover:bg-white dark:bg-white dark:hover:bg-gray-200 border-Red/20 text-Crimson-Red cursor-pointer rounded-full flex justify-center items-center peer-checked:border-Red peer-checked:bg-Red peer-checked:text-white text-xs peer-checked:ring peer-checked:ring-offset-gray-300">
                                         {type}
                                     </span>
                                 </label>

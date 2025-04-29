@@ -34,14 +34,14 @@ const DonationRequests = () => {
                             <p className='font-bold drop-shadow-lg uppercase text-Red text-xl my-4 text-center'>No data to show</p>
                         </div>
                         : requests.map(request => (
-                            <div key={request._id} className="flex flex-col max-w-sm overflow-hidden bg-red-50 rounded-lg shadow-lg dark:bg-gray-800">
+                            <div key={request._id} className="flex flex-col max-w-sm overflow-hidden bg-red-50 rounded-lg shadow-lg dark:bg-gray-900">
                                 <div className="p-4 md:py-4 md:px-5 w-full flex flex-col flex-grow">
                                     <h1 className="text-xl font-bold text-Red">{request.recipientName} ({request.bloodGroup})</h1>
                                     <p className="mt-2 text-sm text-gray-600 dark:text-gray-300">
                                         {request.hospital}, {request.fullAddress}
                                     </p>
 
-                                    <div className="flex mt-2 items-center mb-2">
+                                    <div className="flex mt-2 items-center dark:text-gray-300 mb-2">
                                         {format(new Date(`1970-01-01T${request.donationTime}:00Z`), "hh:mm a")}, {format(new Date(request.donationDate), 'P')}
                                     </div>
 

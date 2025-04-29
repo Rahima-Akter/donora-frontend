@@ -40,10 +40,10 @@ const Fund = () => {
                         <p className='font-bold drop-shadow-lg uppercase text-Red text-xl my-4 text-center '>No data to show</p>
                     </div> || (
                         <div className="min-w-full">
-                            <div className="overflow-hidden bg-white shadow rounded-lg dark:rounded-none dark:bg-gray-900">
+                            <div className="overflow-hidden bg-white shadow rounded-lg dark:rounded-none dark:bg-gray-950">
                                 <div className="overflow-x-auto">
                                     <table className="w-full table-auto text-sm text-left text-gray-500 dark:text-gray-300">
-                                        <thead className="text-xs text-Red uppercase bg-Red/10 dark:bg-gray-800 dark:text-white dark:border dark:border-gray-500">
+                                        <thead className="text-xs text-Red uppercase bg-Red/10 dark:bg-gray-900 dark:text-white dark:border dark:border-gray-500">
                                             <tr>
                                                 <th scope="col" className="text-center px-4 py-4 whitespace-nowrap">Donor Name</th>
                                                 <th scope="col" className="text-center px-4 py-4 whitespace-nowrap">Donation_Amount</th>

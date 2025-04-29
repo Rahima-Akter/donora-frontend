@@ -17,7 +17,7 @@ createRoot(document.getElementById('root')).render(
     <ThemeProvider>
       <QueryClientProvider client={queryClient}>
         <HelmetProvider>
-          <div className=''>
+          <div className='dark:bg-black'>
             <Context>
               <RouterProvider router={router} />
               <Toaster position='top-right' reverseOrder={false} />
