@@ -1,4 +1,11 @@
-import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa";
+import {
+  FaFacebookF,
+  FaTwitter,
+  FaInstagram,
+  FaYoutube,
+  FaGithub,
+  FaLinkedin,
+} from "react-icons/fa";
 import { HiOutlinePhone, HiOutlineMail } from "react-icons/hi";
 import { GoLocation } from "react-icons/go";
 import footerBg from "../../assets/footerBg.JPg";
@@ -35,34 +42,34 @@ const Footer = () => {
             <p className="text-xs text-gray-500 dark:text-gray-300 mb-4">
               This site connects compassionate donors with those whose lives
               depend on blood. Whether you're here to give or receive, our
-              mission is simple, to make blood donations easier,
-              faster, and more accessible for everyone.
+              mission is simple, to make blood donations easier, faster, and
+              more accessible for everyone.
             </p>
             {/* Social Media Icons */}
             <div className="flex space-x-4 mt-4">
               <a
-                href="#"
+                href="https://github.com/Rahima-Akter"
                 className="text-white text-lg hover:scale-110 duration-700 bg-red-600 py-2 px-4 rounded"
               >
-                <FaFacebookF />
+                <FaGithub />
               </a>
               <a
-                href="#"
+                href="https://www.linkedin.com/in/rahima-akter99"
+                className="text-white text-lg hover:scale-110 duration-700 bg-red-600 py-2 px-4 rounded"
+              >
+                <FaLinkedin />
+              </a>
+              <a
+                href="https://x.com/Rahima_A_Srity"
                 className="text-white text-lg hover:scale-110 duration-700 bg-red-600 py-2 px-4 rounded"
               >
                 <FaTwitter />
               </a>
               <a
-                href="#"
+                href="https://www.instagram.com/rahi99_a/"
                 className="text-white text-lg hover:scale-110 duration-700 bg-red-600 py-2 px-4 rounded"
               >
                 <FaInstagram />
-              </a>
-              <a
-                href="#"
-                className="text-white text-lg hover:scale-110 duration-700 bg-red-600 py-2 px-4 rounded"
-              >
-                <FaYoutube />
               </a>
             </div>
           </div>
