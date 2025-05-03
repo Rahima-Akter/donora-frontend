@@ -21,8 +21,7 @@ const Banner = () => {
       {/* Animated overlay gradient */}
       <div className="z-0 absolute top-0 right-0 inset-0 bg-gradient-to-r from-Crimson-Red/90 to-Crimson-Red/70"></div>
 
-      {/* Floating blood drop decoration (purely visual) */}
-      {/* Floating elements covering the entire banner area */}
+      {/* Floating blood drop decoration */}
       <div className="absolute top-[10%] left-[5%] w-16 h-16 rounded-full bg-white/10 animate-float"></div>
       <div className="absolute top-[20%] left-[35%] w-10 h-10 rounded-full bg-white/15 animate-float animation-delay-2000"></div>
       <div className="absolute top-[15%] right-[10%] w-12 h-12 rounded-full bg-white/10 animate-float animation-delay-1000"></div>
@@ -43,7 +42,7 @@ const Banner = () => {
           <p className="md:text-xl text-lg mb-8 max-w-3xl mx-auto text-white/90 animate-fadeIn animation-delay-300">
             Hope is Restored, and Lives are Saved Through Your Generosity
           </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4 mt-6 animate-fadeIn animation-delay-500">
+          <div className="flex flex-row justify-center gap-4 mt-6 animate-fadeIn animation-delay-500">
             <Link to="/register">
               <Button
                 buttonText="Join As A Donor"
@@ -60,7 +59,7 @@ const Banner = () => {
         </div>
       </div>
 
-      {/* Scrolling animation at bottom */}
+      {/* Scrolling animation */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
         <svg
           className="w-6 h-6 text-white"
