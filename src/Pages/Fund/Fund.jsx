@@ -57,7 +57,7 @@ const Fund = () => {
                 loop
                 autoplay
               ></lottie-player>
-              <p className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-Red to-pink-600 text-2xl text-center mt-4">
+              <p className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-Red to-pink-600 text-2xl text-center -mt-4">
                 No donations yet
               </p>
               <p className="text-gray-500 dark:text-gray-400 text-center mt-2">
